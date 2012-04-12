@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Benchmark xmlns="http://checklists.nist.gov/xccdf/1.2" id="xccdf_org.open-scap.sce-community-content_benchmark_STUB" xml:lang="en">
+  <status date="2012-04-11">draft</status>
+  <title>All SCE community content checks</title>
+  <description>STUB</description>
+  <notice id="disclaimer">This XCCDF has been automatically generated, it should only serve as a baseline!</notice>
+  <front-matter>STUB</front-matter>
+  <rear-matter>STUB</rear-matter>
+  <reference href="http://iase.disa.mil/stigs/index.html"/>
+  <platform idref="cpe:/o:redhat:enterprise_linux:6"/>
+  <version>0.1</version>
+</Benchmark>
+
