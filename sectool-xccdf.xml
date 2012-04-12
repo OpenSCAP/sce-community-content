@@ -371,3 +371,4 @@ Checks whether all running applications, which are using libwrap, have some rest
     </Rule>
   </Group>
 </Benchmark>
+

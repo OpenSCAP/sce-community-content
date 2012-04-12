@@ -18,6 +18,7 @@
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="rootkit-checks/chkrootkit.sh"/>
       </check>
     </Rule>
@@ -28,8 +29,10 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="rootkit-checks/rkhunter.sh"/>
       </check>
     </Rule>
   </Group>
 </Benchmark>
+

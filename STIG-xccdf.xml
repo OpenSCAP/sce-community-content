@@ -18,6 +18,7 @@
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN000920.sh"/>
       </check>
     </Rule>
@@ -28,6 +29,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001180.sh"/>
       </check>
     </Rule>
@@ -38,6 +40,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001200.sh"/>
       </check>
     </Rule>
@@ -48,6 +51,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001220.sh"/>
       </check>
     </Rule>
@@ -58,6 +62,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001240.sh"/>
       </check>
     </Rule>
@@ -68,6 +73,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001260.sh"/>
       </check>
     </Rule>
@@ -78,6 +84,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001280.sh"/>
       </check>
     </Rule>
@@ -88,6 +95,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001300.sh"/>
       </check>
     </Rule>
@@ -98,6 +106,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001380.sh"/>
       </check>
     </Rule>
@@ -108,6 +117,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001400.sh"/>
       </check>
     </Rule>
@@ -118,6 +128,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001420.sh"/>
       </check>
     </Rule>
@@ -128,6 +139,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001480.sh"/>
       </check>
     </Rule>
@@ -138,6 +150,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001560.sh"/>
       </check>
     </Rule>
@@ -148,6 +161,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001580.sh"/>
       </check>
     </Rule>
@@ -158,6 +172,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001800.sh"/>
       </check>
     </Rule>
@@ -168,6 +183,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001860.sh"/>
       </check>
     </Rule>
@@ -178,6 +194,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN001880.sh"/>
       </check>
     </Rule>
@@ -188,6 +205,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN002500.sh"/>
       </check>
     </Rule>
@@ -198,6 +216,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN002520.sh"/>
       </check>
     </Rule>
@@ -208,6 +227,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN002680.sh"/>
       </check>
     </Rule>
@@ -218,6 +238,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN002700.sh"/>
       </check>
     </Rule>
@@ -228,6 +249,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN002980.sh"/>
       </check>
     </Rule>
@@ -238,6 +260,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN003080.sh"/>
       </check>
     </Rule>
@@ -248,6 +271,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN003100.sh"/>
       </check>
     </Rule>
@@ -258,6 +282,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN003120.sh"/>
       </check>
     </Rule>
@@ -268,6 +293,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN003140.sh"/>
       </check>
     </Rule>
@@ -278,6 +304,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN003720.sh"/>
       </check>
     </Rule>
@@ -288,6 +315,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN003740.sh"/>
       </check>
     </Rule>
@@ -298,6 +326,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN003760.sh"/>
       </check>
     </Rule>
@@ -308,6 +337,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN003780.sh"/>
       </check>
     </Rule>
@@ -318,6 +348,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN004360.sh"/>
       </check>
     </Rule>
@@ -328,6 +359,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN004380.sh"/>
       </check>
     </Rule>
@@ -338,6 +370,7 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN006140.sh"/>
       </check>
     </Rule>
@@ -348,9 +381,11 @@ STUB</xhtml:pre>
 STUB</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
         <check-content-ref href="STIG/GEN008720.sh"/>
       </check>
     </Rule>
   </Group>
 </Benchmark>
+
 
