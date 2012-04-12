@@ -12,7 +12,7 @@
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_stig" selected="true">
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-1" selected="true">
-      <title>stig-GEN000920.sh</title>
+      <title>GEN000920</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -22,7 +22,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-2" selected="true">
-      <title>stig-GEN001180.sh</title>
+      <title>GEN001180</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -32,7 +32,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-3" selected="true">
-      <title>stig-GEN001200.sh</title>
+      <title>GEN001200</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -42,7 +42,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-4" selected="true">
-      <title>stig-GEN001220.sh</title>
+      <title>GEN001220</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -52,7 +52,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-5" selected="true">
-      <title>stig-GEN001240.sh</title>
+      <title>GEN001240</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -62,7 +62,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-6" selected="true">
-      <title>stig-GEN001260.sh</title>
+      <title>GEN001260</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -72,7 +72,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-7" selected="true">
-      <title>stig-GEN001280.sh</title>
+      <title>GEN001280</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -82,7 +82,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-8" selected="true">
-      <title>stig-GEN001300.sh</title>
+      <title>GEN001300</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -92,7 +92,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-9" selected="true">
-      <title>stig-GEN001380.sh</title>
+      <title>GEN001380</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -102,7 +102,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-10" selected="true">
-      <title>stig-GEN001400.sh</title>
+      <title>GEN001400</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -112,7 +112,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-11" selected="true">
-      <title>stig-GEN001420.sh</title>
+      <title>GEN001420</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -122,7 +122,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-12" selected="true">
-      <title>stig-GEN001480.sh</title>
+      <title>GEN001480</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -132,7 +132,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-13" selected="true">
-      <title>stig-GEN001560.sh</title>
+      <title>GEN001560</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -142,7 +142,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-14" selected="true">
-      <title>stig-GEN001580.sh</title>
+      <title>GEN001580</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -152,7 +152,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-15" selected="true">
-      <title>stig-GEN001800.sh</title>
+      <title>GEN001800</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -162,7 +162,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-16" selected="true">
-      <title>stig-GEN001860.sh</title>
+      <title>GEN001860</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -172,7 +172,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-17" selected="true">
-      <title>stig-GEN001880.sh</title>
+      <title>GEN001880</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -182,7 +182,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-18" selected="true">
-      <title>stig-GEN002500.sh</title>
+      <title>GEN002500</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -192,7 +192,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-19" selected="true">
-      <title>stig-GEN002520.sh</title>
+      <title>GEN002520</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -202,7 +202,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-20" selected="true">
-      <title>stig-GEN002680.sh</title>
+      <title>GEN002680</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -212,7 +212,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-21" selected="true">
-      <title>stig-GEN002700.sh</title>
+      <title>GEN002700</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -222,7 +222,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-22" selected="true">
-      <title>stig-GEN002980.sh</title>
+      <title>GEN002980</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -232,7 +232,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-23" selected="true">
-      <title>stig-GEN003080.sh</title>
+      <title>GEN003080</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -242,7 +242,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-24" selected="true">
-      <title>stig-GEN003100.sh</title>
+      <title>GEN003100</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -252,7 +252,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-25" selected="true">
-      <title>stig-GEN003120.sh</title>
+      <title>GEN003120</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -262,7 +262,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-26" selected="true">
-      <title>stig-GEN003140.sh</title>
+      <title>GEN003140</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -272,7 +272,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-27" selected="true">
-      <title>stig-GEN003720.sh</title>
+      <title>GEN003720</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -282,7 +282,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-28" selected="true">
-      <title>stig-GEN003740.sh</title>
+      <title>GEN003740</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -292,7 +292,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-29" selected="true">
-      <title>stig-GEN003760.sh</title>
+      <title>GEN003760</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -302,7 +302,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-30" selected="true">
-      <title>stig-GEN003780.sh</title>
+      <title>GEN003780</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -312,7 +312,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-31" selected="true">
-      <title>stig-GEN004360.sh</title>
+      <title>GEN004360</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -322,7 +322,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-32" selected="true">
-      <title>stig-GEN004380.sh</title>
+      <title>GEN004380</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -332,7 +332,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-33" selected="true">
-      <title>stig-GEN006140.sh</title>
+      <title>GEN006140</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -342,7 +342,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-34" selected="true">
-      <title>stig-GEN008720.sh</title>
+      <title>GEN008720</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
