@@ -300,11 +300,11 @@ Checks if exec-shield is enabled.</xhtml:pre>
       <title>sectool: selinux</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Checks if you have SELinux enabled and monitors any booleans changes.</xhtml:pre>
+Checks the SELinux state, result depends on passed variable. By default checks whether SELinux is enabled and in enforcing mode.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
-        <check-export value-id="xccdf_org.open-scap.sce-community-content_value_sectool_selinux_state" export-name="EXPECTED_STATE"/> <!-- TBD -->
+        <check-export value-id="xccdf_org.open-scap.sce-community-content_value_sectool_selinux_state" export-name="EXPECTED_STATE"/>
         <check-content-ref href="sectool/09_selinux.sh"/>
       </check>
     </Rule>
