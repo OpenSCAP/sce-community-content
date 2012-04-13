@@ -11,8 +11,10 @@
   <version>0.1</version>
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_rootkit-checks" selected="true">
+    <title>Rootkit checks</title>
+
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_rootkit-checks-1" selected="true">
-      <title>chkrootkit</title>
+      <title>rootkit-checks: chkrootkit</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>
@@ -23,7 +25,7 @@ STUB</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_rootkit-checks-2" selected="true">
-      <title>rkhunter</title>
+      <title>rootkit-checks: rkhunter</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 STUB</xhtml:pre>

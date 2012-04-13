@@ -16,7 +16,7 @@
     <title>Sectool checks</title>
 
     <Value id="xccdf_org.open-scap.sce-community-content_value_sectool_selinux_state" type="string" operator="equals">
-      <title>SELinux state</title>
+      <title>sectool: SELinux state</title>
       <description xml:lang="en"> 
 enforcing - SELinux security policy is enforced. <xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
 permissive - SELinux prints warnings instead of enforcing.<xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
@@ -36,7 +36,7 @@ disabled - SELinux is fully disabled.
     </Value>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-1" selected="true">
-      <title>integrity</title>
+      <title>sectool: integrity</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 System integrity test. Checks presence and integrity of
@@ -50,7 +50,7 @@ for duplicates is also done for each command.</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-2" selected="true">
-      <title>bootloader</title>
+      <title>sectool: bootloader</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Tests
@@ -63,7 +63,7 @@ Tests
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-3" selected="true">
-      <title>disk_usage</title>
+      <title>sectool: disk_usage</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Tells user, which of mounted volumes are going to be full. Uses df to get this info.</xhtml:pre>
@@ -74,7 +74,7 @@ Tells user, which of mounted volumes are going to be full. Uses df to get this i
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-4" selected="true">
-      <title>group</title>
+      <title>sectool: group</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Checks group for whether
@@ -95,7 +95,7 @@ Checks group for whether
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-5" selected="true">
-      <title>passwd</title>
+      <title>sectool: passwd</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Checks passwd for whether
@@ -127,7 +127,7 @@ Checks passwd for whether
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-6" selected="true">
-      <title>shadow</title>
+      <title>sectool: shadow</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Checks shadow for whether
@@ -146,7 +146,7 @@ Checks shadow for whether
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-7" selected="true">
-      <title>home_files</title>
+      <title>sectool: home_files</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Tests ownership and access rights to sensitive files (.bashrc, ssh/id_dsa etc.) in home directories of all users</xhtml:pre>
@@ -157,7 +157,7 @@ Tests ownership and access rights to sensitive files (.bashrc, ssh/id_dsa etc.) 
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-8" selected="true">
-      <title>root_dirs</title>
+      <title>sectool: root_dirs</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Do not allow dot directories in "/"</xhtml:pre>
@@ -168,7 +168,7 @@ Do not allow dot directories in "/"</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-9" selected="true">
-      <title>path</title>
+      <title>sectool: path</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Checks
@@ -184,7 +184,7 @@ Tests environmental variable PATH for
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-10" selected="true">
-      <title>firewall</title>
+      <title>sectool: firewall</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Simple analysis of firewall policy rules.</xhtml:pre>
@@ -195,7 +195,7 @@ Simple analysis of firewall policy rules.</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-11" selected="true">
-      <title>netserv</title>
+      <title>sectool: netserv</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Audit of currently running network services.</xhtml:pre>
@@ -206,7 +206,7 @@ Audit of currently running network services.</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-12" selected="true">
-      <title>openssh</title>
+      <title>sectool: openssh</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 OpenSSH configuration audit.</xhtml:pre>
@@ -217,7 +217,7 @@ OpenSSH configuration audit.</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-13" selected="true">
-      <title>openvpn</title>
+      <title>sectool: openvpn</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 OpenVPN configuration audit.</xhtml:pre>
@@ -228,7 +228,7 @@ OpenVPN configuration audit.</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-14" selected="true">
-      <title>removed_libs</title>
+      <title>sectool: removed_libs</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Checks if libraries mapped into memory are the same as the libraries on the disk.
@@ -242,7 +242,7 @@ processes that belong to a running system service.</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-15" selected="true">
-      <title>xinetd</title>
+      <title>sectool: xinetd</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 xinetd configuration audit.</xhtml:pre>
@@ -253,7 +253,7 @@ xinetd configuration audit.</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-16" selected="true">
-      <title>log_files</title>
+      <title>sectool: log_files</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Tests logfiles presence, owner, group and permissions of logfiles.</xhtml:pre>
@@ -264,7 +264,7 @@ Tests logfiles presence, owner, group and permissions of logfiles.</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-17" selected="true">
-      <title>pam</title>
+      <title>sectool: pam</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 PAM configuration audit.</xhtml:pre>
@@ -275,7 +275,7 @@ PAM configuration audit.</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-18" selected="true">
-      <title>permissions</title>
+      <title>sectool: permissions</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Tests important directories for presence, permissions and owner</xhtml:pre>
@@ -286,7 +286,7 @@ Tests important directories for presence, permissions and owner</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-19" selected="true">
-      <title>exec_shield</title>
+      <title>sectool: exec_shield</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Checks if exec-shield is enabled.</xhtml:pre>
@@ -297,7 +297,7 @@ Checks if exec-shield is enabled.</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-20" selected="true">
-      <title>selinux</title>
+      <title>sectool: selinux</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Checks if you have SELinux enabled and monitors any booleans changes.</xhtml:pre>
@@ -309,7 +309,7 @@ Checks if you have SELinux enabled and monitors any booleans changes.</xhtml:pre
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-21" selected="true">
-      <title>va_randomization</title>
+      <title>sectool: va_randomization</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Checks whether va-randomization is enabled.</xhtml:pre>
@@ -320,7 +320,7 @@ Checks whether va-randomization is enabled.</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-22" selected="true">
-      <title>aliases</title>
+      <title>sectool: aliases</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Checks bash aliases for:
@@ -335,7 +335,7 @@ Checks bash aliases for:
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-23" selected="true">
-      <title>cron</title>
+      <title>sectool: cron</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Basic crontab checking.
@@ -348,7 +348,7 @@ permissions of cron related dirs and commands listed in crontab.</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-24" selected="true">
-      <title>nfs</title>
+      <title>sectool: nfs</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Audit of nfs server. Finds RW exports</xhtml:pre>
@@ -359,7 +359,7 @@ Audit of nfs server. Finds RW exports</xhtml:pre>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-25" selected="true">
-      <title>tcp_wrappers</title>
+      <title>sectool: tcp_wrappers</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
 Checks whether all running applications, which are using libwrap, have some restrictions in /etc/hosts.deny and /etc.hosts allow</xhtml:pre>
