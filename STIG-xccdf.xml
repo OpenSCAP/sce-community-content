@@ -15,7 +15,9 @@
       <title>STIG: GEN000920</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+/root should be 0750 or less.
+
+Permissions greater than 0700 could allow unauthorized users access to the root home directory.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -26,7 +28,10 @@ STUB</xhtml:pre>
       <title>STIG: GEN001180</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+Network service daemon files should be 0755 or less.
+
+Restricting permission on daemons will protect them from unauthorized modification and possible system compromise.
+</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -37,7 +42,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN001200</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+System command files must be 0755 or less.
+
+Restricting permissions will protect system command files from unauthorized modification. System command files include files present in directories used by the operating system for storing default system executables and files present in directories included in the system's default executable search paths.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -48,7 +55,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN001220</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+System command dirs must be own by a system account.
+
+Restricting permissions will protect the files from unauthorized modification.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -59,7 +68,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN001240</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+System command dirs must be owned by a system group.
+
+Restricting permissions will protect the files from unauthorized modification.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -70,7 +81,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN001260</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+syslog logs should be 0640 or less.
+
+If the system log files are not protected, unauthorized users could change the logged data, eliminating its forensic value.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -81,7 +94,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN001280</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+man pages must be 0644 or less.
+
+If manual pages are compromised, misleading information could be inserted, causing actions that may compromise the system.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -92,7 +107,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN001300</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+Library files must be 0755 or less.
+
+Unauthorized access could destroy the integrity of the library files.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -103,7 +120,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN001380</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+passwd must be 0644 or less.
+
+If the passwd file is writable by a group-owner or the world, the risk of passwd file compromise is increased. The passwd file contains the list of accounts on the system and associated information.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -114,7 +133,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN001400</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+/etc/shadow must be owned by root.
+
+The /etc/shadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. Failure to give ownership of sensitive files or utilities to root or bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -125,7 +146,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN001420</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+/etc/shadow must be 0400 or less.
+
+The /etc/shadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. The file also contains password hashes which must not be accessible to users other than root.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -136,7 +159,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN001480</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+All home dirs must be 0750 or less.
+
+Excessive permissions on home directories allow unauthorized access to user files.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -147,7 +172,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN001560</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+All files in home dirs must be 0750 or less.
+
+Excessive permissions allow unauthorized access to user files.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -158,7 +185,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN001580</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+All /etc/rc files must be 0755 or less.
+
+If the startup files are writable by other users, they could modify the startup files to insert malicious commands into the startup files.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -169,7 +198,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN001800</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+Skeleton /etc/skel/* files must be 0644 or less.
+
+If the system log files are not protected, unauthorized users could change the logged data, eliminating its forensic value.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -180,7 +211,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN001860</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+All shell files in /etc must be owned by root.
+
+Local initialization files are used to configure the user's shell environment upon login. Malicious modification of these files could compromise accounts upon logon.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -191,7 +224,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN001880</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+All shell files in /etc must be 0755 or less (???).
+
+Local initialization files are used to configure the user's shell environment upon login. Malicious modification of these files could compromise accounts upon logon.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -202,7 +237,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN002500</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+Sticky bit must be on all world writable dirs.
+
+Failing to set the sticky bit on the public directories allows unauthorized users to delete files in the directory structure. The only authorized public directories are those temporary directories supplied with the system or those designed to be temporary file repositories. The setting is normally reserved for directories used by the system and by users for temporary file storage (e.g., /tmp) and for directories that require global read/write access.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -213,7 +250,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN002520</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+All world writable dirs must be owned by system account.
+
+If a public directory has the sticky bit set and is not owned by a privileged UID, unauthorized users may be able to modify files created by others. The only authorized public directories are those temporary directories supplied with the system or those designed to be temporary file repositories. The setting is normally reserved for directories used by the system and by users for temporary file storage (e.g., /tmp) and for directories that require global read/write access.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -224,7 +263,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN002680</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+All audit logs must be owned by root.
+
+Failure to give ownership of system audit log files to root provides the designated owner and unauthorized users with the potential to access sensitive information.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -235,7 +276,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN002700</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+All audit logs must be 0640 or less.
+
+If a user can write to the audit logs, audit trails can be modified or destroyed and system intrusion may not be detected. System audit logs are those files generated from the audit system and do not include activity, error, or other log files created by application software.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -246,7 +289,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN002980</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+cron.allow must be 0600 or less.
+
+A cron.allow file that is readable and/or writable by other than root could allow potential intruders and malicious users to use the file contents to help discern information, such as who is allowed to execute cron programs, which could be harmful to overall system and network security.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -257,7 +302,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN003080</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+crontab files must be 0600 or less. cron script must be 0700 or less.
+
+To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -268,7 +315,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN003100</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+cron dirs must be 0755 or more less.
+
+To protect the integrity of scheduled system jobs and to prevent malicious modification to these jobs, crontab files must be secured.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -279,7 +328,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN003120</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+cron dirs must be owned by root.
+
+Incorrect ownership of the cron or crontab directories could permit unauthorized users the ability to alter cron jobs and run automated jobs as privileged users. Failure to give ownership of cron or crontab directories to root or to bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -290,7 +341,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN003140</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+cron dirs must be group root.
+
+To protect the integrity of scheduled system jobs and to prevent malicious modification to these jobs, crontab files must be secured. Failure to give group-ownership of cron or crontab directories to a system group provides the designated group and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -301,7 +354,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN003720</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+All xinetd dirs must be owned by root.
+
+Failure to give ownership of sensitive files or utilities to root provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -312,7 +367,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN003740</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+All xinetd files must be 0640 or less.
+
+The Internet service daemon configuration files must be protected as malicious modification could cause denial of service or increase the attack surface of the system.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -323,7 +380,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN003760</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+Services file must be owned by root.
+
+Failure to give ownership of sensitive files or utilities to root or bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -334,7 +393,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN003780</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+Services file must be 0644 or less.
+
+The services file is critical to the proper operation of network services and must be protected from unauthorized modification. Unauthorized modification could result in the failure of network services.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -345,7 +406,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN004360</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+The alias file must be owned by root.
+
+If the alias file is not owned by root, an unauthorized user may modify the file to add aliases to run malicious code or redirect e-mail.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -356,7 +419,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN004380</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+The alias file must be 644 or less.
+
+Excessive permissions on the aliases file may permit unauthorized modification. If the alias file is modified by an unauthorized user, they may modify the file to run malicious code or redirect e-mail.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -367,7 +432,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN006140</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+smb.conf must be 0644 or less.
+
+If the smb.conf file has excessive permissions, the file may be maliciously modified and the Samba configuration could be compromised.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -378,7 +445,9 @@ STUB</xhtml:pre>
       <title>STIG: GEN008720</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+grub.conf must be 0600 or less.
+
+File permissions greater than 0600 on boot loader configuration files could allow an unauthorized user to view or modify sensitive information pertaining to system boot instructions.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
