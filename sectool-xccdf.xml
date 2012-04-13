@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<Benchmark xmlns="http://checklists.nist.gov/xccdf/1.1" id="xccdf_org.open-scap.sce-community-content_benchmark_sectool_checks" xml:lang="en">
+<Benchmark xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml" id="xccdf_org.open-scap.sce-community-content_benchmark_sectool_checks" xml:lang="en">
   <status date="2012-02-06">draft</status>
   <title>Migrated sectool checks</title>
   <description>These checks are originally from sectool (http://fedorahosted.org/sectool) and have been migrated to SCE for use with XCCDF and related technologies.</description>
@@ -18,8 +18,8 @@
     <Value id="xccdf_org.open-scap.sce-community-content_value_sectool_selinux_state" type="string" operator="equals">
       <title>sectool: SELinux state</title>
       <description xml:lang="en"> 
-enforcing - SELinux security policy is enforced. <xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
-permissive - SELinux prints warnings instead of enforcing.<xhtml:br xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+enforcing - SELinux security policy is enforced. <xhtml:br />
+permissive - SELinux prints warnings instead of enforcing.<xhtml:br />
 disabled - SELinux is fully disabled.
       </description>
       <question xml:lang="en">Set the SELinux state</question>
@@ -38,11 +38,7 @@ disabled - SELinux is fully disabled.
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-1" selected="true">
       <title>sectool: integrity</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-System integrity test. Checks presence and integrity of
-system commands and directories. For checking the integrity
-of binaries the command rpmverify (rpm -Vf) is used. A search
-for duplicates is also done for each command.</xhtml:pre>
+        <xhtml:p>System integrity test. Checks presence and integrity of system commands and directories. For checking the integrity of binaries the command rpmverify (rpm -Vf) is used. A search for duplicates is also done for each command.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -52,10 +48,11 @@ for duplicates is also done for each command.</xhtml:pre>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-2" selected="true">
       <title>sectool: bootloader</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Tests
-* permission and owner of /etc/grub.conf
-* password presence</xhtml:pre>
+        <xhtml:p>Tests</xhtml:p>
+        <xhtml:ul>
+          <xhtml:li>permission and owner of /etc/grub.conf</xhtml:li>
+          <xhtml:li>password presence</xhtml:li>
+        </xhtml:ul>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -65,8 +62,7 @@ Tests
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-3" selected="true">
       <title>sectool: disk_usage</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Tells user, which of mounted volumes are going to be full. Uses df to get this info.</xhtml:pre>
+        <xhtml:p>Tells user, which of mounted volumes are going to be full. Uses df to get this info.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -76,18 +72,19 @@ Tells user, which of mounted volumes are going to be full. Uses df to get this i
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-4" selected="true">
       <title>sectool: group</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Checks group for whether
-* line is not blank
-* line has correct number of fields
-* groupname is not empty
-* groupname contains only alpha-numeric characters
-* groupname is shorter than 32 chars
-* all group passwords are shadowed
-* GIDs are valid numbers
-* GIDs are in range 0..60000
-* there are groups with same GID
-* there are same groupnames</xhtml:pre>
+        <xhtml:p>Checks group for whether</xhtml:p>
+        <xhtml:ul>
+          <xhtml:li>line is not blank</xhtml:li>
+          <xhtml:li>line has correct number of fields</xhtml:li>
+          <xhtml:li>groupname is not empty</xhtml:li>
+          <xhtml:li>groupname contains only alpha-numeric characters</xhtml:li>
+          <xhtml:li>groupname is shorter than 32 chars</xhtml:li>
+          <xhtml:li>all group passwords are shadowed</xhtml:li>
+          <xhtml:li>GIDs are valid numbers</xhtml:li>
+          <xhtml:li>GIDs are in range 0..60000</xhtml:li>
+          <xhtml:li>there are groups with same GID</xhtml:li>
+          <xhtml:li>there are same groupnames</xhtml:li>
+        </xhtml:ul>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -97,29 +94,30 @@ Checks group for whether
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-5" selected="true">
       <title>sectool: passwd</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Checks passwd for whether
-* /etc/passwd has permission 644 and its owner is root:root
-* /etc/shadow has permission 400 and its owner is root:root
-* line is not blank
-* line has correct number of fields
-* username is not empty
-* username contains only alpha-numeric characters
-* username is shorter than 32 chars
-* all users have password
-* all passwords are shadowed
-* UID and GID are valid numbers
-* UID and GID are in range 500..60000
-* user has UID 0, but his username is not root
-* user has UID 1, but his username is not bin
-* user has GID 0, but his username is not root
-* user has GID 1, but his username is not bin
-* user has negative UID
-* user has negative GID
-* there are users with same UID
-* there are same username
-* root has UID 0
-* user has valid shell (listed in /etc/shells)</xhtml:pre>
+        <xhtml:p>Checks passwd for whether</xhtml:p>
+        <xhtml:ul>
+          <xhtml:li>/etc/passwd has permission 644 and its owner is root:root</xhtml:li>
+          <xhtml:li>/etc/shadow has permission 400 and its owner is root:root</xhtml:li>
+          <xhtml:li>line is not blank</xhtml:li>
+          <xhtml:li>line has correct number of fields</xhtml:li>
+          <xhtml:li>username is not empty</xhtml:li>
+          <xhtml:li>username contains only alpha-numeric characters</xhtml:li>
+          <xhtml:li>username is shorter than 32 chars</xhtml:li>
+          <xhtml:li>all users have password</xhtml:li>
+          <xhtml:li>all passwords are shadowed</xhtml:li>
+          <xhtml:li>UID and GID are valid numbers</xhtml:li>
+          <xhtml:li>UID and GID are in range 500..60000</xhtml:li>
+          <xhtml:li>user has UID 0, but his username is not root</xhtml:li>
+          <xhtml:li>user has UID 1, but his username is not bin</xhtml:li>
+          <xhtml:li>user has GID 0, but his username is not root</xhtml:li>
+          <xhtml:li>user has GID 1, but his username is not bin</xhtml:li>
+          <xhtml:li>user has negative UID</xhtml:li>
+          <xhtml:li>user has negative GID</xhtml:li>
+          <xhtml:li>there are users with same UID</xhtml:li>
+          <xhtml:li>there are same username</xhtml:li>
+          <xhtml:li>root has UID 0</xhtml:li>
+          <xhtml:li>user has valid shell (listed in /etc/shells)</xhtml:li>
+        </xhtml:ul>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -129,16 +127,17 @@ Checks passwd for whether
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-6" selected="true">
       <title>sectool: shadow</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Checks shadow for whether
-* /etc/shadow has permission 400 and its owner is root:root
-* line is not blank
-* line has correct number of fields
-* username is not empty
-* username contains only alpha-numeric characters
-* username is shorter than 32 chars
-* all users have password
-* there are same usernames</xhtml:pre>
+        <xhtml:p>Checks shadow for whether</xhtml:p>
+        <xhtml:ul>
+          <xhtml:li>/etc/shadow has permission 400 and its owner is root:root</xhtml:li>
+          <xhtml:li>line is not blank</xhtml:li>
+          <xhtml:li>line has correct number of fields</xhtml:li>
+          <xhtml:li>username is not empty</xhtml:li>
+          <xhtml:li>username contains only alpha-numeric characters</xhtml:li>
+          <xhtml:li>username is shorter than 32 chars</xhtml:li>
+          <xhtml:li>all users have password</xhtml:li>
+          <xhtml:li>there are same usernames</xhtml:li>
+        </xhtml:ul>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -148,8 +147,7 @@ Checks shadow for whether
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-7" selected="true">
       <title>sectool: home_files</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Tests ownership and access rights to sensitive files (.bashrc, ssh/id_dsa etc.) in home directories of all users</xhtml:pre>
+        <xhtml:p>Tests ownership and access rights to sensitive files (.bashrc, ssh/id_dsa etc.) in home directories of all users</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -159,8 +157,7 @@ Tests ownership and access rights to sensitive files (.bashrc, ssh/id_dsa etc.) 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-8" selected="true">
       <title>sectool: root_dirs</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Do not allow dot directories in "/"</xhtml:pre>
+        <xhtml:p>Do not allow dot directories in "/"</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -170,13 +167,16 @@ Do not allow dot directories in "/"</xhtml:pre>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-9" selected="true">
       <title>sectool: path</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Checks
-* if all directories listed in PATH exist
-Tests environmental variable PATH for
-* hazardous paths curent directiory, relative path, '/tmp'
-* group-writable or world-writable directories
-* writable executables</xhtml:pre>
+        <xhtml:p>Checks</xhtml:p>
+        <xhtml:ul>
+          <xhtml:li>if all directories listed in PATH exist</xhtml:li>
+        </xhtml:ul>
+        <xhtml:p>Tests environmental variable PATH for</xhtml:p>
+        <xhtml:ul>
+          <xhtml:li>hazardous paths curent directiory, relative path, '/tmp'</xhtml:li>
+          <xhtml:li>group-writable or world-writable directories</xhtml:li>
+          <xhtml:li>writable executables</xhtml:li>
+        </xhtml:ul>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -186,8 +186,7 @@ Tests environmental variable PATH for
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-10" selected="true">
       <title>sectool: firewall</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Simple analysis of firewall policy rules.</xhtml:pre>
+        <xhtml:p>Simple analysis of firewall policy rules.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -197,8 +196,7 @@ Simple analysis of firewall policy rules.</xhtml:pre>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-11" selected="true">
       <title>sectool: netserv</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Audit of currently running network services.</xhtml:pre>
+        <xhtml:p>Audit of currently running network services.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -208,8 +206,7 @@ Audit of currently running network services.</xhtml:pre>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-12" selected="true">
       <title>sectool: openssh</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-OpenSSH configuration audit.</xhtml:pre>
+        <xhtml:p>OpenSSH configuration audit.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -219,8 +216,7 @@ OpenSSH configuration audit.</xhtml:pre>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-13" selected="true">
       <title>sectool: openvpn</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-OpenVPN configuration audit.</xhtml:pre>
+        <xhtml:p>OpenVPN configuration audit.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -230,11 +226,7 @@ OpenVPN configuration audit.</xhtml:pre>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-14" selected="true">
       <title>sectool: removed_libs</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Checks if libraries mapped into memory are the same as the libraries on the disk.
-To get rid of this warnings simply restart these processes (their names and PIDs
-are in messages printed out by this test). Use the command service(8) to restart
-processes that belong to a running system service.</xhtml:pre>
+        <xhtml:p>Checks if libraries mapped into memory are the same as the libraries on the disk. To get rid of this warnings simply restart these processes (their names and PIDs are in messages printed out by this test). Use the command service(8) to restart processes that belong to a running system service.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -244,8 +236,7 @@ processes that belong to a running system service.</xhtml:pre>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-15" selected="true">
       <title>sectool: xinetd</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-xinetd configuration audit.</xhtml:pre>
+        <xhtml:p>xinetd configuration audit.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -255,8 +246,7 @@ xinetd configuration audit.</xhtml:pre>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-16" selected="true">
       <title>sectool: log_files</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Tests logfiles presence, owner, group and permissions of logfiles.</xhtml:pre>
+        <xhtml:p>Tests logfiles presence, owner, group and permissions of logfiles.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -266,8 +256,7 @@ Tests logfiles presence, owner, group and permissions of logfiles.</xhtml:pre>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-17" selected="true">
       <title>sectool: pam</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-PAM configuration audit.</xhtml:pre>
+        <xhtml:p>PAM configuration audit.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -277,8 +266,7 @@ PAM configuration audit.</xhtml:pre>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-18" selected="true">
       <title>sectool: permissions</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Tests important directories for presence, permissions and owner</xhtml:pre>
+        <xhtml:p>Tests important directories for presence, permissions and owner.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -288,8 +276,7 @@ Tests important directories for presence, permissions and owner</xhtml:pre>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-19" selected="true">
       <title>sectool: exec_shield</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Checks if exec-shield is enabled.</xhtml:pre>
+        <xhtml:p>Checks if exec-shield is enabled.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -299,8 +286,7 @@ Checks if exec-shield is enabled.</xhtml:pre>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-20" selected="true">
       <title>sectool: selinux</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Checks the SELinux state, result depends on passed variable. By default checks whether SELinux is enabled and in enforcing mode.</xhtml:pre>
+        <xhtml:p>Checks the SELinux state, result depends on passed variable. By default checks whether SELinux is enabled and in enforcing mode.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -311,8 +297,7 @@ Checks the SELinux state, result depends on passed variable. By default checks w
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-21" selected="true">
       <title>sectool: va_randomization</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Checks whether va-randomization is enabled.</xhtml:pre>
+        <xhtml:p>Checks whether va-randomization is enabled.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -322,12 +307,13 @@ Checks whether va-randomization is enabled.</xhtml:pre>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-22" selected="true">
       <title>sectool: aliases</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Checks bash aliases for:
-* existence of included file
-* existence of command
-* possibility of changing content of file implementing the command (world/other writable, owner not root)
-* possibility of changing content of included file (world/other writable, owner not root)</xhtml:pre>
+        <xhtml:p>Checks bash aliases for:</xhtml:p>
+        <xhtml:ul>
+          <xhtml:li>existence of included file</xhtml:li>
+          <xhtml:li>existence of command</xhtml:li>
+          <xhtml:li>possibility of changing content of file implementing the command (world/other writable, owner not root)</xhtml:li>
+          <xhtml:li>possibility of changing content of included file (world/other writable, owner not root)</xhtml:li>
+        </xhtml:ul>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -337,10 +323,8 @@ Checks bash aliases for:
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-23" selected="true">
       <title>sectool: cron</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Basic crontab checking.
-Looks for unexpected paths in the crontab PATH variable, checks ownership and
-permissions of cron related dirs and commands listed in crontab.</xhtml:pre>
+        <xhtml:p>Basic crontab checking.</xhtml:p>
+        <xhtml:p>Looks for unexpected paths in the crontab PATH variable, checks ownership and permissions of cron related dirs and commands listed in crontab.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -350,8 +334,7 @@ permissions of cron related dirs and commands listed in crontab.</xhtml:pre>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-24" selected="true">
       <title>sectool: nfs</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Audit of nfs server. Finds RW exports</xhtml:pre>
+        <xhtml:p>Audit of nfs server. Finds RW exports</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -361,8 +344,7 @@ Audit of nfs server. Finds RW exports</xhtml:pre>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-25" selected="true">
       <title>sectool: tcp_wrappers</title>
       <description>
-        <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-Checks whether all running applications, which are using libwrap, have some restrictions in /etc/hosts.deny and /etc.hosts allow</xhtml:pre>
+        <xhtml:p>Checks whether all running applications, which are using libwrap, have some restrictions in /etc/hosts.deny and /etc.hosts allow</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
