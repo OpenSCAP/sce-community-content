@@ -17,7 +17,9 @@
       <title>rootkit-checks: chkrootkit</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+Runs chkrootkit and interprets the result.
+
+chkrootkit (Check Rootkit) is a common Unix-based program intended to help system administrators check their system for known rootkits. It is a shell script using common UNIX/Linux tools like the strings and grep commands to search core system programs for signatures and for comparing a traversal of the /proc filesystem with the output of the ps (process status) command to look for discrepancies.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -28,7 +30,9 @@ STUB</xhtml:pre>
       <title>rootkit-checks: rkhunter</title>
       <description>
         <xhtml:pre xmlns:xhtml="http://www.w3.org/1999/xhtml">
-STUB</xhtml:pre>
+Runs rkhunter and interprets the result.
+
+rkhunter (Rootkit Hunter) is a Unix-based tool that scans for rootkits, backdoors and possible local exploits. It does this by comparing SHA-1 hashes of important files with known good ones in online database, searching for default directories (of rootkits), wrong permissions, hidden files, suspicious strings in kernel modules, and special tests for Linux and FreeBSD.</xhtml:pre>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
