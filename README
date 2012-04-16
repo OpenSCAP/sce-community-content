@@ -1,0 +1,33 @@
+SCE Community Content
+=====================
+* attempts to unify XCCDF community content efforts into one project
+* strives to be distribution neutral
+* contains XCCDFs and checks inspired by various recommendations
+* can be merged into one all-xccdf.xml using the supplied Makefile
+* checks are powered by ScriptCheckEngine, and are written in bash or python
+
+The target platform is a GNU/Linux distribution. We try to make it generic
+and useful for various distributions out there, if a check doesn't apply
+(for example RPM specific check), it should result in NOT_APPLICABLE result.
+
+Some checks could be used for BSDs as well.
+
+Use cases
+=========
+Distribution quality assurance
+ - check for mistakes in distribution configuration
+
+Configuration quality assurance
+ - check for mistakes in a specific instance
+
+Disclaimer
+==========================================
+Not intended for official audits or lockdown enforcement!
+
+If you want to secure a workstation or server and make sure it is compliant
+to some official checklist, then this is not the tool for the job!
+
+Even though we have checks for recommendations (e.g. STIG), these are not
+official. There is no guarantee that the checks are 100% correct and there is
+no guarantee that we have all of them (in the STIG case we don't).
+
