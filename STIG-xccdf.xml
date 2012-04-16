@@ -11,6 +11,7 @@
   <version>0.1</version>
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_stig" selected="true">
+    <title>STIG</title>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-1" selected="true">
       <title>STIG: GEN000920</title>
       <description>
