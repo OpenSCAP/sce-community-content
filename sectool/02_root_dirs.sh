@@ -6,15 +6,10 @@
 
 RET=$XCCDF_RESULT_PASS
 
-while read dir; do
-	# this is a workaround for when `find...` returns ""
-	if [[ "$dir" != "" ]]; then
-		echo "There should not be a \"${dir}\" directory under \"/\""
-		RET=$XCCDF_RESULT_FAIL
-	fi
-done<<EOF
-`find / -maxdepth 1 -type d -name '.*'`
-EOF
+for dir in $(find / -maxdepth 1 -type d -name '.*'); do
+	echo "There should not be a \"${dir}\" directory under \"/\""
+	RET=$XCCDF_RESULT_FAIL
+done
 
 exit $RET
 
