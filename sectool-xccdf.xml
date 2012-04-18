@@ -14,7 +14,7 @@
 
   <Profile id="Fedora-default">
     <title>Fedora default</title>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_sectool-12" selected="false" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_sectool-12" selected="false" /> <!-- host based ssh auth requires permissions that fail this test -->
   </Profile>
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_sectool" hidden="false">
@@ -34,9 +34,9 @@ disabled - SELinux is fully disabled.
       <value selector="disabled">disabled</value>
       <match>enforcing|permissive|disabled</match>
       <choices mustMatch="1">
-	<choice>enforcing</choice>
-	<choice>permissive</choice>
-	<choice>disabled</choice>
+        <choice>enforcing</choice>
+        <choice>permissive</choice>
+        <choice>disabled</choice>
       </choices>
     </Value>
 
