@@ -31,4 +31,3 @@ for file in $INPUT_XCCDF $ALL_XCCDF; do
 done
 
 popd > /dev/null
-

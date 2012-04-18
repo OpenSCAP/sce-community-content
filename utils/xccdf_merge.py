@@ -30,7 +30,7 @@ def merge_files(template, files):
                             continue
 
                         if profile.get("id") == child.get("id"):
-                            for select in child.findall("*"): 
+                            for select in child.findall("*"):
                                 # again, we want to be robust when it comes to namespaces
                                 if not select.tag.endswith("select"):
                                     continue
