@@ -12,6 +12,11 @@
   <platform idref="cpe:/o:redhat:enterprise_linux:6"/>
   <version>0.1</version>
 
+  <Profile id="Fedora-default">
+    <title>Fedora default</title>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_sectool-12" selected="false" />
+  </Profile>
+
   <Group id="xccdf_org.open-scap.sce-community-content_group_sectool" hidden="false">
     <title>Sectool checks</title>
 

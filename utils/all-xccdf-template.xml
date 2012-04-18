@@ -9,5 +9,13 @@
   <reference href="http://iase.disa.mil/stigs/index.html"/>
   <platform idref="cpe:/o:redhat:enterprise_linux:6"/>
   <version>0.1</version>
+
+  <Profile id="Fedora-default">
+    <title>Fedora default</title>
+  </Profile>
+  
+  <Profile id="Fedora-hardened">
+    <title>Fedora hardened</title>
+  </Profile>
 </Benchmark>
 
