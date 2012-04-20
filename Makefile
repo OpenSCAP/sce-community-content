@@ -7,7 +7,7 @@ guide.html: all-xccdf.xml
 	oscap xccdf generate guide all-xccdf.xml > guide.html
 
 eval: all-xccdf.xml
-	oscap xccdf eval all-xccdf.xml && exit 0
+	oscap xccdf eval all-xccdf.xml; exit 0
 
 clean:
 	rm -f "all-xccdf.xml"
