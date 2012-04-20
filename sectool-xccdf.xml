@@ -4,8 +4,6 @@
   <title>Migrated sectool checks</title>
   <description>These checks are originally from sectool (http://fedorahosted.org/sectool) and have been migrated to SCE for use with XCCDF and related technologies.</description>
   <notice id="disclaimer">This XCCDF has been automatically generated, it should only serve as a baseline!</notice>
-  <front-matter>STUB</front-matter>
-  <rear-matter>STUB</rear-matter>
   <reference href="http://open-scap.org/page/SCE"/>
   <reference href="http://open-scap.org/page/SCE_result_file"/>
   <reference href="http://fedorahosted.org/sectool"/>
