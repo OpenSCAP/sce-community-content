@@ -11,4 +11,5 @@ eval: all-xccdf.xml
 
 clean:
 	rm -f "all-xccdf.xml"
+	rm -f "guide.html"
 
