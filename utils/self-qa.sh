@@ -17,8 +17,6 @@ XCCDF_SCHEMA="/usr/share/openscap/schemas/xccdf/1.1/xccdf-schema.xsd"
 
 pushd $BASE_DIR > /dev/null
 
-make > /dev/null
-
 for file in $INPUT_XCCDF $ALL_XCCDF; do
     xmllint --schema "$XCCDF_SCHEMA" $file > /dev/null
 
