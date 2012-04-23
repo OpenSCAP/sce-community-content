@@ -13,12 +13,14 @@
 BASE_DIR="../"
 INPUT_XCCDF="$@"
 ALL_XCCDF="all-xccdf.xml"
-XCCDF_SCHEMA="/usr/share/openscap/schemas/xccdf/1.1/xccdf-schema.xsd"
+#XCCDF_SCHEMA="/usr/share/openscap/schemas/xccdf/1.1/xccdf-schema.xsd"
 
 pushd $BASE_DIR > /dev/null
 
 for file in $INPUT_XCCDF $ALL_XCCDF; do
-    xmllint --schema "$XCCDF_SCHEMA" $file > /dev/null
+    echo "Validating '$file'"
+    oscap xccdf validate-xml $file > /dev/null
+    #xmllint --schema "$XCCDF_SCHEMA" $file > /dev/null
 
     missing_check_import=$(xpath $file "//check[not(check-import[@import-name='stdout'])]" 2> /dev/null)
     if [[ "$missing_check_import" != "" ]]; then

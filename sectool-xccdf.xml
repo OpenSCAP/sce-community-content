@@ -16,7 +16,7 @@
   </Profile>
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_sectool" hidden="false">
-    <title>Sectool checks</title>
+    <title>Sectool</title>
 
     <Value id="xccdf_org.open-scap.sce-community-content_value_sectool_selinux_state" type="string" operator="equals">
       <title>sectool: SELinux state</title>
