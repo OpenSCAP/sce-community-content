@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<Benchmark xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml" id="xccdf_org.open-scap.sce-community-content_benchmark_STIG" xml:lang="en">
+  <status date="2012-04-11">draft</status>
+  <title>Subset of NISPOM</title>
+  <description>Contains a small subset NISPOM lockdown.</description>
+  <notice id="disclaimer">This XCCDF has been automatically generated, it should only serve as a baseline!</notice>
+  <reference href="http://www.dss.mil/isp/odaa/nispom06.html"/>
+  <platform idref="cpe:/o:redhat:enterprise_linux:6"/>
+  <version>0.1</version>
+
+  <Group id="xccdf_org.open-scap.sce-community-content_group_nispom" selected="true">
+    <title>NISPOM</title>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_nispom-1" selected="true">
+      <title>NISPOM: Disable Finger</title>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="NISPOM/NISPOM-Disable_Finger.sh"/>
+      </check>
+    </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_nispom-2" selected="true">
+      <title>NISPOM: Disable Remote Exec (rexec)</title>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="NISPOM/NISPOM-Disable_Remote_Exec-rexec.sh"/>
+      </check>
+    </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_nispom-3" selected="true">
+      <title>NISPOM: Disable Remote Login (rlogin)</title>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="NISPOM/NISPOM-Disable_Remote_Login-rlogin.sh"/>
+      </check>
+    </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_nispom-4" selected="true">
+      <title>NISPOM: Disable Remote Shell (rsh)</title>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="NISPOM/NISPOM-Disable_Remote_Shell-rsh.sh"/>
+      </check>
+    </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_nispom-5" selected="true">
+      <title>NISPOM: sshd - Disable Empty Passwords</title>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="NISPOM/NISPOM-SSHD_Disable_Empty_Passwords.sh"/>
+      </check>
+    </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_nispom-6" selected="true">
+      <title>NISPOM: sshd - Disable root Login</title>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="NISPOM/NISPOM-SSHD_Disable_Root_Login.sh"/>
+      </check>
+    </Rule>
+  </Group>
+</Benchmark>
+

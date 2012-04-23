@@ -11,7 +11,7 @@
 #   - checks for missing stdout check-import
 
 BASE_DIR="../"
-INPUT_XCCDF="rootkit-checks-xccdf.xml sectool-xccdf.xml STIG-xccdf.xml"
+INPUT_XCCDF="$@"
 ALL_XCCDF="all-xccdf.xml"
 XCCDF_SCHEMA="/usr/share/openscap/schemas/xccdf/1.1/xccdf-schema.xsd"
 
