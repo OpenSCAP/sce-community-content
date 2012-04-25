@@ -11,6 +11,9 @@ guide.html: all-xccdf.xml
 eval: all-xccdf.xml
 	oscap xccdf eval all-xccdf.xml; exit 0
 
+results.xml: all-xccdf.xml
+	oscap xccdf eval --results results.xml all-xccdf.xml; exit 0
+
 self-qa: utils/self-qa.sh all-xccdf.xml
 	cd utils; sh self-qa.sh $(ALL_XCCDFS)
 	echo "Self-QA done" > self-qa
@@ -18,5 +21,6 @@ self-qa: utils/self-qa.sh all-xccdf.xml
 clean:
 	rm -f "all-xccdf.xml"
 	rm -f "guide.html"
+	rm -f "results.xml"
 	rm -f "self-qa"
 
