@@ -1,4 +1,4 @@
-ALL_XCCDFS = NISPOM-xccdf.xml rootkit-checks-xccdf.xml sectool-xccdf.xml STIG-xccdf.xml
+ALL_XCCDFS = NISPOM-xccdf.xml sectool-xccdf.xml STIG-xccdf.xml
 
 all: all-xccdf.xml guide.html self-qa
 
@@ -25,5 +25,6 @@ clean:
 	rm -f "all-xccdf.xml"
 	rm -f "guide.html"
 	rm -f "results.xml"
+	rm -f "report.html"
 	rm -f "self-qa"
 
