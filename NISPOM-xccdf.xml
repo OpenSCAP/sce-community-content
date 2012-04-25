@@ -7,6 +7,7 @@
   <reference href="http://www.dss.mil/isp/odaa/nispom06.html"/>
   <platform idref="cpe:/o:redhat:enterprise_linux:6"/>
   <version>0.1</version>
+  <model system="urn:xccdf:scoring:flat" />
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_nispom" selected="true">
     <title>NISPOM</title>

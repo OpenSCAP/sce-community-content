@@ -9,6 +9,7 @@
   <reference href="http://fedorahosted.org/sectool"/>
   <platform idref="cpe:/o:redhat:enterprise_linux:6"/>
   <version>0.1</version>
+  <model system="urn:xccdf:scoring:flat" />
 
   <Profile id="Fedora-default">
     <title>Fedora default</title>

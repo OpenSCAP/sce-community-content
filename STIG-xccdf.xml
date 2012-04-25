@@ -7,6 +7,7 @@
   <reference href="http://iase.disa.mil/stigs/index.html"/>
   <platform idref="cpe:/o:redhat:enterprise_linux:6"/>
   <version>0.1</version>
+  <model system="urn:xccdf:scoring:flat" />
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_stig" selected="true">
     <title>STIG</title>
