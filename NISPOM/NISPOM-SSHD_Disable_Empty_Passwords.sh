@@ -20,17 +20,15 @@
 
 if [[ $UID -ne '0' ]]
 then
-    echo "You have to be logged as root to run this test!"
+    echo 'You have to be logged as root to run this test!'
     exit ${XCCDF_RESULT_ERROR}
 fi
 
-# we are looking for uncommented lines of "PermitEmptyPasswords yes"
-result=$(grep -E "^[^#]*PermitEmptyPasswords[[:space:]]+yes" /etc/ssh/sshd_config)
-
-if [[ "$result" == "" ]]; then
+# we are looking for 'permitemptypasswords no'
+if /usr/sbin/sshd -T | grep -q 'permitemptypasswords no'; then
     exit $XCCDF_RESULT_PASS
 fi
 
-echo "Empty passwords are permitted in sshd configuration!"
+echo 'Empty passwords are permitted in sshd configuration!'
 exit $XCCDF_RESULT_FAIL
 
