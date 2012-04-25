@@ -14,6 +14,9 @@ eval: all-xccdf.xml
 results.xml: all-xccdf.xml
 	oscap xccdf eval --results results.xml all-xccdf.xml; exit 0
 
+report.html: results.xml
+	oscap xccdf generate report results.xml > report.html
+	
 self-qa: utils/self-qa.sh all-xccdf.xml
 	cd utils; sh self-qa.sh $(ALL_XCCDFS)
 	echo "Self-QA done" > self-qa
