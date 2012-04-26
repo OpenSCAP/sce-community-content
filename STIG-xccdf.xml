@@ -11,7 +11,7 @@
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_stig" selected="true">
     <title>STIG</title>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-1" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-root_home_permissions" selected="true">
       <title>STIG: /root permissions</title>
       <description>
         <xhtml:p>/root should be 0750 or less.</xhtml:p>
@@ -23,7 +23,7 @@
         <check-content-ref href="STIG/GEN000920.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-2" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-network_daemon_files" selected="true">
       <title>STIG: network daemon files</title>
       <description>
         <xhtml:p>Network service daemon files should be 0755 or less.</xhtml:p>
@@ -35,7 +35,7 @@
         <check-content-ref href="STIG/GEN001180.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-3" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-system_command_files" selected="true">
       <title>STIG: system command files</title>
       <description>
         <xhtml:p>System command files must be 0755 or less.</xhtml:p>
@@ -47,7 +47,7 @@
         <check-content-ref href="STIG/GEN001200.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-4" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-system_command_dirs_owner" selected="true">
       <title>STIG: system command dirs owner</title>
       <description>
         <xhtml:p>System command directories must be owned by a system account.</xhtml:p>
@@ -59,7 +59,7 @@
         <check-content-ref href="STIG/GEN001220.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-5" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-system_command_dirs_group" selected="true">
       <title>STIG: system command dirs group</title>
       <description>
         <xhtml:p>System command dirs must be owned by a system group.</xhtml:p>
@@ -71,7 +71,7 @@
         <check-content-ref href="STIG/GEN001240.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-6" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-system_logs_permissions" selected="true">
       <title>STIG: syslog logs permissions</title>
       <description>
         <xhtml:p>syslog logs should be 0640 or less.</xhtml:p>
@@ -83,7 +83,7 @@
         <check-content-ref href="STIG/GEN001260.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-7" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-man_pages_permissions" selected="true">
       <title>STIG: man pages permissions</title>
       <description>
         <xhtml:p>man pages must be 0644 or less.</xhtml:p>
@@ -95,7 +95,7 @@
         <check-content-ref href="STIG/GEN001280.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-8" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-library_files_permissions" selected="true">
       <title>STIG: library files permissions</title>
       <description>
         <xhtml:p>Library files must be 0755 or less.</xhtml:p>
@@ -107,7 +107,7 @@
         <check-content-ref href="STIG/GEN001300.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-9" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-passwd_file_permissions" selected="true">
       <title>STIG: passwd file permissions</title>
       <description>
         <xhtml:p>/etc/passwd must be 0644 or less.</xhtml:p>
@@ -119,7 +119,7 @@
         <check-content-ref href="STIG/GEN001380.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-10" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-shadow_file_owner" selected="true">
       <title>STIG: shadow file owner</title>
       <description>
         <xhtml:p>/etc/shadow must be owned by root.</xhtml:p>
@@ -131,7 +131,7 @@
         <check-content-ref href="STIG/GEN001400.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-11" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-shadow_file_permissions" selected="true">
       <title>STIG: shadow file permissions</title>
       <description>
         <xhtml:p>/etc/shadow must be 0400 or less.</xhtml:p>
@@ -143,7 +143,7 @@
         <check-content-ref href="STIG/GEN001420.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-12" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-home_dirs_permissions" selected="true">
       <title>STIG: home dirs permissisions</title>
       <description>
         <xhtml:p>All home dirs must be 0750 or less.</xhtml:p>
@@ -155,7 +155,7 @@
         <check-content-ref href="STIG/GEN001480.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-13" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-home_dirs_files_permissions" selected="true">
       <title>STIG: home dirs files permissions</title>
       <description>
         <xhtml:p>All files in home dirs must be 0750 or less.</xhtml:p>
@@ -167,7 +167,7 @@
         <check-content-ref href="STIG/GEN001560.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-14" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-etc_rc_permissions" selected="true">
       <title>STIG: /etc/rc files permissions</title>
       <description>
         <xhtml:p>All /etc/rc files must be 0755 or less.</xhtml:p>
@@ -179,7 +179,7 @@
         <check-content-ref href="STIG/GEN001580.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-15" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-skeleton_files_permissions" selected="true">
       <title>STIG: skeleton files permissions</title>
       <description>
         <xhtml:p>Skeleton /etc/skel/* files must be 0644 or less.</xhtml:p>
@@ -191,7 +191,7 @@
         <check-content-ref href="STIG/GEN001800.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-16" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-etc_shell_files_owner" selected="true">
       <title>STIG: /etc shell files owner</title>
       <description>
         <xhtml:p>All shell files in /etc must be owned by root.</xhtml:p>
@@ -203,7 +203,7 @@
         <check-content-ref href="STIG/GEN001860.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-17" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-etc_shell_files_permissions" selected="true">
       <title>STIG: /etc shell files permissions</title>
       <description>
         <xhtml:p>All shell files in /etc must be 0755 or less (???).</xhtml:p>
@@ -215,7 +215,7 @@
         <check-content-ref href="STIG/GEN001880.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-18" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-world_writable_dirs_sticky" selected="true">
       <title>STIG: world writable dirs sticky bit</title>
       <description>
         <xhtml:p>Sticky bit must be on all world writable dirs.</xhtml:p>
@@ -227,7 +227,7 @@
         <check-content-ref href="STIG/GEN002500.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-19" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-world_writable_dirs_owner" selected="true">
       <title>STIG: world writable dirs owner</title>
       <description>
         <xhtml:p>All world writable dirs must be owned by system account.</xhtml:p>
@@ -239,7 +239,7 @@
         <check-content-ref href="STIG/GEN002520.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-20" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-audit_logs_owner" selected="true">
       <title>STIG: audit logs owner</title>
       <description>
         <xhtml:p>All audit logs must be owned by root.</xhtml:p>
@@ -251,7 +251,7 @@
         <check-content-ref href="STIG/GEN002680.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-21" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-audit_logs_permissions" selected="true">
       <title>STIG: audit logs permissions</title>
       <description>
         <xhtml:p>All audit logs must be 0640 or less.</xhtml:p>
@@ -263,7 +263,7 @@
         <check-content-ref href="STIG/GEN002700.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-22" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-cron_allow_permissions" selected="true">
       <title>STIG: cron.allow permissions</title>
       <description>
         <xhtml:p>cron.allow must be 0600 or less.</xhtml:p>
@@ -275,7 +275,7 @@
         <check-content-ref href="STIG/GEN002980.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-23" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-crontab_files_permissions" selected="true">
       <title>STIG: crontab files permissions</title>
       <description>
         <xhtml:p>crontab files must be 0600 or less. cron script must be 0700 or less.</xhtml:p>
@@ -287,7 +287,7 @@
         <check-content-ref href="STIG/GEN003080.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-24" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-cron_dirs_permissions" selected="true">
       <title>STIG: cron dirs permissions</title>
       <description>
         <xhtml:p>cron directories must be 0755 or more less.</xhtml:p>
@@ -299,7 +299,7 @@
         <check-content-ref href="STIG/GEN003100.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-25" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-cron_dirs_owner" selected="true">
       <title>STIG: cron dirs owner</title>
       <description>
         <xhtml:p>cron directories must be owned by root.</xhtml:p>
@@ -311,7 +311,7 @@
         <check-content-ref href="STIG/GEN003120.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-26" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-cron_dirs_group" selected="true">
       <title>STIG: cron dirs group</title>
       <description>
         <xhtml:p>cron directories must be group root.</xhtml:p>
@@ -323,7 +323,7 @@
         <check-content-ref href="STIG/GEN003140.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-27" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-xinetd_dirs_owner" selected="true">
       <title>STIG: xinetd dirs owner</title>
       <description>
         <xhtml:p>All xinetd directories must be owned by root.</xhtml:p>
@@ -335,7 +335,7 @@
         <check-content-ref href="STIG/GEN003720.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-28" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-xinetd_files_permissions" selected="true">
       <title>STIG: xinetd files permissions</title>
       <description>
         <xhtml:p>All xinetd files must be 0640 or less.</xhtml:p>
@@ -347,7 +347,7 @@
         <check-content-ref href="STIG/GEN003740.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-29" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-services_file_owner" selected="true">
       <title>STIG: services file owner</title>
       <description>
         <xhtml:p>Services file must be owned by root.</xhtml:p>
@@ -359,7 +359,7 @@
         <check-content-ref href="STIG/GEN003760.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-30" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-services_file_permissions" selected="true">
       <title>STIG: Services file permissions</title>
       <description>
         <xhtml:p>Services file must be 0644 or less.</xhtml:p>
@@ -371,7 +371,7 @@
         <check-content-ref href="STIG/GEN003780.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-31" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-alias_file_owner" selected="true">
       <title>STIG: alias file owner</title>
       <description>
         <xhtml:p>The alias file must be owned by root.</xhtml:p>
@@ -383,7 +383,7 @@
         <check-content-ref href="STIG/GEN004360.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-32" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-alias_file_permissions" selected="true">
       <title>STIG: alias file permissions</title>
       <description>
         <xhtml:p>The alias file must be 644 or less.</xhtml:p>
@@ -395,7 +395,7 @@
         <check-content-ref href="STIG/GEN004380.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-33" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-smb_conf_permissions" selected="true">
       <title>STIG: smb.conf permissions</title>
       <description>
         <xhtml:p>smb.conf must be 0644 or less.</xhtml:p>
@@ -407,7 +407,7 @@
         <check-content-ref href="STIG/GEN006140.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-34" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_stig-grub_conf_permissions" selected="true">
       <title>STIG: grub.conf permissions</title>
       <description>
         <xhtml:p>grub.conf must be 0600 or less.</xhtml:p>
