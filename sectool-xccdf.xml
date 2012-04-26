@@ -13,7 +13,7 @@
 
   <Profile id="Fedora-default">
     <title>Fedora default</title>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_sectool-12" selected="false" /> <!-- host based ssh auth requires permissions that fail this test -->
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_sectool-openssh" selected="false" /> <!-- host based ssh auth requires permissions that fail this test -->
   </Profile>
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_sectool" hidden="false">
@@ -39,7 +39,7 @@ disabled - SELinux is fully disabled.
       </choices>
     </Value>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-1" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-integrity" selected="true">
       <title>sectool: integrity</title>
       <description>
         <xhtml:p>System integrity test. Checks presence and integrity of system commands and directories. For checking the integrity of binaries the command rpmverify (rpm -Vf) is used. A search for duplicates is also done for each command.</xhtml:p>
@@ -49,7 +49,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/00_integrity.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-2" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-bootloader" selected="true">
       <title>sectool: bootloader</title>
       <description>
         <xhtml:p>Tests</xhtml:p>
@@ -63,7 +63,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/01_bootloader.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-3" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-disk_usage" selected="true">
       <title>sectool: disk_usage</title>
       <description>
         <xhtml:p>Tells user, which of mounted volumes are going to be full. Uses df to get this info.</xhtml:p>
@@ -73,7 +73,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/01_disk_usage.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-4" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-group" selected="true">
       <title>sectool: group</title>
       <description>
         <xhtml:p>Checks group for whether</xhtml:p>
@@ -95,7 +95,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/01_group.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-5" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-passwd" selected="true">
       <title>sectool: passwd</title>
       <description>
         <xhtml:p>Checks passwd for whether</xhtml:p>
@@ -128,7 +128,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/01_passwd.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-6" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-shadow" selected="true">
       <title>sectool: shadow</title>
       <description>
         <xhtml:p>Checks shadow for whether</xhtml:p>
@@ -148,7 +148,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/01_shadow.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-7" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-home_files" selected="true">
       <title>sectool: home_files</title>
       <description>
         <xhtml:p>Tests ownership and access rights to sensitive files (.bashrc, ssh/id_dsa etc.) in home directories of all users</xhtml:p>
@@ -158,7 +158,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/02_home_files.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-8" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-root_dirs" selected="true">
       <title>sectool: root_dirs</title>
       <description>
         <xhtml:p>Do not allow dot directories in "/"</xhtml:p>
@@ -168,7 +168,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/02_root_dirs.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-9" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-path" selected="true">
       <title>sectool: path</title>
       <description>
         <xhtml:p>Checks</xhtml:p>
@@ -187,7 +187,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/03_path.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-10" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-firewall" selected="true">
       <title>sectool: firewall</title>
       <description>
         <xhtml:p>Simple analysis of firewall policy rules.</xhtml:p>
@@ -197,7 +197,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/04_firewall.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-11" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-netserv" selected="true">
       <title>sectool: netserv</title>
       <description>
         <xhtml:p>Audit of currently running network services.</xhtml:p>
@@ -207,7 +207,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/05_netserv.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-12" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-openssh" selected="true">
       <title>sectool: openssh</title>
       <description>
         <xhtml:p>OpenSSH configuration audit.</xhtml:p>
@@ -217,7 +217,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/05_openssh.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-13" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-openvpn" selected="true">
       <title>sectool: openvpn</title>
       <description>
         <xhtml:p>OpenVPN configuration audit.</xhtml:p>
@@ -227,7 +227,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/05_openvpn.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-14" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-removed_libs" selected="true">
       <title>sectool: removed_libs</title>
       <description>
         <xhtml:p>Checks if libraries mapped into memory are the same as the libraries on the disk. To get rid of this warnings simply restart these processes (their names and PIDs are in messages printed out by this test). Use the command service(8) to restart processes that belong to a running system service.</xhtml:p>
@@ -237,7 +237,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/05_removed_libs.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-15" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-xinetd" selected="true">
       <title>sectool: xinetd</title>
       <description>
         <xhtml:p>xinetd configuration audit.</xhtml:p>
@@ -247,7 +247,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/05_xinetd.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-16" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-log_files" selected="true">
       <title>sectool: log_files</title>
       <description>
         <xhtml:p>Tests logfiles presence, owner, group and permissions of logfiles.</xhtml:p>
@@ -257,7 +257,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/07_log_files.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-17" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-pam" selected="true">
       <title>sectool: pam</title>
       <description>
         <xhtml:p>PAM configuration audit.</xhtml:p>
@@ -267,7 +267,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/08_pam.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-18" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-permissions" selected="true">
       <title>sectool: permissions</title>
       <description>
         <xhtml:p>Tests important directories for presence, permissions and owner.</xhtml:p>
@@ -277,7 +277,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/08_permissions.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-19" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-exec_shield" selected="true">
       <title>sectool: exec_shield</title>
       <description>
         <xhtml:p>Checks if exec-shield is enabled.</xhtml:p>
@@ -287,7 +287,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/09_exec_shield.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-20" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-selinux" selected="true">
       <title>sectool: selinux</title>
       <description>
         <xhtml:p>Checks the SELinux state, result depends on passed variable. By default checks whether SELinux is enabled and in enforcing mode.</xhtml:p>
@@ -298,7 +298,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/09_selinux.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-21" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-va_randomization" selected="true">
       <title>sectool: va_randomization</title>
       <description>
         <xhtml:p>Checks whether va-randomization is enabled.</xhtml:p>
@@ -308,7 +308,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/09_va_randomization.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-22" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-aliases" selected="true">
       <title>sectool: aliases</title>
       <description>
         <xhtml:p>Checks bash aliases for:</xhtml:p>
@@ -324,7 +324,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/11_aliases.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-23" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-cron" selected="true">
       <title>sectool: cron</title>
       <description>
         <xhtml:p>Basic crontab checking.</xhtml:p>
@@ -335,7 +335,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/12_cron.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-24" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-nfs" selected="true">
       <title>sectool: nfs</title>
       <description>
         <xhtml:p>Audit of nfs server. Finds RW exports</xhtml:p>
@@ -345,7 +345,7 @@ disabled - SELinux is fully disabled.
         <check-content-ref href="sectool/14_nfs.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-25" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-tcp_wrappers" selected="true">
       <title>sectool: tcp_wrappers</title>
       <description>
         <xhtml:p>Checks whether all running applications, which are using libwrap, have some restrictions in /etc/hosts.deny and /etc.hosts allow</xhtml:p>
