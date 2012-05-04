@@ -1,0 +1,17 @@
+<xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <Group id="xccdf_org.open-scap.sce-community-content_group_services_nfs" selected="true">
+    <title>NFS</title>
+    
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_nfs-nfs" selected="true">
+      <title>sectool: nfs</title>
+      <description>
+        <xhtml:p>Audit of nfs server. Finds RW exports</xhtml:p>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="14_nfs.sh"/>
+      </check>
+    </Rule> 
+  </Group>
+<xf:xccdf-fragment>
+

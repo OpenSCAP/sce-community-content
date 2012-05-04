@@ -1,0 +1,38 @@
+<xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <Group id="xccdf_org.open-scap.sce-community-content_group_services_openssh" selected="true">
+    <title>OpenSSH</title>
+     
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-openssh" selected="true">
+      <title>sectool: openssh</title>
+      <description>
+        <xhtml:p>OpenSSH configuration audit.</xhtml:p>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="sectool/05_openssh.sh"/>
+      </check>
+    </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openssh-sshd_disable_empty_pws" selected="true">
+      <title>NISPOM: sshd - Disable Empty Passwords</title>
+      <description>
+        <xhtml:p>Might allow the attacker to gain direct access to the machine by just guessing a username.</xhtml:p>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="NISPOM-SSHD_Disable_Empty_Passwords.sh"/>
+      </check>
+    </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openssh-sshd_disable_root_login" selected="true">
+      <title>NISPOM: sshd - Disable root Login</title>
+      <description>
+        <xhtml:p>'root' username is a logical target for bruteforce attacks.</xhtml:p>
+        <xhtml:p>Having to login as a different user and then sudo involves 2-step authorization.</xhtml:p>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="NISPOM-SSHD_Disable_Root_Login.sh"/>
+      </check>
+    </Rule>
+  </Group>
+<xf:xccdf-fragment>
+

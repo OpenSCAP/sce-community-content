@@ -1,0 +1,82 @@
+<xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <Group id="xccdf_org.open-scap.sce-community-content_group_incoming" selected="true">
+    <title>Incoming (uncategorized)</title>
+    
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-integrity" selected="true">
+      <title>sectool: integrity</title>
+      <description>
+        <xhtml:p>System integrity test. Checks presence and integrity of system commands and directories. For checking the integrity of binaries the command rpmverify (rpm -Vf) is used. A search for duplicates is also done for each command.</xhtml:p>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="00_integrity.sh"/>
+      </check>
+    </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-disk_usage" selected="true">
+      <title>sectool: disk_usage</title>
+      <description>
+        <xhtml:p>Tells user, which of mounted volumes are going to be full. Uses df to get this info.</xhtml:p>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="01_disk_usage.sh"/>
+      </check>
+    </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-root_dirs" selected="true">
+      <title>sectool: root_dirs</title>
+      <description>
+        <xhtml:p>Do not allow dot directories in "/"</xhtml:p>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="02_root_dirs.sh"/>
+      </check>
+    </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-path" selected="true">
+      <title>sectool: path</title>
+      <description>
+        <xhtml:p>Checks</xhtml:p>
+        <xhtml:ul>
+          <xhtml:li>if all directories listed in PATH exist</xhtml:li>
+        </xhtml:ul>
+        <xhtml:p>Tests environmental variable PATH for</xhtml:p>
+        <xhtml:ul>
+          <xhtml:li>hazardous paths curent directiory, relative path, '/tmp'</xhtml:li>
+          <xhtml:li>group-writable or world-writable directories</xhtml:li>
+          <xhtml:li>writable executables</xhtml:li>
+        </xhtml:ul>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="03_path.sh"/>
+      </check>
+    </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-removed_libs" selected="true">
+      <title>sectool: removed_libs</title>
+      <description>
+        <xhtml:p>Checks if libraries mapped into memory are the same as the libraries on the disk. To get rid of this warnings simply restart these processes (their names and PIDs are in messages printed out by this test). Use the command service(8) to restart processes that belong to a running system service.</xhtml:p>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="05_removed_libs.sh"/>
+      </check>
+    </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-aliases" selected="true">
+      <title>sectool: aliases</title>
+      <description>
+        <xhtml:p>Checks bash aliases for:</xhtml:p>
+        <xhtml:ul>
+          <xhtml:li>existence of included file</xhtml:li>
+          <xhtml:li>existence of command</xhtml:li>
+          <xhtml:li>possibility of changing content of file implementing the command (world/other writable, owner not root)</xhtml:li>
+          <xhtml:li>possibility of changing content of included file (world/other writable, owner not root)</xhtml:li>
+        </xhtml:ul>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="11_aliases.sh"/>
+      </check>
+    </Rule>
+  </Group>
+<xf:xccdf-fragment>
+

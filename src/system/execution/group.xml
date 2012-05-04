@@ -1,0 +1,27 @@
+<xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <Group id="xccdf_org.open-scap.sce-community-content_group_system_execution" selected="true">
+    <title>Execution restriction</title>
+    
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_execution-exec_shield" selected="true">
+      <title>sectool: exec_shield</title>
+      <description>
+        <xhtml:p>Checks if exec-shield is enabled.</xhtml:p>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="09_exec_shield.sh"/>
+      </check>
+    </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_execution-va_randomization" selected="true">
+      <title>sectool: va_randomization</title>
+      <description>
+        <xhtml:p>Checks whether va-randomization is enabled.</xhtml:p>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="09_va_randomization.sh"/>
+      </check>
+    </Rule>
+  </Group>
+<xf:xccdf-fragment>
+
