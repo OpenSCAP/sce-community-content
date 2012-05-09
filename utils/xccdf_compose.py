@@ -45,38 +45,35 @@ def merge_trees(target_tree, target_element, group_tree):
     for f, t in group_tree.iteritems():
         tree, subgroups = t
 
-        for child in tree.findall("*"):
-            if child.tag.endswith("Group") or child.tag.endswith("Rule"):
-                target_element.append(child)
+        groups = tree.findall("{http://checklists.nist.gov/xccdf/1.1}Group")
+        if len(groups) != 1:
+            print("There are %i groups in '%s/group.xml' file. Exactly 1 group is expected! Skipping..." % (len(groups), f))
+            continue
 
-            elif child.tag.endswith("Profile"):
-                assert(child.get("id") is not None)
-                merged = False
+        target_element.append(groups[0])
 
-                # look through profiles in the template XCCDF
-                for profile in target_tree.findall("*"):
-                    # internal note: we avoid doing findall("Profile") here
-                    # because that would be namespace sensitive, robustness > correctness
-                    
-                    if not profile.tag.endswith("Profile"):
-                        continue
+        for child in tree.findall("{http://checklists.nist.gov/xccdf/1.1}Profile"):
+            assert(child.get("id") is not None)
+            merged = False
 
-                    if profile.get("id") == child.get("id"):
-                        for select in child.findall("*"):
-                            # again, we want to be robust when it comes to namespaces
-                            if not select.tag.endswith("select"):
-                                continue
+            # look through profiles in the template XCCDF
+            for profile in target_tree.findall("{http://checklists.nist.gov/xccdf/1.1}Profile"):
+                if profile.get("id") == child.get("id"):
+                    for select in child.findall("*"):
+                        # again, we want to be robust when it comes to namespaces
+                        if not select.tag.endswith("select"):
+                            continue
 
-                            profile.append(select)
+                        profile.append(select)
 
-                        merged = True
-                        break
-                
-                if not merged:
-                    pass # TODO!
-                    #print("'%s' contains Profile of id '%s' that doesn't match any profiles in template, skipped!" % (file_path, child.get("id")), sys.stderr)
+                    merged = True
+                    break
+            
+            if not merged:
+                pass # TODO!
+                #print("'%s' contains Profile of id '%s' that doesn't match any profiles in template, skipped!" % (file_path, child.get("id")), sys.stderr)
 
-        merge_trees(target_tree, tree.findall(".//{http://checklists.nist.gov/xccdf/1.1}Group")[0], subgroups)
+        merge_trees(target_tree, groups[0], subgroups)
 
 # taken from http://effbot.org/zone/element-lib.htm#prettyprint
 def indent(elem, level=0):
