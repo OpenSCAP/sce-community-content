@@ -1,8 +1,8 @@
-XCCDF_DEPS=$(find . -name group.xml)
+GROUP_FILES=$(shell find . -name group.xml -printf "%h/%f ")
 
 all: all-xccdf.xml guide.html
 
-all-xccdf.xml: $(XCCDF_DEPS)
+all-xccdf.xml: $(GROUP_FILES)
 	../utils/xccdf_compose.py .
 
 all-resolved-xccdf.xml: all-xccdf.xml
