@@ -1,6 +1,8 @@
+XCCDF_DEPS=$(find . -name group.xml)
+
 all: all-xccdf.xml guide.html
 
-all-xccdf.xml:
+all-xccdf.xml: $(XCCDF_DEPS)
 	../utils/xccdf_compose.py .
 
 all-resolved-xccdf.xml: all-xccdf.xml
@@ -18,15 +20,10 @@ results.xml: all-resolved-xccdf.xml
 report.html: results.xml
 	oscap xccdf generate report results.xml > report.html
 	
-#self-qa: utils/self-qa.sh all-xccdf.xml
-#	cd utils; sh self-qa.sh $(ALL_XCCDFS)
-#	echo "Self-QA done" > self-qa
-
 clean:
 	rm -f "all-xccdf.xml"
 	rm -f "all-resolved-xccdf.xml"
 	rm -f "guide.html"
 	rm -f "results.xml"
 	rm -f "report.html"
-	rm -f "self-qa"
 
