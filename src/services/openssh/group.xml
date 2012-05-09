@@ -9,7 +9,7 @@
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
-        <check-content-ref href="sectool/05_openssh.sh"/>
+        <check-content-ref href="05_openssh.sh"/>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openssh-sshd_disable_empty_pws" selected="true">
