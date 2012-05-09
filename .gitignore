@@ -1,8 +1,9 @@
 *~
-all-xccdf.xml
-all-resolved-xccdf.xml
-guide.html
-self-qa
-results.xml
-report.html
+*.swp
+src/all-xccdf.xml
+src/all-resolved-xccdf.xml
+src/guide.html
+src/self-qa
+src/results.xml
+src/report.html
 

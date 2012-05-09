@@ -1,5 +1,7 @@
 <xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_permissions" selected="true">
+    <title>Permissions</title>
+
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_permissions-group" selected="true">
       <title>sectool: group</title>
       <description>

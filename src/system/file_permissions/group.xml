@@ -1,6 +1,6 @@
 <xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_file_permissions" selected="true">
-    <title>STIG</title>
+    <title>File permissions</title>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_files" selected="true">
       <title>sectool: home_files</title>
       <description>
@@ -430,5 +430,5 @@
       </check>
     </Rule>
   </Group>
-<xf:xccdf-fragment>
+</xf:xccdf-fragment>
 

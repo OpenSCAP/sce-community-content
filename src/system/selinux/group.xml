@@ -34,5 +34,5 @@ disabled - SELinux is fully disabled.
       </check>
     </Rule>
   </Group>
-<xf:xccdf-fragment>
+</xf:xccdf-fragment>
 
