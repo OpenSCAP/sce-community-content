@@ -3,7 +3,7 @@
     <title>SELinux</title>
     
     <Value id="xccdf_org.open-scap.sce-community-content_value_system_selinux_desired_selinux_state" type="string" operator="equals">
-      <title>Desired SELinux state</title>
+      <title>desired selinux state</title>
       <description xml:lang="en"> 
 enforcing - SELinux security policy is enforced. <xhtml:br />
 permissive - SELinux prints warnings instead of enforcing.<xhtml:br />

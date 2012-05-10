@@ -32,7 +32,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_network-tcp_wrappers" selected="true">
-      <title>tcp_wrappers</title>
+      <title>tcp wrappers</title>
       <description>
         <xhtml:p>Checks whether all running applications, which are using libwrap, have some restrictions in /etc/hosts.deny and /etc.hosts allow</xhtml:p>
       </description>

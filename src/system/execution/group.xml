@@ -3,7 +3,7 @@
     <title>Execution restriction</title>
     
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_execution-exec_shield" selected="true">
-      <title>exec_shield</title>
+      <title>exec-shield</title>
       <description>
         <xhtml:p>Checks if exec-shield is enabled.</xhtml:p>
       </description>
@@ -13,7 +13,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_execution-va_randomization" selected="true">
-      <title>va_randomization</title>
+      <title>va-randomization</title>
       <description>
         <xhtml:p>Checks whether va-randomization is enabled.</xhtml:p>
       </description>

@@ -3,7 +3,7 @@
     <title>Logging</title>
     
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_logging-log_files" selected="true">
-      <title>log_files</title>
+      <title>log files</title>
       <description>
         <xhtml:p>Tests logfiles presence, owner, group and permissions of logfiles.</xhtml:p>
       </description>

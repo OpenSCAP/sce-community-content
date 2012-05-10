@@ -2,7 +2,7 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_file_permissions" selected="true">
     <title>File permissions</title>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_files" selected="true">
-      <title>home_files</title>
+      <title>home files</title>
       <description>
         <xhtml:p>Tests ownership and access rights to sensitive files (.bashrc, ssh/id_dsa etc.) in home directories of all users</xhtml:p>
       </description>
@@ -415,18 +415,6 @@
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN006140.sh"/>
-      </check>
-    </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-grub_conf_permissions" selected="true">
-      <title>grub.conf permissions</title>
-      <description>
-        <xhtml:p>grub.conf must be 0600 or less.</xhtml:p>
-        <xhtml:p>File permissions greater than 0600 on boot loader configuration files could allow an unauthorized user to view or modify sensitive information pertaining to system boot instructions.</xhtml:p>
-      </description>
-      <ident system="http://iase.disa.mil/stigs">GEN008720</ident>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN008720.sh"/>
       </check>
     </Rule>
   </Group>
