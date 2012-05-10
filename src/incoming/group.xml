@@ -3,7 +3,7 @@
     <title>Incoming (uncategorized)</title>
     
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-integrity" selected="true">
-      <title>sectool: integrity</title>
+      <title>integrity</title>
       <description>
         <xhtml:p>System integrity test. Checks presence and integrity of system commands and directories. For checking the integrity of binaries the command rpmverify (rpm -Vf) is used. A search for duplicates is also done for each command.</xhtml:p>
       </description>
@@ -13,7 +13,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-disk_usage" selected="true">
-      <title>sectool: disk_usage</title>
+      <title>disk_usage</title>
       <description>
         <xhtml:p>Tells user, which of mounted volumes are going to be full. Uses df to get this info.</xhtml:p>
       </description>
@@ -23,7 +23,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-root_dirs" selected="true">
-      <title>sectool: root_dirs</title>
+      <title>root_dirs</title>
       <description>
         <xhtml:p>Do not allow dot directories in "/"</xhtml:p>
       </description>
@@ -33,7 +33,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-path" selected="true">
-      <title>sectool: path</title>
+      <title>path</title>
       <description>
         <xhtml:p>Checks</xhtml:p>
         <xhtml:ul>
@@ -52,7 +52,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-removed_libs" selected="true">
-      <title>sectool: removed_libs</title>
+      <title>removed_libs</title>
       <description>
         <xhtml:p>Checks if libraries mapped into memory are the same as the libraries on the disk. To get rid of this warnings simply restart these processes (their names and PIDs are in messages printed out by this test). Use the command service(8) to restart processes that belong to a running system service.</xhtml:p>
       </description>
@@ -62,7 +62,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-aliases" selected="true">
-      <title>sectool: aliases</title>
+      <title>aliases</title>
       <description>
         <xhtml:p>Checks bash aliases for:</xhtml:p>
         <xhtml:ul>

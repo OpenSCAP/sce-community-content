@@ -2,7 +2,7 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_file_permissions" selected="true">
     <title>File permissions</title>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_files" selected="true">
-      <title>sectool: home_files</title>
+      <title>home_files</title>
       <description>
         <xhtml:p>Tests ownership and access rights to sensitive files (.bashrc, ssh/id_dsa etc.) in home directories of all users</xhtml:p>
       </description>
@@ -12,7 +12,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-permissions" selected="true">
-      <title>sectool: permissions</title>
+      <title>permissions</title>
       <description>
         <xhtml:p>Tests important directories for presence, permissions and owner.</xhtml:p>
       </description>
@@ -22,7 +22,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-root_home_permissions" selected="true">
-      <title>STIG: /root permissions</title>
+      <title>/root permissions</title>
       <description>
         <xhtml:p>/root should be 0750 or less.</xhtml:p>
         <xhtml:p>Permissions greater than 0700 could allow unauthorized users access to the root home directory.</xhtml:p>
@@ -34,7 +34,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-network_daemon_files" selected="true">
-      <title>STIG: network daemon files</title>
+      <title>network daemon files</title>
       <description>
         <xhtml:p>Network service daemon files should be 0755 or less.</xhtml:p>
         <xhtml:p>Restricting permission on daemons will protect them from unauthorized modification and possible system compromise.</xhtml:p>
@@ -46,7 +46,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files" selected="true">
-      <title>STIG: system command files</title>
+      <title>system command files</title>
       <description>
         <xhtml:p>System command files must be 0755 or less.</xhtml:p>
         <xhtml:p>Restricting permissions will protect system command files from unauthorized modification. System command files include files present in directories used by the operating system for storing default system executables and files present in directories included in the system's default executable search paths.</xhtml:p>
@@ -58,7 +58,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_dirs_owner" selected="true">
-      <title>STIG: system command dirs owner</title>
+      <title>system command dirs owner</title>
       <description>
         <xhtml:p>System command directories must be owned by a system account.</xhtml:p>
         <xhtml:p>Restricting permissions will protect the files from unauthorized modification.</xhtml:p>
@@ -70,7 +70,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_dirs_group" selected="true">
-      <title>STIG: system command dirs group</title>
+      <title>system command dirs group</title>
       <description>
         <xhtml:p>System command dirs must be owned by a system group.</xhtml:p>
         <xhtml:p>Restricting permissions will protect the files from unauthorized modification.</xhtml:p>
@@ -82,7 +82,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_logs_permissions" selected="true">
-      <title>STIG: syslog logs permissions</title>
+      <title>syslog logs permissions</title>
       <description>
         <xhtml:p>syslog logs should be 0640 or less.</xhtml:p>
         <xhtml:p>If the system log files are not protected, unauthorized users could change the logged data, eliminating its forensic value.</xhtml:p>
@@ -94,7 +94,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-man_pages_permissions" selected="true">
-      <title>STIG: man pages permissions</title>
+      <title>man pages permissions</title>
       <description>
         <xhtml:p>man pages must be 0644 or less.</xhtml:p>
         <xhtml:p>If manual pages are compromised, misleading information could be inserted, causing actions that may compromise the system.</xhtml:p>
@@ -106,7 +106,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-library_files_permissions" selected="true">
-      <title>STIG: library files permissions</title>
+      <title>library files permissions</title>
       <description>
         <xhtml:p>Library files must be 0755 or less.</xhtml:p>
         <xhtml:p>Unauthorized access could destroy the integrity of the library files.</xhtml:p>
@@ -118,7 +118,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-passwd_file_permissions" selected="true">
-      <title>STIG: passwd file permissions</title>
+      <title>passwd file permissions</title>
       <description>
         <xhtml:p>/etc/passwd must be 0644 or less.</xhtml:p>
         <xhtml:p>If the passwd file is writable by a group-owner or the world, the risk of passwd file compromise is increased. The passwd file contains the list of accounts on the system and associated information.</xhtml:p>
@@ -130,7 +130,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-shadow_file_owner" selected="true">
-      <title>STIG: shadow file owner</title>
+      <title>shadow file owner</title>
       <description>
         <xhtml:p>/etc/shadow must be owned by root.</xhtml:p>
         <xhtml:p>The /etc/shadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. Failure to give ownership of sensitive files or utilities to root or bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
@@ -142,7 +142,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-shadow_file_permissions" selected="true">
-      <title>STIG: shadow file permissions</title>
+      <title>shadow file permissions</title>
       <description>
         <xhtml:p>/etc/shadow must be 0400 or less.</xhtml:p>
         <xhtml:p>The /etc/shadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. The file also contains password hashes which must not be accessible to users other than root.</xhtml:p>
@@ -154,7 +154,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_dirs_permissions" selected="true">
-      <title>STIG: home dirs permissisions</title>
+      <title>home dirs permissisions</title>
       <description>
         <xhtml:p>All home dirs must be 0750 or less.</xhtml:p>
         <xhtml:p>Excessive permissions on home directories allow unauthorized access to user files.</xhtml:p>
@@ -166,7 +166,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_dirs_files_permissions" selected="true">
-      <title>STIG: home dirs files permissions</title>
+      <title>home dirs files permissions</title>
       <description>
         <xhtml:p>All files in home dirs must be 0750 or less.</xhtml:p>
         <xhtml:p>Excessive permissions allow unauthorized access to user files.</xhtml:p>
@@ -178,7 +178,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-etc_rc_permissions" selected="true">
-      <title>STIG: /etc/rc files permissions</title>
+      <title>/etc/rc files permissions</title>
       <description>
         <xhtml:p>All /etc/rc files must be 0755 or less.</xhtml:p>
         <xhtml:p>If the startup files are writable by other users, they could modify the startup files to insert malicious commands into the startup files.</xhtml:p>
@@ -190,7 +190,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-skeleton_files_permissions" selected="true">
-      <title>STIG: skeleton files permissions</title>
+      <title>skeleton files permissions</title>
       <description>
         <xhtml:p>Skeleton /etc/skel/* files must be 0644 or less.</xhtml:p>
         <xhtml:p>If the system log files are not protected, unauthorized users could change the logged data, eliminating its forensic value.</xhtml:p>
@@ -202,7 +202,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-etc_shell_files_owner" selected="true">
-      <title>STIG: /etc shell files owner</title>
+      <title>/etc shell files owner</title>
       <description>
         <xhtml:p>All shell files in /etc must be owned by root.</xhtml:p>
         <xhtml:p>Local initialization files are used to configure the user's shell environment upon login. Malicious modification of these files could compromise accounts upon logon.</xhtml:p>
@@ -214,7 +214,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-etc_shell_files_permissions" selected="true">
-      <title>STIG: /etc shell files permissions</title>
+      <title>/etc shell files permissions</title>
       <description>
         <xhtml:p>All shell files in /etc must be 0755 or less (???).</xhtml:p>
         <xhtml:p>Local initialization files are used to configure the user's shell environment upon login. Malicious modification of these files could compromise accounts upon logon.</xhtml:p>
@@ -226,7 +226,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-world_writable_dirs_sticky" selected="true">
-      <title>STIG: world writable dirs sticky bit</title>
+      <title>world writable dirs sticky bit</title>
       <description>
         <xhtml:p>Sticky bit must be on all world writable dirs.</xhtml:p>
         <xhtml:p>Failing to set the sticky bit on the public directories allows unauthorized users to delete files in the directory structure. The only authorized public directories are those temporary directories supplied with the system or those designed to be temporary file repositories. The setting is normally reserved for directories used by the system and by users for temporary file storage (e.g., /tmp) and for directories that require global read/write access.</xhtml:p>
@@ -238,7 +238,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-world_writable_dirs_owner" selected="true">
-      <title>STIG: world writable dirs owner</title>
+      <title>world writable dirs owner</title>
       <description>
         <xhtml:p>All world writable dirs must be owned by system account.</xhtml:p>
         <xhtml:p>If a public directory has the sticky bit set and is not owned by a privileged UID, unauthorized users may be able to modify files created by others. The only authorized public directories are those temporary directories supplied with the system or those designed to be temporary file repositories. The setting is normally reserved for directories used by the system and by users for temporary file storage (e.g., /tmp) and for directories that require global read/write access.</xhtml:p>
@@ -250,7 +250,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-audit_logs_owner" selected="true">
-      <title>STIG: audit logs owner</title>
+      <title>audit logs owner</title>
       <description>
         <xhtml:p>All audit logs must be owned by root.</xhtml:p>
         <xhtml:p>Failure to give ownership of system audit log files to root provides the designated owner and unauthorized users with the potential to access sensitive information.</xhtml:p>
@@ -262,7 +262,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-audit_logs_permissions" selected="true">
-      <title>STIG: audit logs permissions</title>
+      <title>audit logs permissions</title>
       <description>
         <xhtml:p>All audit logs must be 0640 or less.</xhtml:p>
         <xhtml:p>If a user can write to the audit logs, audit trails can be modified or destroyed and system intrusion may not be detected. System audit logs are those files generated from the audit system and do not include activity, error, or other log files created by application software.</xhtml:p>
@@ -274,7 +274,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-cron_allow_permissions" selected="true">
-      <title>STIG: cron.allow permissions</title>
+      <title>cron.allow permissions</title>
       <description>
         <xhtml:p>cron.allow must be 0600 or less.</xhtml:p>
         <xhtml:p>A cron.allow file that is readable and/or writable by other than root could allow potential intruders and malicious users to use the file contents to help discern information, such as who is allowed to execute cron programs, which could be harmful to overall system and network security.</xhtml:p>
@@ -286,7 +286,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-crontab_files_permissions" selected="true">
-      <title>STIG: crontab files permissions</title>
+      <title>crontab files permissions</title>
       <description>
         <xhtml:p>crontab files must be 0600 or less. cron script must be 0700 or less.</xhtml:p>
         <xhtml:p>To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
@@ -298,7 +298,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-cron_dirs_permissions" selected="true">
-      <title>STIG: cron dirs permissions</title>
+      <title>cron dirs permissions</title>
       <description>
         <xhtml:p>cron directories must be 0755 or more less.</xhtml:p>
         <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
@@ -310,7 +310,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-cron_dirs_owner" selected="true">
-      <title>STIG: cron dirs owner</title>
+      <title>cron dirs owner</title>
       <description>
         <xhtml:p>cron directories must be owned by root.</xhtml:p>
         <xhtml:p>Incorrect ownership of the cron or crontab directories could permit unauthorized users the ability to alter cron jobs and run automated jobs as privileged users. Failure to give ownership of cron or crontab directories to root or to bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
@@ -322,7 +322,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-cron_dirs_group" selected="true">
-      <title>STIG: cron dirs group</title>
+      <title>cron dirs group</title>
       <description>
         <xhtml:p>cron directories must be group root.</xhtml:p>
         <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious modification to these jobs, crontab files must be secured. Failure to give group-ownership of cron or crontab directories to a system group provides the designated group and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
@@ -334,7 +334,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-xinetd_dirs_owner" selected="true">
-      <title>STIG: xinetd dirs owner</title>
+      <title>xinetd dirs owner</title>
       <description>
         <xhtml:p>All xinetd directories must be owned by root.</xhtml:p>
         <xhtml:p>Failure to give ownership of sensitive files or utilities to root provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
@@ -346,7 +346,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-xinetd_files_permissions" selected="true">
-      <title>STIG: xinetd files permissions</title>
+      <title>xinetd files permissions</title>
       <description>
         <xhtml:p>All xinetd files must be 0640 or less.</xhtml:p>
         <xhtml:p>The Internet service daemon configuration files must be protected as malicious modification could cause denial of service or increase the attack surface of the system.</xhtml:p>
@@ -358,7 +358,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-services_file_owner" selected="true">
-      <title>STIG: services file owner</title>
+      <title>services file owner</title>
       <description>
         <xhtml:p>Services file must be owned by root.</xhtml:p>
         <xhtml:p>Failure to give ownership of sensitive files or utilities to root or bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
@@ -370,7 +370,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-services_file_permissions" selected="true">
-      <title>STIG: Services file permissions</title>
+      <title>Services file permissions</title>
       <description>
         <xhtml:p>Services file must be 0644 or less.</xhtml:p>
         <xhtml:p>The services file is critical to the proper operation of network services and must be protected from unauthorized modification. Unauthorized modification could result in the failure of network services.</xhtml:p>
@@ -382,7 +382,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-alias_file_owner" selected="true">
-      <title>STIG: alias file owner</title>
+      <title>alias file owner</title>
       <description>
         <xhtml:p>The alias file must be owned by root.</xhtml:p>
         <xhtml:p>If the alias file is not owned by root, an unauthorized user may modify the file to add aliases to run malicious code or redirect e-mail.</xhtml:p>
@@ -394,7 +394,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-alias_file_permissions" selected="true">
-      <title>STIG: alias file permissions</title>
+      <title>alias file permissions</title>
       <description>
         <xhtml:p>The alias file must be 644 or less.</xhtml:p>
         <xhtml:p>Excessive permissions on the aliases file may permit unauthorized modification. If the alias file is modified by an unauthorized user, they may modify the file to run malicious code or redirect e-mail.</xhtml:p>
@@ -406,7 +406,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-smb_conf_permissions" selected="true">
-      <title>STIG: smb.conf permissions</title>
+      <title>smb.conf permissions</title>
       <description>
         <xhtml:p>smb.conf must be 0644 or less.</xhtml:p>
         <xhtml:p>If the smb.conf file has excessive permissions, the file may be maliciously modified and the Samba configuration could be compromised.</xhtml:p>
@@ -418,7 +418,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-grub_conf_permissions" selected="true">
-      <title>STIG: grub.conf permissions</title>
+      <title>grub.conf permissions</title>
       <description>
         <xhtml:p>grub.conf must be 0600 or less.</xhtml:p>
         <xhtml:p>File permissions greater than 0600 on boot loader configuration files could allow an unauthorized user to view or modify sensitive information pertaining to system boot instructions.</xhtml:p>

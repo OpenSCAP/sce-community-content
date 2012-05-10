@@ -3,7 +3,7 @@
     <title>Bootloader</title>
     
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_bootloader-bootloader_permissions" selected="true">
-      <title>sectool: bootloader_permissions</title>
+      <title>bootloader_permissions</title>
       <description>
         permission and owner of /etc/grub.conf
       </description>
@@ -13,7 +13,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_bootloader-bootloader_password" selected="true">
-      <title>sectool: bootloader_password</title>
+      <title>bootloader_password</title>
       <description>
         Tests whether /etc/grub.conf is set to require password
       </description>

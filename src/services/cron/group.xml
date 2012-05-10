@@ -3,7 +3,7 @@
     <title>Services</title>
     
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron" selected="true">
-      <title>sectool: cron</title>
+      <title>cron</title>
       <description>
         <xhtml:p>Basic crontab checking.</xhtml:p>
         <xhtml:p>Looks for unexpected paths in the crontab PATH variable, checks ownership and permissions of cron related dirs and commands listed in crontab.</xhtml:p>

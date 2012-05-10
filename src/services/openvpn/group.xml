@@ -3,7 +3,7 @@
     <title>OpenVPN</title>
     
     <Rule id="xccdf_org.open-scap.sce-community-content_rula_services_openvpn-openvpn" selected="true">
-      <title>sectool: openvpn</title>
+      <title>openvpn</title>
       <description>
         <xhtml:p>OpenVPN configuration audit.</xhtml:p>
       </description>

@@ -2,7 +2,7 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_network" selected="true">
     <title>Network</title>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_network-firewall" selected="true">
-      <title>sectool: firewall</title>
+      <title>firewall</title>
       <description>
         <xhtml:p>Simple analysis of firewall policy rules.</xhtml:p>
       </description>
@@ -12,7 +12,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_network-netserv" selected="true">
-      <title>sectool: netserv</title>
+      <title>netserv</title>
       <description>
         <xhtml:p>Audit of currently running network services.</xhtml:p>
       </description>
@@ -22,7 +22,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_network-xinetd" selected="true">
-      <title>sectool: xinetd</title>
+      <title>xinetd</title>
       <description>
         <xhtml:p>xinetd configuration audit.</xhtml:p>
       </description>
@@ -32,7 +32,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_network-tcp_wrappers" selected="true">
-      <title>sectool: tcp_wrappers</title>
+      <title>tcp_wrappers</title>
       <description>
         <xhtml:p>Checks whether all running applications, which are using libwrap, have some restrictions in /etc/hosts.deny and /etc.hosts allow</xhtml:p>
       </description>

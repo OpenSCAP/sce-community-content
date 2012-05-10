@@ -3,7 +3,7 @@
     <title>NFS</title>
     
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_nfs-nfs" selected="true">
-      <title>sectool: nfs</title>
+      <title>nfs</title>
       <description>
         <xhtml:p>Audit of nfs server. Finds RW exports</xhtml:p>
       </description>

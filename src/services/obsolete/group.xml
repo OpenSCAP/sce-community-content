@@ -3,7 +3,7 @@
     <title>Obsolete</title>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_finger" selected="true">
-      <title>NISPOM: Disable Finger</title>
+      <title>Disable Finger</title>
       <description>
         <xhtml:p>Disabling 'finger' prevents other (possibly remote) users from querying who is logged onto this machine.</xhtml:p>
       </description>
@@ -13,7 +13,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rexec" selected="true">
-      <title>NISPOM: Disable Remote Exec (rexec)</title>
+      <title>Disable Remote Exec (rexec)</title>
       <description>
         <xhtml:p>Password authentication to rexec is transmitted in plain-text which is unacceptable.</xhtml:p>
       </description>
@@ -23,7 +23,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rlogin" selected="true">
-      <title>NISPOM: Disable Remote Login (rlogin)</title>
+      <title>Disable Remote Login (rlogin)</title>
       <description>
         <xhtml:p>rlogin has unacceptable security flaws and should be replaced with SSH if possible.</xhtml:p>
         <xhtml:p>security problems:
@@ -40,7 +40,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rsh" selected="true">
-      <title>NISPOM: Disable Remote Shell (rsh)</title>
+      <title>Disable Remote Shell (rsh)</title>
       <description>
         <xhtml:p>rsh has unacceptable security flaws including sending unencrypted password over the network.</xhtml:p>
       </description>

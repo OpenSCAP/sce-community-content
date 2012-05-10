@@ -3,7 +3,7 @@
     <title>Permissions</title>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_permissions-group" selected="true">
-      <title>sectool: group</title>
+      <title>group</title>
       <description>
         <xhtml:p>Checks group for whether</xhtml:p>
         <xhtml:ul>
@@ -25,7 +25,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_permissions-passwd" selected="true">
-      <title>sectool: passwd</title>
+      <title>passwd</title>
       <description>
         <xhtml:p>Checks passwd for whether</xhtml:p>
         <xhtml:ul>
@@ -58,7 +58,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_permissions-shadow" selected="true">
-      <title>sectool: shadow</title>
+      <title>shadow</title>
       <description>
         <xhtml:p>Checks shadow for whether</xhtml:p>
         <xhtml:ul>
@@ -78,7 +78,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_permissions-pam" selected="true">
-      <title>sectool: pam</title>
+      <title>pam</title>
       <description>
         <xhtml:p>PAM configuration audit.</xhtml:p>
       </description>

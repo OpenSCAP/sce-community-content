@@ -3,7 +3,7 @@
     <title>OpenSSH</title>
      
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-openssh" selected="true">
-      <title>sectool: openssh</title>
+      <title>openssh</title>
       <description>
         <xhtml:p>OpenSSH configuration audit.</xhtml:p>
       </description>
@@ -13,7 +13,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openssh-sshd_disable_empty_pws" selected="true">
-      <title>NISPOM: sshd - Disable Empty Passwords</title>
+      <title>sshd - Disable Empty Passwords</title>
       <description>
         <xhtml:p>Might allow the attacker to gain direct access to the machine by just guessing a username.</xhtml:p>
       </description>
@@ -23,7 +23,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openssh-sshd_disable_root_login" selected="true">
-      <title>NISPOM: sshd - Disable root Login</title>
+      <title>sshd - Disable root Login</title>
       <description>
         <xhtml:p>'root' username is a logical target for bruteforce attacks.</xhtml:p>
         <xhtml:p>Having to login as a different user and then sudo involves 2-step authorization.</xhtml:p>

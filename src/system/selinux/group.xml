@@ -2,8 +2,8 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_selinux" selected="true">
     <title>SELinux</title>
     
-    <Value id="xccdf_org.open-scap.sce-community-content_value_system_selinux_selinux_state" type="string" operator="equals">
-      <title>sectool: SELinux state</title>
+    <Value id="xccdf_org.open-scap.sce-community-content_value_system_selinux_desired_selinux_state" type="string" operator="equals">
+      <title>Desired SELinux state</title>
       <description xml:lang="en"> 
 enforcing - SELinux security policy is enforced. <xhtml:br />
 permissive - SELinux prints warnings instead of enforcing.<xhtml:br />
@@ -23,13 +23,13 @@ disabled - SELinux is fully disabled.
     </Value>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_selinux-selinux" selected="true">
-      <title>sectool: selinux</title>
+      <title>selinux state</title>
       <description>
         <xhtml:p>Checks the SELinux state, result depends on passed variable. By default checks whether SELinux is enabled and in enforcing mode.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
-        <check-export value-id="xccdf_org.open-scap.sce-community-content_value_system_selinux_selinux_state" export-name="EXPECTED_STATE"/>
+        <check-export value-id="xccdf_org.open-scap.sce-community-content_value_system_selinux_desired_selinux_state" export-name="EXPECTED_STATE"/>
         <check-content-ref href="09_selinux.sh"/>
       </check>
     </Rule>
