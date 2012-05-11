@@ -33,7 +33,24 @@ def perform_autoqa(path_prefix, group_tree):
 
         group_xml_path = os.path.join(path_prefix, f, "group.xml")
 
+        groups = tree.findall("{http://checklists.nist.gov/xccdf/1.1}Group")
+        if len(groups) != 1:
+            print("'%s' doesn't have exactly one Group element. Each group.xml file is allowed to have just one group in it, if you want to split a group into two, move the other half to a different folder!" % (group_xml_path))
+            continue
+
+        group = groups[0]
+
+        full_path_prefix = os.path.join(path_prefix, f)
+        expected_id = "xccdf_org.open-scap.sce-community-content_group_" + full_path_prefix.replace("." + os.path.sep, "").replace(os.path.sep, "_")
+        expected_rule_id_prefix = "xccdf_org.open-scap.sce-community-content_rule_" + full_path_prefix.replace("." + os.path.sep, "").replace(os.path.sep, "_") + "-"
+
+        if group.get("id") != expected_id:
+            print("Group from '%s' has id '%s', however id '%s' was expected" % (group_xml_path, group.get("id", ""), expected_id))
+
         for element in tree.findall(".//{http://checklists.nist.gov/xccdf/1.1}Rule"):
+            if not element.get("id", "").startswith(expected_rule_id_prefix):
+                print("Rule from '%s' has unexpected id '%s', id prefixed with '%s' was expected!" % (group_xml_path, element.get("id", ""), expected_rule_id_prefix))
+
             checks = element.findall("{http://checklists.nist.gov/xccdf/1.1}check")
             if len(checks) != 1:
                 print("Rule of id '%s' from '%s' doesn't have exactly one check element!" % (element.get("id", ""), group_xml_path))
