@@ -2,16 +2,6 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_bootloader" selected="true">
     <title>Bootloader</title>
     
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_bootloader-bootloader_permissions" selected="true">
-      <title>grub.conf permissions</title>
-      <description>
-        permission and owner of /etc/grub.conf
-      </description>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="01_bootloader_permissions.sh"/>
-      </check>
-    </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_bootloader-grub_conf_permissions" selected="true">
       <title>grub.conf permissions</title>
       <description>
