@@ -124,7 +124,7 @@ do
 				continue
 			fi
 
-			perm=`stat -c '%A' $fullpath`
+			perm=`stat -L -c '%A' $fullpath`
 			ownerID=`stat -c '%u' $fullpath`
 			ownerName=`stat -c '%U' $fullpath`
 

@@ -65,7 +65,7 @@ do
 				RET=$XCCDF_RESULT_FAIL
 			fi
 
-			owner="`stat -c '%U' $fullpath`"
+			owner="`stat -L -c '%U' $fullpath`"
 			if [[ "$owner" != "root" ]]
 			then
 				echo "Alias '$name' contains command '$command', which is not owned by root"
@@ -103,7 +103,7 @@ do
 				RET=$XCCDF_RESULT_FAIL
 			fi
 
-			owner="`stat -c '%U' $fullpath`"
+			owner="`stat -L -c '%U' $fullpath`"
 			if [[ "$owner" != "root" ]]
 			then
 				echo "Alias '$name' includes file '$included_file', which is not owned by root"

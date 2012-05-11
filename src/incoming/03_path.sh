@@ -66,7 +66,7 @@ do
 	echo "Path variable contains directory $dir, which doesn't exist or is not an directory."
 	[ "$RET" == $XCCDF_RESULT_FAIL ] || RET=$XCCDF_RESULT_INFORMATIONAL
     else
-	    perm="`stat -c '%A' $dir`"
+	    perm="`stat -L -c '%A' $dir`"
 	    if [[ "${perm:5:1}" == "w" ]]
 	    then
 		echo "Path variable contains directory $dir, which is group-writable"
@@ -99,7 +99,7 @@ EOF
 	  do
 		if [[ "$file" -ne "" ]]
 		then
-			user="`stat -c '%U' $file`"
+			user="`stat -L -c '%U' $file`"
 			if canLogIn "$user"; then
 				echo "File ${file}, which is placed in PATH directory ${dir}, is owned by someone else than by root!"
 				echo "This is VERY dangerous, since one can change contents of this executable. Please change the owner and group of this file to 'root' immediately!"

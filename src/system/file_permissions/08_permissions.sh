@@ -63,14 +63,14 @@ do
         ret=$XCCDF_RESULT_FAIL
     else
 	# owner
-	if [[ "`stat -c '%U' $dir`" != "root" ]]
+	if [[ "`stat -L -c '%U' $dir`" != "root" ]]
 	then
 	    echo "Directory $dir has wrong owner. Change the owner to root."
 
             ret=$XCCDF_RESULT_FAIL
 	fi
 
-	if [[ "`stat -c '%a' $dir`" != "$perm" ]]
+	if [[ "`stat -L -c '%a' $dir`" != "$perm" ]]
 	then
 	    echo "Directory $dir has wrong permissions! Change the permissions to $perm."
 

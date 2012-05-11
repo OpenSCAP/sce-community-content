@@ -14,7 +14,7 @@ GRUBCONF=/boot/grub/grub.conf
 
 function check_file_perm () {
     if [[ -a "${1}" ]]; then
-        local -i CPERM=$(stat -c '%a' "${1}")
+        local -i CPERM=$(stat -L -c '%a' "${1}")
 
         if (( ${CPERM} != $2 )); then
             if (( (8#${CPERM} | 8#${2}) == 8#${2} )); then
@@ -29,7 +29,7 @@ function check_file_perm () {
             fi
         fi
 
-        if ! (stat -c '%U:%G' "${1}" | grep -q "${3}"); then
+        if ! (stat -L -c '%U:%G' "${1}" | grep -q "${3}"); then
             if (( ${4} == 1 )); then
                 echo "Wrong owner/group on $(stat -c '%F' "${1}"): \"${1}\" (${6:-unknown}, required owner/group is ${3})"
                 RET=$XCCDF_RESULT_FAIL
