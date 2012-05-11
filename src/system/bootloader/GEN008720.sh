@@ -25,6 +25,7 @@ PATH=/bin:/usr/bin
 
 # start a subshell
 output=$(
+find /boot/grub2 -maxdepth 1 -type f -perm /0177 -name grub.cfg -printf "GEN008720: %p is %m should be 0600 or less\n" 2>/dev/null
 find /boot/grub -maxdepth 1 -type f -perm /0177 -name grub.conf -printf "GEN008720: %p is %m should be 0600 or less\n" 2>/dev/null
 )
 

@@ -9,8 +9,18 @@
 
 RET=$XCCDF_RESULT_PASS
 
-# should be XCCDF bound variable, TODO
-GRUBCONF=/boot/grub/grub.conf
+GRUBCONF=/boot/grub2/grub.cfg
+
+if [ ! -f ${GRUBCONF} ]; then
+    # try the legacy grub.conf location
+    GRUBCONF=/boot/grub/grub.conf
+fi
+
+if [ ! -f ${GRUBCONF} ]; then
+    # still can't find it, we can't proceed with the check
+    echo "Can't find the grub.{cfg,conf} file!"
+    exit $XCCDF_RESULT_ERROR
+fi
 
 if [[ $UID -ne '0' ]]
 then
