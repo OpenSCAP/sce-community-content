@@ -27,6 +27,35 @@ def collect_group_xmls(source_dir):
 
     return ret
 
+def perform_autoqa(path_prefix, group_tree):
+    for f, t in group_tree.iteritems():
+        tree, subgroups = t
+
+        group_xml_path = os.path.join(path_prefix, f, "group.xml")
+
+        for element in tree.findall(".//{http://checklists.nist.gov/xccdf/1.1}Rule"):
+            checks = element.findall("{http://checklists.nist.gov/xccdf/1.1}check")
+            if len(checks) != 1:
+                print("Rule of id '%s' from '%s' doesn't have exactly one check element!" % (element.get("id", ""), group_xml_path))
+                continue
+
+            check = checks[0]
+            
+            if check.get("system") != "http://open-scap.org/page/SCE":
+                print("Rule of id '%s' from '%s' has system name different from the SCE system name ('http://open-scap.org/page/SCE')!" % (element.get("id", ""), group_xml_path))
+
+            crefs = check.findall("{http://checklists.nist.gov/xccdf/1.1}check-content-ref")
+            if len(crefs) != 1:
+                print("Rule of id '%s' from '%s' doesn't have exactly one check-content-ref inside its check element!" % (element.get("id", ""), group_xml_path))
+                continue
+        
+            cref = crefs[0]
+
+            if not os.path.isfile(os.path.join(path_prefix, f, cref.get("href", ""))):
+                print("Rule of id '%s' from '%s' is referencing a script file that wasn't found! (href is '%s', expected location therefore is '%s')" % (element.get("id", ""), group_xml_path, cref.get("href", ""), os.path.join(path_prefix, f, cref.get("href", ""))))
+
+        perform_autoqa(os.path.join(path_prefix, f), subgroups)
+
 def repath_group_xml_tree(source_dir, new_base_dir, group_tree):
     for f, t in group_tree.iteritems():
         tree, subgroups = t
@@ -94,6 +123,7 @@ def main():
         template_file = os.path.join(sys.argv[1], "template.xml")
         group_xmls = collect_group_xmls(sys.argv[1])
 
+        perform_autoqa(sys.argv[1], group_xmls)
         new_base_dir = sys.argv[1]
         repath_group_xml_tree(sys.argv[1], new_base_dir, group_xmls)
 
