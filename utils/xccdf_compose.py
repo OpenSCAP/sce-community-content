@@ -59,19 +59,14 @@ def merge_trees(target_tree, target_element, group_tree):
             # look through profiles in the template XCCDF
             for profile in target_tree.findall("{http://checklists.nist.gov/xccdf/1.1}Profile"):
                 if profile.get("id") == child.get("id"):
-                    for select in child.findall("*"):
-                        # again, we want to be robust when it comes to namespaces
-                        if not select.tag.endswith("select"):
-                            continue
-
-                        profile.append(select)
+                    for profile_child in child.findall("*"):
+                        profile.append(profile_child)
 
                     merged = True
                     break
             
             if not merged:
-                pass # TODO!
-                #print("'%s' contains Profile of id '%s' that doesn't match any profiles in template, skipped!" % (file_path, child.get("id")), sys.stderr)
+                print("Found profile of id '%s' that doesn't match any profiles in template, skipped!" % (child.get("id")), sys.stderr)
 
         merge_trees(target_tree, groups[0], subgroups)
 
