@@ -14,10 +14,10 @@ fi
 
 RET=$XCCDF_RESULT_PASS
 
-sed -n -e ':a; /\\$/N; s/\\\n//; ta; s/^[ \t]*password[^#]*pam_cracklib.so.*//; T; q 1' ${SYSTEM_AUTH_CFG}
+sed -n -e ':a; /\\$/N; s/\\\n//; ta; s/^[ \t]*password[^#]*pam_\(cracklib\|pwquality\).so.*//; T; q 1' ${SYSTEM_AUTH_CFG}
 if [[ "$?" -eq "0" ]]; then
-	echo "New passwords for system services aren't checked with cracklib."
-	echo "Add a call to pam_cracklib to '${SYSTEM_AUTH_CFG}'. Please see 'man pam_cracklib' for details."
+	echo "New passwords for system services aren't checked with cracklib or pwquality."
+	echo "Add a call to pam_cracklib or pam_pwquality to '${SYSTEM_AUTH_CFG}'. Please see 'man pam_cracklib' or 'man pam_pwquality' for details."
 	RET=$XCCDF_RESULT_INFORMATIONAL
 fi
 
