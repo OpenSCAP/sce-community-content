@@ -2,7 +2,7 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_openssh" selected="true">
     <title>OpenSSH</title>
      
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_sectool-openssh" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openssh-openssh" selected="true">
       <title>openssh config file</title>
       <description>
         <xhtml:p>OpenSSH configuration audit.</xhtml:p>

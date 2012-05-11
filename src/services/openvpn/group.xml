@@ -2,7 +2,7 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_openvpn" selected="true">
     <title>OpenVPN</title>
     
-    <Rule id="xccdf_org.open-scap.sce-community-content_rula_services_openvpn-openvpn" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openvpn-openvpn" selected="true">
       <title>openvpn config file</title>
       <description>
         <xhtml:p>OpenVPN configuration audit.</xhtml:p>

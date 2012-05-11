@@ -12,7 +12,7 @@
         <check-content-ref href="01_bootloader_permissions.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-grub_conf_permissions" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_bootloader-grub_conf_permissions" selected="true">
       <title>grub.conf permissions</title>
       <description>
         <xhtml:p>grub.conf must be 0600 or less.</xhtml:p>
