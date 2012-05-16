@@ -4,6 +4,7 @@ import os
 import sys
 import glob
 from xml.etree import ElementTree
+import re
 
 def collect_group_xmls(source_dir):
     ret = {}
@@ -116,6 +117,57 @@ def merge_trees(target_tree, target_element, group_tree):
 
         merge_trees(target_tree, groups[0], subgroups)
 
+def resolve_selects(target_tree):
+    default_selected_rules = set([])
+    all_rules = set([])
+
+    for rule in target_tree.findall(".//{http://checklists.nist.gov/xccdf/1.1}Rule"):
+        if rule.get("selected", False):
+            default_selected_rules.add(rule.get("id", ""))
+
+        all_rules.add(rule.get("id", ""))
+
+    for profile in target_tree.findall("{http://checklists.nist.gov/xccdf/1.1}Profile"):
+        selected_rules = set(default_selected_rules)
+
+        to_remove = [] # to avoid invalidating iterators
+        for select in profile.findall("*"):
+            if select.tag == "{http://checklists.nist.gov/xccdf/1.1}select":
+                if select.get("selected", "false") == "true":
+                    selected_rules.add(select.get("idref", ""))
+                else:
+                    selected_rules.remove(select.get("idref", ""))
+
+                to_remove.append(select)
+
+            elif select.tag == "{http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment}meta-select":
+                needle = select.get("idref")
+                for rule_id in all_rules:
+                    if re.match(needle, rule_id):
+                        if select.get("selected", "false") == "true":
+                            selected_rules.add(rule_id)
+                        elif rule_id in selected_rules:
+                            selected_rules.remove(rule_id)
+
+                to_remove.append(select)
+
+        for rm in to_remove:
+            profile.remove(rm)
+
+        for rule in selected_rules:
+            if rule not in default_selected_rules: # if it's selected by default, we don't care
+                elem = ElementTree.Element("{http://checklists.nist.gov/xccdf/1.1}select")
+                elem.set("idref", rule)
+                elem.set("selected", "true")
+                profile.append(elem)
+
+        for rule in default_selected_rules:
+            if rule not in selected_rules:
+                elem = ElementTree.Element("{http://checklists.nist.gov/xccdf/1.1}select")
+                elem.set("idref", rule)
+                elem.set("selected", "false")
+                profile.append(elem)
+
 # taken from http://effbot.org/zone/element-lib.htm#prettyprint
 def indent(elem, level=0):
     i = "\n" + level*"  "
@@ -148,7 +200,8 @@ def main():
             target_tree = ElementTree.fromstring(file.read())
 
         merge_trees(target_tree, target_tree, group_xmls)
-        
+        resolve_selects(target_tree)
+
         indent(target_tree)
 
         with open(os.path.join(sys.argv[1], "all-xccdf.xml"), "w") as file:
