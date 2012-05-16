@@ -4,6 +4,7 @@ all: all-xccdf.xml guide.html
 
 all-xccdf.xml: $(GROUP_FILES) ../utils/xccdf_compose.py
 	../utils/xccdf_compose.py .
+	oscap xccdf validate-xml all-xccdf.xml
 
 all-resolved-xccdf.xml: all-xccdf.xml
 	oscap xccdf resolve -o all-resolved-xccdf.xml all-xccdf.xml
