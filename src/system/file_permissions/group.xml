@@ -1,6 +1,43 @@
 <xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <Profile id="xccdf_org.open-scap.sce-community-content_profile_stig">
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-root_home_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-network_daemon_files" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_dirs_owner" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_dirs_group" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_logs_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-man_pages_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-library_files_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-passwd_file_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-shadow_file_owner" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-shadow_file_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_dirs_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_dirs_files_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-etc_rc_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-skeleton_files_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-etc_shell_files_owner" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-etc_shell_files_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-world_writable_dirs_sticky" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-world_writable_dirs_owner" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-audit_logs_owner" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-audit_logs_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-cron_allow_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-crontab_files_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-cron_dirs_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-cron_dirs_owner" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-cron_dirs_group" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-xinetd_dirs_owner" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-xinetd_files_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-services_file_owner" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-services_file_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-alias_file_owner" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-alias_file_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-smb_conf_permissions" selected="true"/>
+  </Profile>
+
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_file_permissions" selected="true">
     <title>File permissions</title>
+    
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_files" selected="true">
       <title>home files</title>
       <description>
@@ -419,4 +456,3 @@
     </Rule>
   </Group>
 </xf:xccdf-fragment>
-
