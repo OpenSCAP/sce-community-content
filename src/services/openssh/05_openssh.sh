@@ -39,7 +39,7 @@ PARANOID=1
 
 # --- OpenSSH default values --- #
 
-SSHD_defined_vars="PermitRootLogin ChallengeResponseAuthentication UsePAM PermitUserEnvironment StrictModes UsePrivilegeSeparation ClientAliveCountMax ClientAliveInterval"
+SSHD_defined_vars="ChallengeResponseAuthentication UsePAM PermitUserEnvironment StrictModes UsePrivilegeSeparation ClientAliveCountMax ClientAliveInterval"
 
 # Examples
 # version = 4.7p1: SSHD_47p1_PermitRootLogin="yes"
@@ -49,7 +49,6 @@ SSHD_defined_vars="PermitRootLogin ChallengeResponseAuthentication UsePAM Permit
 # 4.x on F8
 #SSHD_4_AllowGroups=""
 #SSHD_4_AllowUsers=""
-SSHD_4_PermitRootLogin="yes"
 SSHD_4_ChallengeResponseAuthentication="yes"
 SSHD_4_UsePAM="no"
 SSHD_4_PermitUserEnvironment="no"
@@ -59,7 +58,6 @@ SSHD_4_ClientAliveCountMax=3
 SSHD_4_ClientAliveInterval=0
 
 # 5.x on F9
-SSHD_5_PermitRootLogin="yes"
 SSHD_5_ChallengeResponseAuthentication="yes"
 SSHD_5_UsePAM="no"
 SSHD_5_PermitUserEnvironment="no"
@@ -565,32 +563,6 @@ EOF
     fi
     
     # options check
-
-    case "$(__ssh_getconf "${CONFFILE}" PermitRootLogin)" in
-	no)
-	    ;;
-	yes)
-	    if (( ${PARANOID} == 1 )); then
-		report 'ERROR' $ID_SSHD_REMOTEROOTTRUE "Remote root login IS ENABLED."
-		update_RET $XCCDF_RESULT_FAIL
-	    fi
-	    ;;
-	without-password)
-	    report 'WARNING' $ID_SSHD_REMOTEROOTPUBKEY "Remote root login IS ENABLED only with publickey authentication."
-	    update_RET $XCCDF_RESULT_INFORMATIONAL
-	    ;;
-	forced-commands-only)
-	    report 'WARNING' $ID_SSHD_REMOTEROOTFORCEDONLY "Remote root login IS ENABLED, only forced commands allowed."
-	    update_RET $XCCDF_RESULT_INFORMATIONAL
-	    ;;
-	*)
-	    if (( ${PARANOID} == 1 )); then
-	    	report 'WARNING' $ID_SSHD_REMOTEROOTNOTFALSE "Remote root login IS NOT EXPLICITLY DISABLED."
-	    	report 'HINT'    $ID_SSHD_REMOTEROOTNOTFALSE "The default value is not known. If you don't want to allow remote root login, then you should disable it in your sshd_config."
-		update_RET $XCCDF_RESULT_INFORMATIONAL
-	    fi
-	    ;;
-    esac
 
     if [[ -z "$(__ssh_getconf "${CONFFILE}" AllowGroups)" ]]; then
 	if [[ -z "$(__ssh_getconf "${CONFFILE}" AllowUsers)" && ${PARANOID} == 1 ]]; then
