@@ -1,4 +1,11 @@
 <xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <Profile id="xccdf_org.open-scap.sce-community-content_profile_nispom">
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_finger" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rexec" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rlogin" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rsh" selected="true"/>
+  </Profile>
+
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_obsolete" selected="true">
     <title>Obsolete</title>
 

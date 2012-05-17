@@ -3,6 +3,11 @@
     <select idref="xccdf_org.open-scap.sce-community-content_rule_services_openssh-sshd_disable_root_login" selected="false"/>
   </Profile>
 
+  <Profile id="xccdf_org.open-scap.sce-community-content_profile_nispom">
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_openssh-sshd_disable_empty_pws" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_openssh-sshd_disable_root_login" selected="true"/>
+  </Profile>
+
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_openssh" selected="true">
     <title>OpenSSH</title>
      

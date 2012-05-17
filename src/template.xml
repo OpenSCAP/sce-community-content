@@ -32,4 +32,10 @@
 
     <xf:meta-select idref=".+" selected="false"/>
   </Profile>
+
+  <Profile id="xccdf_org.open-scap.sce-community-content_profile_nispom">
+    <title>NISPOM</title>
+
+    <xf:meta-select idref=".+" selected="false"/>
+  </Profile>
 </Benchmark>
