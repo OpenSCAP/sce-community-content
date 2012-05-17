@@ -1,4 +1,8 @@
 <xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <Profile id="xccdf_org.open-scap.sce-community-content_profile_fedora-default">
+    <refine-value idref="xccdf_org.open-scap.sce-community-content_value_system_file_permissions-system_logs_permissions-allow_world_readable" selector="yes"/>
+  </Profile>
+
   <Profile id="xccdf_org.open-scap.sce-community-content_profile_stig">
     <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-root_home_permissions" selected="true"/>
     <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-network_daemon_files" selected="true"/>
@@ -37,7 +41,19 @@
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_file_permissions" selected="true">
     <title>File permissions</title>
-    
+
+    <Value id="xccdf_org.open-scap.sce-community-content_value_system_file_permissions-system_logs_permissions-allow_world_readable" type="boolean" operator="equals">
+      <title>Allow world readable logs</title>
+      <description xml:lang="en">
+        World readable logs are never allowed in strict hardened configurations but are common on desktops.
+      </description>
+      <question xml:lang="en">Are world readable logs allowed?</question>
+     
+      <value>0</value>
+      <value selector="yes">1</value>
+      <value selector="no">0</value>
+    </Value>
+
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_files" selected="true">
       <title>home files</title>
       <description>
@@ -127,6 +143,7 @@
       <ident system="http://iase.disa.mil/stigs">GEN001260</ident>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
+        <check-export value-id="xccdf_org.open-scap.sce-community-content_value_system_file_permissions-system_logs_permissions-allow_world_readable" export-name="ALLOW_WORLD_READABLE"/>
         <check-content-ref href="GEN001260.sh"/>
       </check>
     </Rule>

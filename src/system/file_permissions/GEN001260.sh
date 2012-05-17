@@ -23,9 +23,18 @@
 
 PATH=/bin:/usr/bin
 
+PERM_MASK=137
+# allowing world readable logs isn't part of the STIG recommendation!
+# nonetheless, it is common on desktops so we optionally allow this here
+if [ "$XCCDF_VALUE_ALLOW_WORLD_READABLE" == "1" ]; then
+    PERM_MASK=133
+fi
+
+PERM_ALLOWED=$[ 777 - $PERM_MASK ]
+
 # start a subshell
 output=$(
-find /var/log -type f -perm /0137 -printf "GEN001260: %p is %m should be 0640 or less\n" 2>/dev/null | egrep -v 'wtmp|lastlog'
+find /var/log -type f -perm /0${PERM_MASK} -printf "GEN001260: %p is %m should be ${PERM_ALLOWED} or less\n" 2>/dev/null | egrep -v 'wtmp|lastlog'
 )
 
 # we captured output of the subshell, let's interpret it
