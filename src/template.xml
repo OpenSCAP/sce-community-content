@@ -6,11 +6,8 @@
 
   <front-matter>
     <html:p>
-     SCE community content is intended to be used to discover issues in GNU/Linux systems. Parts could
-     even be used to check non-Linux systems but that is not officially supported.
-    </html:p>
-    <html:p>
-      One of the use cases is distribution QA: discovering issues with stock configurations of distributions.
+      SCE community content is intended to be used to discover issues in GNU/Linux systems. Parts could
+      even be used to check non-Linux systems but that is not officially supported.
     </html:p>
   </front-matter>
 
@@ -21,10 +18,26 @@
 
   <Profile id="xccdf_org.open-scap.sce-community-content_profile_fedora-default">
     <title>Fedora default</title>
+
+    <description>
+      <html:p>
+        This profile is designed for the default stock Fedora installation.
+      </html:p>
+      <html:p>
+        One of the use cases is to check for issues with upcoming Fedora versions.
+      </html:p>
+    </description>
   </Profile>
 
   <Profile id="xccdf_org.open-scap.sce-community-content_profile_fedora-hardened">
     <title>Fedora hardened</title>
+
+    <description>
+      <html:p>
+        This profile is designed for a hardened version of Fedora, it's much more strict
+        than the default profile.
+      </html:p>
+    </description>
   </Profile>
 
   <Profile id="xccdf_org.open-scap.sce-community-content_profile_stig">
