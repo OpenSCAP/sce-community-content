@@ -139,6 +139,7 @@
       <description>
         <xhtml:p>syslog logs should be 0640 or less.</xhtml:p>
         <xhtml:p>If the system log files are not protected, unauthorized users could change the logged data, eliminating its forensic value.</xhtml:p>
+        <xhtml:p>You can optionally allow world readable log files using a variable. The desired mode would be 644 in that case.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001260</ident>
       <check system="http://open-scap.org/page/SCE">
