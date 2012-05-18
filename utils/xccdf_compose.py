@@ -10,8 +10,6 @@ import datetime
 def collect_group_xmls(source_dir):
     ret = {}
 
-    dirnames = set()
-
     for dirname in os.listdir(source_dir):
         if not os.path.isdir(os.path.join(source_dir, dirname)):
             continue
@@ -90,7 +88,8 @@ def repath_group_xml_tree(source_dir, new_base_dir, group_tree):
         repath_group_xml_tree(old_base_dir, new_base_dir, subgroups)
 
 def merge_trees(target_tree, target_element, group_tree):
-    for f, t in group_tree.iteritems():
+    for f in sorted(group_tree.iterkeys()):
+        t = group_tree[f]
         tree, subgroups = t
 
         groups = tree.findall("{http://checklists.nist.gov/xccdf/1.1}Group")
