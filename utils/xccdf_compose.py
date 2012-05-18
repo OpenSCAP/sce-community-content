@@ -5,6 +5,7 @@ import sys
 import glob
 from xml.etree import ElementTree
 import re
+import datetime
 
 def collect_group_xmls(source_dir):
     ret = {}
@@ -168,6 +169,11 @@ def resolve_selects(target_tree):
                 elem.set("selected", "false")
                 profile.append(elem)
 
+def refresh_status(target_tree):
+    for status in target_tree.findall("{http://checklists.nist.gov/xccdf/1.1}status"):
+        if status.get("date", "") == "${CURRENT_DATE}":
+            status.set("date", datetime.date.today().strftime("%Y-%m-%d"))
+
 # taken from http://effbot.org/zone/element-lib.htm#prettyprint
 def indent(elem, level=0):
     i = "\n" + level*"  "
@@ -201,6 +207,7 @@ def main():
 
         merge_trees(target_tree, target_tree, group_xmls)
         resolve_selects(target_tree)
+        refresh_status(target_tree)
 
         indent(target_tree)
 
