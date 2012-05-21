@@ -1,9 +1,9 @@
 <xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_cron" selected="true">
-    <title>Services</title>
+    <title>Cron</title>
     
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron" selected="true">
-      <title>cron</title>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_audit" selected="true">
+      <title>crontab audit</title>
       <description>
         <xhtml:p>Basic crontab checking.</xhtml:p>
         <xhtml:p>Looks for unexpected paths in the crontab PATH variable, checks ownership and permissions of cron related dirs and commands listed in crontab.</xhtml:p>
