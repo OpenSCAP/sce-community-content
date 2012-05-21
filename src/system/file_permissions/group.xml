@@ -425,7 +425,7 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-services_file_permissions" selected="true">
-      <title>Services file permissions</title>
+      <title>services file permissions</title>
       <description>
         <xhtml:p>Services file must be 0644 or less.</xhtml:p>
         <xhtml:p>The services file is critical to the proper operation of network services and must be protected from unauthorized modification. Unauthorized modification could result in the failure of network services.</xhtml:p>
