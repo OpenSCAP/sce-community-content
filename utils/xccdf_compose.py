@@ -88,7 +88,17 @@ def repath_group_xml_tree(source_dir, new_base_dir, group_tree):
         repath_group_xml_tree(old_base_dir, new_base_dir, subgroups)
 
 def merge_trees(target_tree, target_element, group_tree):
-    for f in sorted(group_tree.iterkeys()):
+    def get_sorting_key_for_tree(group_tree, tree_key):
+        prefix = 100
+        tree, subgroups = group_tree[tree_key]
+        try:
+            prefix = int(tree.findall("{http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment}sort-prefix")[-1].text)
+        except:
+            pass
+
+        return (prefix, tree_key)
+
+    for f in sorted(group_tree.iterkeys(), key = lambda tree_key: get_sorting_key_for_tree(group_tree, tree_key)):
         t = group_tree[f]
         tree, subgroups = t
 

@@ -1,4 +1,6 @@
 <xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <xf:sort-prefix>2</xf:sort-prefix>
+
   <Group id="xccdf_org.open-scap.sce-community-content_group_services" selected="true">
     <title>Services</title>
   </Group>
