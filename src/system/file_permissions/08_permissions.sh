@@ -56,26 +56,22 @@ do
     [ "$dir" == "" ] && continue
 
     # exists?
-    if ! [[ -d $dir ]]
-    then
+    if ! [[ -d $dir ]]; then
         echo "Directory $dir doesn't exist! Please create it."
 
         ret=$XCCDF_RESULT_FAIL
     else
-	# owner
-	if [[ "`stat -L -c '%U' $dir`" != "root" ]]
-	then
-	    echo "Directory $dir has wrong owner. Change the owner to root."
-
+        current_owner=$(stat -L -c '%U' $dir)
+        if [[ "$current_owner" != "root" ]]; then
+            echo "Directory $dir has wrong owner. Change the owner from \"$current_owner\" to root."
             ret=$XCCDF_RESULT_FAIL
-	fi
+        fi
 
-	if [[ "`stat -L -c '%a' $dir`" != "$perm" ]]
-	then
-	    echo "Directory $dir has wrong permissions! Change the permissions to $perm."
-
+        current_permissions=$(stat -L -c '%a' $dir)
+        if [[ "$current_permissions" != "$perm" ]]; then
+            echo "Directory $dir has wrong permissions! Change the permissions from $current_permissions to $perm."
             ret=$XCCDF_RESULT_FAIL
-	fi
+        fi
     fi
 done <<EOF
 $dirs
