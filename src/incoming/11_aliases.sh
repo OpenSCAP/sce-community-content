@@ -35,42 +35,41 @@ do
 
 	if [[ "$is_command" == "1" ]]
 	then
-		fullpath="`which $command 2>&1`"
-		commandWithoutPath="`basename $command`"	
+		commandWithoutPath="`basename $command`"
+		# we remove all aliases in a subshell, then use bash builtin command to look for full path
+		fullpath="`unalias -a; command -v $command 2>&1`"
 
 		# does is exist?
-		if [[ "`echo "$fullpath" |grep -c "no $commandWithoutPath in"`" == "1" ]]
+		if [[ "$?" != "0" ]]
 		then
-			if [[ "$command" != "alias" ]] # fedora uses something strange for 'which'..
-			then
-				echo "Alias '$name' contains command '$command', which was not found"
-				[ "$RET" == $XCCDF_RESULT_FAIL ] || RET=$XCCDF_RESULT_INFORMATIONAL
-			fi
+			echo "Alias '$name' contains command '$command', which was not found"
+			[ "$RET" == $XCCDF_RESULT_FAIL ] || RET=$XCCDF_RESULT_INFORMATIONAL
 		else
+			if [[ "$command" != "alias" ]]; then # fedora uses something strange for 'which'..
+				# is this file secure? (means not world/group writable + owned by root
+				perm="`stat -L -c '%A' $fullpath`"
+				if [[ ${perm:5:1} != '-' ]]
+				then
+					echo "Alias '$name' contains command '$command', which is group writable"
+					echo "Please unset it the group writing bit"
+					RET=$XCCDF_RESULT_FAIL
+				fi
 
-			# is this file secure? (means not world/group writable + owned by root
-			perm="`stat -L -c '%A' $fullpath`"
-			if [[ ${perm:5:1} != '-' ]]
-			then
-				echo "Alias '$name' contains command '$command', which is is group writable"
-				echo "Please unset it the group writing bit"
-				RET=$XCCDF_RESULT_FAIL
-			fi
 
+				if [[ ${perm:8:1} != '-' ]]
+				then
+					echo "Alias '$name' contains command '$command', which is world writable"
+					echo "Please unset it the world writing bit"
+					RET=$XCCDF_RESULT_FAIL
+				fi
 
-			if [[ ${perm:8:1} != '-' ]]
-			then
-				echo "Alias '$name' contains command '$command', which is is world writable"
-				echo "Please unset it the world writing bit"
-				RET=$XCCDF_RESULT_FAIL
-			fi
-
-			owner="`stat -L -c '%U' $fullpath`"
-			if [[ "$owner" != "root" ]]
-			then
-				echo "Alias '$name' contains command '$command', which is not owned by root"
-				echo "Please chown this file to root:root"
-				RET=$XCCDF_RESULT_FAIL
+				owner="`stat -L -c '%U' $fullpath`"
+				if [[ "$owner" != "root" ]]
+				then
+					echo "Alias '$name' contains command '$command', which is not owned by root"
+					echo "Please chown this file to root:root"
+					RET=$XCCDF_RESULT_FAIL
+				fi
 			fi
 		fi
 
@@ -79,7 +78,7 @@ do
 	# it is an included file
 	if [[ "$is_command" == "0" ]]
 	then
-		# does it exist? 
+		# does it exist?
 		if ! [[ -f $included_file ]]
 		then
 			echo "Alias '$name' includes file '$included_file', which does not exist"
@@ -90,7 +89,7 @@ do
 			perm="`stat -L -c '%A' $included_file`"
 			if [[ ${perm:5:1} != '-' ]]
 			then
-				echo "Alias '$name' includes file '$included_file', which is is group writable"
+				echo "Alias '$name' includes file '$included_file', which is group writable"
 				echo "Please unset it the group writing bit"
 				RET=$XCCDF_RESULT_FAIL
 			fi
@@ -98,7 +97,7 @@ do
 
 			if [[ ${perm:8:1} != '-' ]]
 			then
-				echo "Alias '$name' includes file '$included_file', which is is world writable"
+				echo "Alias '$name' includes file '$included_file', which is world writable"
 				echo "Please unset it the world writing bit"
 				RET=$XCCDF_RESULT_FAIL
 			fi
