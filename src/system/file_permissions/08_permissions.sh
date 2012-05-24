@@ -11,46 +11,39 @@
 # secTool script testing directories from standarad hierarchy for presence, permissions and owner
 # for more info about FHS see http://www.pathname.com/fhs/pub/fhs-2.3.html
 
-
-E_DOESNT_EXIST=1
-E_WRONG_OWNER=2
-E_WRONG_PERM=3
-
-dirs="/ 555
-/bin 555
-/boot 555
-/dev 755
-/etc 755
-/home 755
-/lib 555
-/media 755
-/mnt 755
-/opt 755
-/root 550
-/sbin 555
-/srv 755
-/tmp 1777
-/usr 755
-  /usr/bin 555
-  /usr/sbin 555
-  /usr/include 755
-  /usr/lib 555
-  /usr/share 755
-  /usr/src 755
-  /usr/local 755
-/var 755
-  /var/lock 775
-  /var/log 755
-  /var/mail 777
-  /var/run 755
-  /var/spool 755
-  /var/spool/mail 775
-  /var/tmp 1777
-$DIRS"
+# list of pairs - absolute path of the directory and a permission mask
+dirs="/ 222
+/bin 222
+/boot 222
+/dev 022
+/etc 022
+/home 022
+/lib 222
+/media 022
+/mnt 022
+/opt 022
+/root 227
+/sbin 222
+/srv 022
+/usr 022
+/usr/bin 222
+/usr/sbin 222
+/usr/include 022
+/usr/lib 222
+/usr/share 022
+/usr/src 022
+/usr/local 022
+/var 022
+/var/lock 002
+/var/log 022
+/var/run 022
+/var/spool 022
+/var/spool/mail 002
+"
 
 ret=$XCCDF_RESULT_PASS
 
-while read dir perm
+while read dir perm_mask
 do
     #echo "dir: $dir   perm: $perm"
     [ "$dir" == "" ] && continue
@@ -68,8 +61,10 @@ do
         fi
 
         current_permissions=$(stat -L -c '%a' $dir)
-        if [[ "$current_permissions" != "$perm" ]]; then
-            echo "Directory $dir has wrong permissions! Change the permissions from $current_permissions to $perm."
+        find_result=$(find -H "$dir" -maxdepth 0 -type d -perm /$perm_mask)
+        if [[ "$find_result" != "" ]]; then
+            perms=$[777-$perm_mask]
+            echo "Directory $dir has wrong permissions! Change the permissions from $current_permissions to $perms or stricter."
             ret=$XCCDF_RESULT_FAIL
         fi
     fi
