@@ -33,8 +33,8 @@ SSHD_PRIVSEP_DIR_EMPTY=0
 #SSHD_SHA256_LIST="sshd.sum"
 SSHD_SAVE_SHA256_CHANGES=0
 SSHD_DEFAULT_KEYS="/etc/ssh/ssh_host_dsa_key
-		   /etc/ssh/ssh_host_key
-		   /etc/ssh/ssh_host_rsa_key"
+                   /etc/ssh/ssh_host_key
+                   /etc/ssh/ssh_host_rsa_key"
 PARANOID=1
 
 # --- OpenSSH default values --- #
@@ -131,27 +131,27 @@ function update_RET {
     local new=$1
 
     case "$1" in
-	"$XCCDF_RESULT_FAIL"|"$XCCDF_RESULT_PASS"|"$XCCDF_RESULT_INFORMATIONAL")
-	    ;;
-	*)
-	    return;
+        "$XCCDF_RESULT_FAIL"|"$XCCDF_RESULT_PASS"|"$XCCDF_RESULT_INFORMATIONAL")
+            ;;
+        *)
+            return;
     esac
 
     case "$RET" in
-	"$XCCDF_RESULT_FAIL")
-	    return
-	    ;;
-	"$XCCDF_RESULT_PASS")
-	    RET=$new
-	    ;;
-	"$XCCDF_RESULT_INFORMAL")
-	    if (( $new == $XCCDF_RESULT_FAIL )); then
-		RET=$new
-	    fi
-	    ;;
-	*)
-	    return
-	    ;;
+        "$XCCDF_RESULT_FAIL")
+            return
+            ;;
+        "$XCCDF_RESULT_PASS")
+            RET=$new
+            ;;
+        "$XCCDF_RESULT_INFORMAL")
+            if (( $new == $XCCDF_RESULT_FAIL )); then
+                RET=$new
+            fi
+            ;;
+        *)
+            return
+            ;;
     esac
 }
 
@@ -178,15 +178,15 @@ function report {
 
 function canLogIn {
     if [[ "$(getent passwd "${1}" | cut -d: -f 7)" != "/sbin/nologin" ]]; then 
-	password="$(getent shadow "${1}" | cut -d: -f 2)"
-	# length of passwd - very short means invalid password and disabled account
-	if (( ${#password} < 13 )); then
-	    return ${E_FAIL}
-	else
-	    return ${E_OK}
-	fi
+        password="$(getent shadow "${1}" | cut -d: -f 2)"
+        # length of passwd - very short means invalid password and disabled account
+        if (( ${#password} < 13 )); then
+            return ${E_FAIL}
+        else
+            return ${E_OK}
+        fi
     else
-	return ${E_FAIL}
+        return ${E_FAIL}
     fi
 }
 
@@ -196,22 +196,22 @@ function LoadDefaults () {
     local value=""
 
     for var in $(eval "echo \$${PREFIX}_defined_vars"); do
-	for ((i = $(echo ${VER} | wc -c); i >= 0; i--)); do
-	    value="$(eval "echo \$${PREFIX}_${VER:0:i}_${var}")"
+        for ((i = $(echo ${VER} | wc -c); i >= 0; i--)); do
+            value="$(eval "echo \$${PREFIX}_${VER:0:i}_${var}")"
 
-	    if [[ -n "${value}" ]]; then
-		export ${var}="${value}"
-		break;
-	    fi
-	done
+            if [[ -n "${value}" ]]; then
+                export ${var}="${value}"
+                break;
+            fi
+        done
     done
 }
 
 function notchecked () {
     for ((i=0; i < ${#CHECKED_CONFIGS[*]}; i++)); do
-	if [[ "${1}" == "${CHECKED_CONFIGS[$i]}" ]]; then
-	    return ${E_FAIL}
-	fi
+        if [[ "${1}" == "${CHECKED_CONFIGS[$i]}" ]]; then
+            return ${E_FAIL}
+        fi
     done
 
     return ${E_OK}
@@ -225,15 +225,15 @@ function addchecked () {
 function check_env () {
     PROC="$(mount | sed -n 's/.*on\s\(.*\)\stype proc.*/\1/p')"
     if [[ -d "${PROC}" ]]; then
-	return ${E_OK}
+        return ${E_OK}
     else
-	if mount -t proc &> /dev/null; then
-	    if check_env; then
-		return ${E_OK}
-	    else
-		return ${E_FAIL}
-	    fi
-	fi
+        if mount -t proc &> /dev/null; then
+            if check_env; then
+                return ${E_OK}
+            else
+                return ${E_FAIL}
+            fi
+        fi
     fi
     return ${E_FAIL}
 }
@@ -259,29 +259,29 @@ function proc_getgid () {
 # <file> <list>
 function sha256cmp () {
     if [[ ! -f "${1}" ]]; then
-	return ${E_NOFILE}
+        return ${E_NOFILE}
     else
-	local NEW="$(sha256file "${1}")"
+        local NEW="$(sha256file "${1}")"
     fi
 
     if [[ ! -f "${2}" ]]; then
-	echo ${NEW}
-	touch "${2}" && return ${E_NEWLIST}
-	return ${E_NOLIST}
+        echo ${NEW}
+        touch "${2}" && return ${E_NEWLIST}
+        return ${E_NOLIST}
     fi
 
     local OLD="$(grep "SHA256(${1})" "${2}" 2> /dev/null)"
 
     if [[ -n "${OLD}" ]]; then
-	if [[ "${NEW}" == "${OLD}" ]]; then
-	    return ${E_OK}
-	else
-	    echo ${NEW}
-	    return ${E_DIFF}
-	fi
+        if [[ "${NEW}" == "${OLD}" ]]; then
+            return ${E_OK}
+        else
+            echo ${NEW}
+            return ${E_DIFF}
+        fi
     else
-	echo ${NEW}
-	return ${E_NORECORD}
+        echo ${NEW}
+        return ${E_NORECORD}
     fi
 }
 
@@ -291,29 +291,29 @@ function sha256cmp () {
 
 function check_file_perm () {
     if [[ -a "${1}" ]]; then
-	local CPERM=$(stat -c '%a' "${1}")
-	
+        local CPERM=$(stat -c '%a' "${1}")
+        
         if (( ${CPERM} != $2 )); then
-	    if (( (8#${CPERM} | 8#${2}) == 8#${2} )); then 	
-		if (( ${4} == 1 )); then
-        	    report 'INFO' ${5} "Permissions on $(stat -c '%F' "${1}") \"${1}\" are more restrictive than required: ${CPERM} (${6:-uknown}, required persmissions are ${2})"
-            	fi
-            	return ${XCCDF_RESULT_FAIL}
-	    else
-            	if (( ${4} == 1 )); then
-		    report 'WARNING' ${5} "Wrong permissions on $(stat -c '%F' "${1}") \"${1}\": ${CPERM} (${6:-unknown}, required permissions are ${2})"
-            	fi
-            	return ${XCCDF_RESULT_FAIL}
+            if (( (8#${CPERM} | 8#${2}) == 8#${2} )); then      
+                if (( ${4} == 1 )); then
+                    report 'INFO' ${5} "Permissions on $(stat -c '%F' "${1}") \"${1}\" are more restrictive than required with ${CPERM} (${6:-uknown}, required persmissions are ${2})"
+                fi
+                return ${XCCDF_RESULT_FAIL}
+            else
+                if (( ${4} == 1 )); then
+                    report 'WARNING' ${5} "Wrong permissions ${CPERM} on $(stat -c '%F' "${1}") \"${1}\" (${6:-unknown}, required permissions are ${2})"
+                fi
+                return ${XCCDF_RESULT_FAIL}
             fi
         fi
-	
+        
         if ! (stat -c '%U:%G' "${1}" | grep -q "${3}"); then
             if (( ${4} == 1 )); then
-                report 'WARNING' ${5} "Wrong owner/group on $(stat -c '%F' "${1}"): \"${1}\" (${6:-unknown}, required owner/group is ${3})"
+                report 'WARNING' ${5} "Wrong owner/group $(stat -c '%U:%G' "${1}")  on $(stat -c '%F' "${1}") \"${1}\" (${6:-unknown}, required owner/group is ${3})"
             fi
             return ${XCCDF_RESULT_FAIL}
         fi
-	
+        
         return ${XCCDF_RESULT_PASS}
     else
         if (( ${4} == 1 )); then
@@ -331,51 +331,51 @@ function check_file_perm () {
 #    local L_RET=$XCCDF_RESULT_PASS
 #
 #    case "$?" in
-#	"${E_NEWLIST}")
-#	    echo ${NEW} > "${2}"
-#	    if (( ${4} == 1 )); then
-#		report 'WARNING' $ID_CHKLIST_NEW "Created new SHA256 list." 
-#	    fi
-#	    L_RET=$XCCDF_RESULT_INFORMATIONAL
-#	    ;;
-#	"${E_NOLIST}")
-#	    if (( ${4} == 1 )); then
-#		report 'WARNING' $ID_CHKLIST_NOTFOUND "SHA256 list not found."
-#	    fi
-#	    L_RET=$XCCDF_RESULT_INFORMATIONAL
-#	    ;;
-#	"${E_OK}")
-#	    ;;
-#	"${E_DIFF}")
-#	    if (( ${4} == 1 )); then
-#		report 'WARNING' $ID_CHKLIST_FILECHANGED "File \"${1}\" changed!"
-#	    fi
-#	    if (( ${3} == 1 )); then
-#		grep -v "SHA256(${1})" "${2}" > "${2}.new"
-#		echo ${NEW} >> "${2}.new"
-#		mv "${2}.new" "${2}"
-#	    fi
-#	    L_RET=$XCCDF_RESULT_INFORMATIONAL
-#	    ;;
-#	"${E_NORECORD}")
-#	    if (( ${4} == 1 )); then
-#		report 'WARNING' $ID_CHKLIST_NORECORD "No SHA256 record for file \"${1}\""
-#	    fi
-#	    if (( ${3} == 1 )); then
-#		echo ${NEW} >> "${2}"
-#	    fi
-#	    L_RET=$XCCDF_RESULT_INFORMATIONAL
-#	    ;;
-#	"${E_NOFILE}")
-#	    if (( ${4} == 1 )); then
-#		report 'WARNING' $ID_CHKLIST_FILENOTFOUND "File \"${1}\" not found."
-#	    fi
-#	    L_RET=$XCCDF_RESULT_INFORMATIONAL
-#	    ;;
-#	*)
-#	    # FIXME: ...
-#	    L_RET=$XCCDF_RESULT_FAIL
-#	    ;;
+#       "${E_NEWLIST}")
+#           echo ${NEW} > "${2}"
+#           if (( ${4} == 1 )); then
+#               report 'WARNING' $ID_CHKLIST_NEW "Created new SHA256 list." 
+#           fi
+#           L_RET=$XCCDF_RESULT_INFORMATIONAL
+#           ;;
+#       "${E_NOLIST}")
+#           if (( ${4} == 1 )); then
+#               report 'WARNING' $ID_CHKLIST_NOTFOUND "SHA256 list not found."
+#           fi
+#           L_RET=$XCCDF_RESULT_INFORMATIONAL
+#           ;;
+#       "${E_OK}")
+#           ;;
+#       "${E_DIFF}")
+#           if (( ${4} == 1 )); then
+#               report 'WARNING' $ID_CHKLIST_FILECHANGED "File \"${1}\" changed!"
+#           fi
+#           if (( ${3} == 1 )); then
+#               grep -v "SHA256(${1})" "${2}" > "${2}.new"
+#               echo ${NEW} >> "${2}.new"
+#               mv "${2}.new" "${2}"
+#           fi
+#           L_RET=$XCCDF_RESULT_INFORMATIONAL
+#           ;;
+#       "${E_NORECORD}")
+#           if (( ${4} == 1 )); then
+#               report 'WARNING' $ID_CHKLIST_NORECORD "No SHA256 record for file \"${1}\""
+#           fi
+#           if (( ${3} == 1 )); then
+#               echo ${NEW} >> "${2}"
+#           fi
+#           L_RET=$XCCDF_RESULT_INFORMATIONAL
+#           ;;
+#       "${E_NOFILE}")
+#           if (( ${4} == 1 )); then
+#               report 'WARNING' $ID_CHKLIST_FILENOTFOUND "File \"${1}\" not found."
+#           fi
+#           L_RET=$XCCDF_RESULT_INFORMATIONAL
+#           ;;
+#       *)
+#           # FIXME: ...
+#           L_RET=$XCCDF_RESULT_FAIL
+#           ;;
 #    esac
 #    return $L_RET
 #}
@@ -385,42 +385,42 @@ function __ssh_getconf () {
     local val="$(sed -n -e "s/^[^#]*[\s]*${2}\s\(.*\)/\1/p" ${1})"
 
     if [[ -z "${val}" ]]; then
-	eval "echo \$${2}"
+        eval "echo \$${2}"
     else
-	echo "${val}"
+        echo "${val}"
     fi
 }
 
 # __ssh_getoptconf <cmdline> HostKey
 function __ssh_getoptconf {
     case "${2}" in
-	-*)
-	    proc_getopt "${1}" "${2}"
-	    ;;
-	*)
-	    proc_getopt "${1}" '-o' | sed -n "s/\s*${2}\s*=\(.*\)/\1/p"
+        -*)
+            proc_getopt "${1}" "${2}"
+            ;;
+        *)
+            proc_getopt "${1}" '-o' | sed -n "s/\s*${2}\s*=\(.*\)/\1/p"
 
-	    case "${2}" in
-		HostKey)
-		    local OPT='-h'
-		    ;;
-		ServerKeyBits)
-		    local OPT='-b'
-		    ;;
-		Port)
-		    local OPT='-p'
-		    ;;
-		LoginGraceTime)
-		    local OPT='-g'
-		    ;;
-		KeyRegenerationInterval)
-		    local OPT='-k'
-		    ;;
-		*)
-		    return ${E_FAIL}
-		    ;;
-	    esac
-	    proc_getopt "${1}" ${OPT}
+            case "${2}" in
+                HostKey)
+                    local OPT='-h'
+                    ;;
+                ServerKeyBits)
+                    local OPT='-b'
+                    ;;
+                Port)
+                    local OPT='-p'
+                    ;;
+                LoginGraceTime)
+                    local OPT='-g'
+                    ;;
+                KeyRegenerationInterval)
+                    local OPT='-k'
+                    ;;
+                *)
+                    return ${E_FAIL}
+                    ;;
+            esac
+            proc_getopt "${1}" ${OPT}
     esac
 }
 
@@ -438,21 +438,21 @@ function __check_sshd_config () {
     update_RET $?
 
     if (( ${SSH_KNOWN_HOSTS_REQUIRE} == 1 )); then
-	check_file_perm "${CONFDIR}/ssh_known_hosts" ${SSH_KNOWN_HOSTS_PERM} ${SSH_KNOWN_HOSTS_OWNER} 1 $ID_SSHD_KNOWNDBPERM "ssh known hosts database"
-	update_RET $?
+        check_file_perm "${CONFDIR}/ssh_known_hosts" ${SSH_KNOWN_HOSTS_PERM} ${SSH_KNOWN_HOSTS_OWNER} 1 $ID_SSHD_KNOWNDBPERM "ssh known hosts database"
+        update_RET $?
     fi
 
     if (( ${SSHD_PRIVSEP_DIR_REQUIRE} == 1 )); then
-	check_file_perm "${SSHD_PRIVSEP_DIR}" ${SSHD_PRIVSEP_DIR_PERM} ${SSHD_PRIVSEP_DIR_OWNER} 1 $ID_SSHD_PRIVSEPPERM "directory used by sshd during privilege separation in the pre-authentication phase"
-	update_RET $?
+        check_file_perm "${SSHD_PRIVSEP_DIR}" ${SSHD_PRIVSEP_DIR_PERM} ${SSHD_PRIVSEP_DIR_OWNER} 1 $ID_SSHD_PRIVSEPPERM "directory used by sshd during privilege separation in the pre-authentication phase"
+        update_RET $?
 
-	if (( ${SSHD_PRIVSEP_DIR_EMPTY} == 1 )); then
-	    if [ -n "$(ls -A1 "${SSHD_PRIVSEP_DIR}")" ]; then
-		report 'WARNING' $ID_PRIVSEPDIR_NOTEMPTY "Directory \"${SSHD_PRIVSEP_DIR}\" is not empty. This directory is used by sshd in the pre-authentication phase."
-		report 'HINT'    $ID_PRIVSEPDIR_NOTEMPTY "Remove all unnecessary files from this directory."
-		update_RET $XCCDF_RESULT_INFORMATIONAL
-	    fi
-	fi
+        if (( ${SSHD_PRIVSEP_DIR_EMPTY} == 1 )); then
+            if [ -n "$(ls -A1 "${SSHD_PRIVSEP_DIR}")" ]; then
+                report 'WARNING' $ID_PRIVSEPDIR_NOTEMPTY "Directory \"${SSHD_PRIVSEP_DIR}\" is not empty. This directory is used by sshd in the pre-authentication phase."
+                report 'HINT'    $ID_PRIVSEPDIR_NOTEMPTY "Remove all unnecessary files from this directory."
+                update_RET $XCCDF_RESULT_INFORMATIONAL
+            fi
+        fi
     fi
 
     # protocol versions
@@ -460,104 +460,104 @@ function __check_sshd_config () {
     local PVER="$(__ssh_getconf "${CONFFILE}" Protocol)"
 
     if [[ -z "${PVER}" ]]; then
-	local SSH_VER1=1
-	local SSH_VER2=1
+        local SSH_VER1=1
+        local SSH_VER2=1
     else
-	case "${PVER}" in
-	    *1*)
-		local SSH_VER1=1
-		report 'WARNING' $ID_SSHD_DEPPROTOVER "SSHv1 is enabled. Using of this version is DEPRECATED."
-		update_RET $XCCDF_RESULT_INFORMATIONAL
-		;;
-	    *)
-		local SSH_VER1=0
-	esac
+        case "${PVER}" in
+            *1*)
+                local SSH_VER1=1
+                report 'WARNING' $ID_SSHD_DEPPROTOVER "SSHv1 is enabled. Using of this version is DEPRECATED."
+                update_RET $XCCDF_RESULT_INFORMATIONAL
+                ;;
+            *)
+                local SSH_VER1=0
+        esac
 
-	case "${PVER}" in
-	    *2*)
-		local SSH_VER2=1
-		;;
-	    *)
-		local SSH_VER2=0
-		;;
-	esac
+        case "${PVER}" in
+            *2*)
+                local SSH_VER2=1
+                ;;
+            *)
+                local SSH_VER2=0
+                ;;
+        esac
     fi
 
     # resolve keyfile names + permission check
     # keyfiles from config
 
     if [[ "${PROCDIR}" != "0" ]]; then
-	while read keyfile; do
-	    if [[ -n "${keyfile}" ]]; then
-		case "${keyfile}" in
-		    /*)
-			keyfile="$(rel2abs "${keyfile}")"
-			;;
-		    *)
-			keyfile="$(rel2abs "$(proc_getenv "${PROCDIR}/environ" PWD)/${keyfile}")"
-			;;
-		esac
-		
-		check_file_perm "${keyfile}"     ${SSHD_PRIVKEY_PERM} ${SSHD_PRIVKEY_OWNER}  1 $ID_SSHD_PRIVKEYPERM "sshd private key - from configuration file"
-		update_RET $?
+        while read keyfile; do
+            if [[ -n "${keyfile}" ]]; then
+                case "${keyfile}" in
+                    /*)
+                        keyfile="$(rel2abs "${keyfile}")"
+                        ;;
+                    *)
+                        keyfile="$(rel2abs "$(proc_getenv "${PROCDIR}/environ" PWD)/${keyfile}")"
+                        ;;
+                esac
+                
+                check_file_perm "${keyfile}"     ${SSHD_PRIVKEY_PERM} ${SSHD_PRIVKEY_OWNER}  1 $ID_SSHD_PRIVKEYPERM "sshd private key - from configuration file"
+                update_RET $?
 
-		check_file_perm "${keyfile}.pub" ${SSHD_PUBKEY_PERM}  ${SSHD_PUBKEY_OWNER}   1 $ID_SSHD_PUBKEYPERM  "sshd public key - from configuration file"
-		update_RET $?
+                check_file_perm "${keyfile}.pub" ${SSHD_PUBKEY_PERM}  ${SSHD_PUBKEY_OWNER}   1 $ID_SSHD_PUBKEYPERM  "sshd public key - from configuration file"
+                update_RET $?
 
-		#check_sha256 "${keyfile}"      "${TDATA_DIR}/${SSHD_SHA256_LIST}" "${SSHD_SAVE_SHA256_CHANGES}" ${SHOWSHAMSG}
-		#check_sha256 "${keyfile}.pub"  "${TDATA_DIR}/${SSHD_SHA256_LIST}" "${SSHD_SAVE_SHA256_CHANGES}" ${SHOWSHAMSG}
-	    fi
-	done <<EOF
+                #check_sha256 "${keyfile}"      "${TDATA_DIR}/${SSHD_SHA256_LIST}" "${SSHD_SAVE_SHA256_CHANGES}" ${SHOWSHAMSG}
+                #check_sha256 "${keyfile}.pub"  "${TDATA_DIR}/${SSHD_SHA256_LIST}" "${SSHD_SAVE_SHA256_CHANGES}" ${SHOWSHAMSG}
+            fi
+        done <<EOF
 $((echo -e "${SSHD_DEFAULT_KEYS}"; __ssh_getconf "${CONFFILE}" HostKey) | sort | uniq)
 EOF
     # keyfiles from -o,-h options
-	while read keyfile; do
-	    if [[ -n "${keyfile}" ]]; then
-		case "${keyfile}" in
-		    /*)
-			keyfile="$(rel2abs "${keyfile}")"
-			;;
-		    *)
-			keyfile="$(rel2abs "$(proc_getenv "${PROCDIR}/environ" PWD)/${keyfile}")"
-			;;
-		esac
-		
-		check_file_perm "${keyfile}"     ${SSHD_PRIVKEY_PERM} ${SSHD_PRIVKEY_OWNER} 1 $ID_SSHD_OPTPRIVKEYPERM "sshd private key - from options"
-		update_RET $?
+        while read keyfile; do
+            if [[ -n "${keyfile}" ]]; then
+                case "${keyfile}" in
+                    /*)
+                        keyfile="$(rel2abs "${keyfile}")"
+                        ;;
+                    *)
+                        keyfile="$(rel2abs "$(proc_getenv "${PROCDIR}/environ" PWD)/${keyfile}")"
+                        ;;
+                esac
+                
+                check_file_perm "${keyfile}"     ${SSHD_PRIVKEY_PERM} ${SSHD_PRIVKEY_OWNER} 1 $ID_SSHD_OPTPRIVKEYPERM "sshd private key - from options"
+                update_RET $?
 
-		check_file_perm "${keyfile}.pub" ${SSHD_PUBKEY_PERM}  ${SSHD_PUBKEY_OWNER}  1 $ID_SSHD_OPTPUBKEYPERM  "sshd public key - from options"
-		update_RET $?
+                check_file_perm "${keyfile}.pub" ${SSHD_PUBKEY_PERM}  ${SSHD_PUBKEY_OWNER}  1 $ID_SSHD_OPTPUBKEYPERM  "sshd public key - from options"
+                update_RET $?
 
-		#check_sha256 "${keyfile}"      "${TDATA_DIR}/${SSHD_SHA256_LIST}" "${SSHD_SAVE_SHA256_CHANGES}" ${SHOWSHAMSG}
-		#check_sha256 "${keyfile}.pub"  "${TDATA_DIR}/${SSHD_SHA256_LIST}" "${SSHD_SAVE_SHA256_CHANGES}" ${SHOWSHAMSG}
-	    fi
-	done <<EOF
+                #check_sha256 "${keyfile}"      "${TDATA_DIR}/${SSHD_SHA256_LIST}" "${SSHD_SAVE_SHA256_CHANGES}" ${SHOWSHAMSG}
+                #check_sha256 "${keyfile}.pub"  "${TDATA_DIR}/${SSHD_SHA256_LIST}" "${SSHD_SAVE_SHA256_CHANGES}" ${SHOWSHAMSG}
+            fi
+        done <<EOF
 $(__ssh_getoptconf "${PROCDIR}/cmdline" HostKey)
 EOF
     else
-	while read keyfile; do
-	    if [[ -n "${keyfile}" && -f "${keyfile}" ]]; then
-		case "${keyfile}" in
-		    /*)
-			keyfile="$(rel2abs "${keyfile}")"
-			;;
-		    *)
-			
-			test_exit "${E_FAIL}" "Default configuration files MUST be specified using absolute path"
-			#keyfile="$(rel2abs "$(dirname "${CONFFILE}")/${keyfile}")"
-			;;
-		esac
-		
-		check_file_perm "${keyfile}"     ${SSHD_PRIVKEY_PERM} ${SSHD_PRIVKEY_OWNER}  1 $ID_SSHD_PRIVKEYPERM "sshd private key - default configuration file"
-		update_RET $?
+        while read keyfile; do
+            if [[ -n "${keyfile}" && -f "${keyfile}" ]]; then
+                case "${keyfile}" in
+                    /*)
+                        keyfile="$(rel2abs "${keyfile}")"
+                        ;;
+                    *)
+                        
+                        test_exit "${E_FAIL}" "Default configuration files MUST be specified using absolute path"
+                        #keyfile="$(rel2abs "$(dirname "${CONFFILE}")/${keyfile}")"
+                        ;;
+                esac
+                
+                check_file_perm "${keyfile}"     ${SSHD_PRIVKEY_PERM} ${SSHD_PRIVKEY_OWNER}  1 $ID_SSHD_PRIVKEYPERM "sshd private key - default configuration file"
+                update_RET $?
 
-		check_file_perm "${keyfile}.pub" ${SSHD_PUBKEY_PERM}  ${SSHD_PUBKEY_OWNER}   1 $ID_SSHD_PUBKEYPERM  "sshd public key - default configuration file"
-		update_RET $?
-	      
-		#check_sha256 "${keyfile}"      "${TDATA_DIR}/${SSHD_SHA256_LIST}" "${SSHD_SAVE_SHA256_CHANGES}" ${SHOWSHAMSG}
-		#check_sha256 "${keyfile}.pub"  "${TDATA_DIR}/${SSHD_SHA256_LIST}" "${SSHD_SAVE_SHA256_CHANGES}" ${SHOWSHAMSG}
-	    fi
-	done <<EOF
+                check_file_perm "${keyfile}.pub" ${SSHD_PUBKEY_PERM}  ${SSHD_PUBKEY_OWNER}   1 $ID_SSHD_PUBKEYPERM  "sshd public key - default configuration file"
+                update_RET $?
+              
+                #check_sha256 "${keyfile}"      "${TDATA_DIR}/${SSHD_SHA256_LIST}" "${SSHD_SAVE_SHA256_CHANGES}" ${SHOWSHAMSG}
+                #check_sha256 "${keyfile}.pub"  "${TDATA_DIR}/${SSHD_SHA256_LIST}" "${SSHD_SAVE_SHA256_CHANGES}" ${SHOWSHAMSG}
+            fi
+        done <<EOF
 $(echo -e "${SSHD_DEFAULT_KEYS}" | sort | uniq)
 EOF
     fi
@@ -565,59 +565,59 @@ EOF
     # options check
 
     if [[ -z "$(__ssh_getconf "${CONFFILE}" AllowGroups)" ]]; then
-	if [[ -z "$(__ssh_getconf "${CONFFILE}" AllowUsers)" && ${PARANOID} == 1 ]]; then
-	    report 'WARNING' $ID_SSHD_ACCESSNOTRESTRICTED "Remote access IS NOT restricted with the AllowGroups nor the AllowUsers directive"
-	    report 'HINT'    $ID_SSHD_ACCESSNOTRESTRICTED "It is recommended to resctrict remote login only to users that needs it or create a special group for this purpose."
-	    update_RET $XCCDF_RESULT_INFORMATIONAL
-	fi
+        if [[ -z "$(__ssh_getconf "${CONFFILE}" AllowUsers)" && ${PARANOID} == 1 ]]; then
+            report 'WARNING' $ID_SSHD_ACCESSNOTRESTRICTED "Remote access IS NOT restricted with the AllowGroups nor the AllowUsers directive"
+            report 'HINT'    $ID_SSHD_ACCESSNOTRESTRICTED "It is recommended to resctrict remote login only to users that needs it or create a special group for this purpose."
+            update_RET $XCCDF_RESULT_INFORMATIONAL
+        fi
     fi
 
     if [[ "$(__ssh_getconf "${CONFFILE}" ChallengeResponseAuthentication)" != "yes" && \
-	"$(__ssh_getconf "${CONFFILE}" UsePAM)" != "yes" ]]; then
-	report 'WARNING' $ID_SSHD_CHRESPAMDISABLED "Challenge-response and PAM authentication ARE DISABLED."
-	update_RET $XCCDF_RESULT_INFORMATIONAL
+        "$(__ssh_getconf "${CONFFILE}" UsePAM)" != "yes" ]]; then
+        report 'WARNING' $ID_SSHD_CHRESPAMDISABLED "Challenge-response and PAM authentication ARE DISABLED."
+        update_RET $XCCDF_RESULT_INFORMATIONAL
     fi
 
     if [[ "$(__ssh_getconf "${CONFFILE}" PermitUserEnvironment)" != "no" ]]; then
-	report 'WARNING' $ID_SSHD_USERENVENABLED "Processing of user's enviroment IS ENABLED."
-	update_RET $XCCDF_RESULT_INFORMATIONAL
+        report 'WARNING' $ID_SSHD_USERENVENABLED "Processing of user's enviroment IS ENABLED."
+        update_RET $XCCDF_RESULT_INFORMATIONAL
     fi
 
     if [[ "$(__ssh_getconf "${CONFFILE}" StrictModes)" != "yes" ]]; then
-	report 'WARNING' $ID_SSHD_STRICTMODESDISABLED "StrictModes DISABLED."
-	update_RET $XCCDF_RESULT_INFORMATIONAL
+        report 'WARNING' $ID_SSHD_STRICTMODESDISABLED "StrictModes DISABLED."
+        update_RET $XCCDF_RESULT_INFORMATIONAL
     fi
 
     if [[ "$(__ssh_getconf "${CONFFILE}" UsePrivilegeSeparation)" != "yes" ]]; then
-	report 'WARNING' $ID_SSHD_PRIVSEPDISABLED "Privilege separation IS DISABLED."
-	update_RET $XCCDF_RESULT_FAIL
+        report 'WARNING' $ID_SSHD_PRIVSEPDISABLED "Privilege separation IS DISABLED."
+        update_RET $XCCDF_RESULT_FAIL
     fi
 
     if (( ${SSH_VER2} == 1 && ${PARANOID} == 1 )); then
-	# SSHv2
-	local NUM=$(__ssh_getconf "${CONFFILE}" ClientAliveCountMax)
+        # SSHv2
+        local NUM=$(__ssh_getconf "${CONFFILE}" ClientAliveCountMax)
 
-	if [[ $NUM ]]; then
-	    if (( $NUM == 0 )); then
-		report 'WARNING' $ID_SSHD_CLIALIVEMAXZERO "ClientAliveCountMax is set to 0 (no limit)"
-		update_RET $XCCDF_RESULT_INFORMATIONAL
-	    elif (( $NUM > 6 )); then
-		report 'WARNING' $ID_SSHD_CLIALIVEMAXHIGH "ClientAliveCountMax is greater than 6"
-		update_RET $XCCDF_RESULT_INFORMATIONAL
-	    fi
-	fi
+        if [[ $NUM ]]; then
+            if (( $NUM == 0 )); then
+                report 'WARNING' $ID_SSHD_CLIALIVEMAXZERO "ClientAliveCountMax is set to 0 (no limit)"
+                update_RET $XCCDF_RESULT_INFORMATIONAL
+            elif (( $NUM > 6 )); then
+                report 'WARNING' $ID_SSHD_CLIALIVEMAXHIGH "ClientAliveCountMax is greater than 6"
+                update_RET $XCCDF_RESULT_INFORMATIONAL
+            fi
+        fi
 
-	NUM=$(__ssh_getconf "${CONFFILE}" ClientAliveInterval)
+        NUM=$(__ssh_getconf "${CONFFILE}" ClientAliveInterval)
 
-	if [[ $NUM ]]; then
-	    if (( $NUM == 0 )); then
-		report 'WARNING' $ID_CLIALIVEINTZERO "ClientAliveInterval set to 0 (no limit)"
-		update_RET $XCCDF_RESULT_INFORMATIONAL
-	    elif (( $NUM > 600 )); then
-		report 'WARNING' $ID_CLIALIVEINTLONG "ClientAliveInterval is higher than 600 seconds"
-		update_RET $XCCDF_RESULT_INFORMATIONAL
-	    fi
-	fi
+        if [[ $NUM ]]; then
+            if (( $NUM == 0 )); then
+                report 'WARNING' $ID_CLIALIVEINTZERO "ClientAliveInterval set to 0 (no limit)"
+                update_RET $XCCDF_RESULT_INFORMATIONAL
+            elif (( $NUM > 600 )); then
+                report 'WARNING' $ID_CLIALIVEINTLONG "ClientAliveInterval is higher than 600 seconds"
+                update_RET $XCCDF_RESULT_INFORMATIONAL
+            fi
+        fi
     fi
 }
 
@@ -632,53 +632,53 @@ function CHK_openssh_server () {
     local DEFAULT_CONF="$(rpmquery -l "${PKGNAME}" | grep 'sshd_config$')"
 
     if [[ -z "${DEFAULT_CONF}" ]]; then
-	test_exit ${E_FAIL} "Can't get the location of default configuration file for openssh-server."
+        test_exit ${E_FAIL} "Can't get the location of default configuration file for openssh-server."
     fi
     
     if [[ "${PROCDIR}" != "0" ]]; then
-	local CURRENT_CONF="$(proc_getopt "${PROCDIR}/cmdline" -f)"
-	local PUSER="$(uid2user $(proc_getuid "${PROCDIR}/status"))"
-	local PGROUP="$(gid2user $(proc_getgid "${PROCDIR}/status"))"
+        local CURRENT_CONF="$(proc_getopt "${PROCDIR}/cmdline" -f)"
+        local PUSER="$(uid2user $(proc_getuid "${PROCDIR}/status"))"
+        local PGROUP="$(gid2user $(proc_getgid "${PROCDIR}/status"))"
     else
-	local CURRENT_CONF=""
-	local PUSER="${SSHD_USER}"
-	local PGROUP="${SSHD_GROUP}"
+        local CURRENT_CONF=""
+        local PUSER="${SSHD_USER}"
+        local PGROUP="${SSHD_GROUP}"
     fi
 
     if [[ "${PUSER}"  != "${SSHD_USER}" ]]; then
-	report 'WARNING' $ID_SSHD_WRONGPUSER "Wrong process owner (${PUSER}) - required is ${SSHD_USER}"
-	update_RET $XCCDF_RESULT_FAIL
+        report 'WARNING' $ID_SSHD_WRONGPUSER "Wrong process owner (${PUSER}) - required is ${SSHD_USER}"
+        update_RET $XCCDF_RESULT_FAIL
     fi
 
     if [[ "${PGROUP}" != "${SSHD_GROUP}" ]]; then
-	report 'WARNING' $ID_SSHD_WRONGPGRP "Wrong process group (${PGROUP}) - required is ${SSHD_GROUP}"
-	update_RET $XCCDF_RESULT_FAIL
+        report 'WARNING' $ID_SSHD_WRONGPGRP "Wrong process group (${PGROUP}) - required is ${SSHD_GROUP}"
+        update_RET $XCCDF_RESULT_FAIL
     fi
 
     unset PUSER
     unset PGROUP
 
     if [[ -n "${CURRENT_CONF}" ]]; then
-	case "${CURRENT_CONF}" in
-	    /*)
-		CURRENT_CONF="$(rel2abs "${CURRENT_CONF}")"
-		;;
-	    *)
-		CURRENT_CONF="$(rel2abs "$(proc_getenv "${PROCDIR}/environ" PWD)/${CURRENT_CONF}")"
-		;;
-	esac
+        case "${CURRENT_CONF}" in
+            /*)
+                CURRENT_CONF="$(rel2abs "${CURRENT_CONF}")"
+                ;;
+            *)
+                CURRENT_CONF="$(rel2abs "$(proc_getenv "${PROCDIR}/environ" PWD)/${CURRENT_CONF}")"
+                ;;
+        esac
 
-	if [[ "${CURRENT_CONF}" != "${DEFAULT_CONF}" ]] && notchecked "${CURRENT_CONF}"; then
-	    # check current
-	    __check_sshd_config "${PROCDIR}" "${CURRENT_CONF}"
-	    addchecked "${CURRENT_CONF}"
-	fi
+        if [[ "${CURRENT_CONF}" != "${DEFAULT_CONF}" ]] && notchecked "${CURRENT_CONF}"; then
+            # check current
+            __check_sshd_config "${PROCDIR}" "${CURRENT_CONF}"
+            addchecked "${CURRENT_CONF}"
+        fi
     fi
 
     # check default
     if notchecked "${DEFAULT_CONF}"; then
-	__check_sshd_config "${PROCDIR}" "${DEFAULT_CONF}"
-	addchecked "${DEFAULT_CONF}"
+        __check_sshd_config "${PROCDIR}" "${DEFAULT_CONF}"
+        addchecked "${DEFAULT_CONF}"
     fi
 }
 
@@ -692,64 +692,64 @@ function CHK_openssh_clients () {
     local PROGGRP="$(gid2user "${PROGGID}")"
 
     case "${PKGPROG}" in
-	ssh-agent)
+        ssh-agent)
 
-	    ;;
-	ssh)
+            ;;
+        ssh)
 
-	    ;;
-	sftp)
+            ;;
+        sftp)
 
-	    ;;
-	scp)
+            ;;
+        scp)
 
-	    ;;
-	ssh-add)
+            ;;
+        ssh-add)
 
-	    ;;
-	ssh-keygen)
+            ;;
+        ssh-keygen)
 
-	    ;;
-	ssh-keyscan)
+            ;;
+        ssh-keyscan)
 
-	    ;;
-	ssh-keysign)
+            ;;
+        ssh-keysign)
 
-	    ;;
-	*)
+            ;;
+        *)
 
-	    ;;
+            ;;
     esac
 }
 
 
 function CHK_user_files () {
     while read line; do
-	eval "$(sed -n "s|^\([^\`\$:;]\+\):[^\`\$:;]\+:\([0-9]\+\):\([0-9]\+\):[^\`\$:;]*:\([^\`\$:;]\+\):\([^\`\$:;]*\)$|PWD_USER=\"\1\" PWD_HOME=\"\4\"|p" <<<"${line}")"
+        eval "$(sed -n "s|^\([^\`\$:;]\+\):[^\`\$:;]\+:\([0-9]\+\):\([0-9]\+\):[^\`\$:;]*:\([^\`\$:;]\+\):\([^\`\$:;]*\)$|PWD_USER=\"\1\" PWD_HOME=\"\4\"|p" <<<"${line}")"
 
-	if canLogIn "${PWD_USER}"; then
-	    if [[ -d "${PWD_HOME}/.ssh" ]]; then
-		PREFIX="${PWD_HOME}/.ssh"
+        if canLogIn "${PWD_USER}"; then
+            if [[ -d "${PWD_HOME}/.ssh" ]]; then
+                PREFIX="${PWD_HOME}/.ssh"
 
-		if [[ -f "${PREFIX}/authorized_keys2" ]]; then
-		    report 'WARNING' $ID_FILE_AUTHKEYS2 "User \"${PWD_USER}\" is using deprecated authorized_keys2 file."
-		    update_RET $XCCDF_RESULT_FAIL
-		    if [[ -f "${PREFIX}/authorized_keys" ]]; then
-			report 'WARNING' $ID_FILE_TWOAUTHKEYS "User \"${PWD_USER}\" is using both authorized_keys and authorized_keys2."
-			update_RET $XCCDF_RESULT_INFORMATIONAL
-		    fi
-		fi
-
-		if [[ -f "${PREFIX}/known_hosts2" ]]; then
-		    report 'WARNING' $ID_FILE_KNOWN2 "User \"${PWD_USER}\" is using deprecated known_hosts2 file."
-		    update_RET $XCCDF_RESULT_FAIL
-		    if [[ -f "${PREFIX}/known_hosts" ]]; then
-                        report 'WARNING' $ID_FILE_TWOKNOWNHOSTS "User \"${PWD_USER}\" is using both known_hosts and known_hosts2."
-			update_RET $XCCDF_RESULT_INFORMATIONAL
+                if [[ -f "${PREFIX}/authorized_keys2" ]]; then
+                    report 'WARNING' $ID_FILE_AUTHKEYS2 "User \"${PWD_USER}\" is using deprecated authorized_keys2 file."
+                    update_RET $XCCDF_RESULT_FAIL
+                    if [[ -f "${PREFIX}/authorized_keys" ]]; then
+                        report 'WARNING' $ID_FILE_TWOAUTHKEYS "User \"${PWD_USER}\" is using both authorized_keys and authorized_keys2."
+                        update_RET $XCCDF_RESULT_INFORMATIONAL
                     fi
-		fi
-	    fi
-	fi
+                fi
+
+                if [[ -f "${PREFIX}/known_hosts2" ]]; then
+                    report 'WARNING' $ID_FILE_KNOWN2 "User \"${PWD_USER}\" is using deprecated known_hosts2 file."
+                    update_RET $XCCDF_RESULT_FAIL
+                    if [[ -f "${PREFIX}/known_hosts" ]]; then
+                        report 'WARNING' $ID_FILE_TWOKNOWNHOSTS "User \"${PWD_USER}\" is using both known_hosts and known_hosts2."
+                        update_RET $XCCDF_RESULT_INFORMATIONAL
+                    fi
+                fi
+            fi
+        fi
     done <<EOF
 $(getent passwd)
 EOF
@@ -761,10 +761,10 @@ check_env || exit ${E_FAIL}
 
 #SHOWSHAMSG=1
 #if [[ ! -f "${TDATA_DIR}/${SSHD_SHA256_LIST}" ]]; then
-#	report 'WARNING' $ID_FIRSTRUN "This is a first run of the test. Some parts of audit are skipped."
-#	touch "${TDATA_DIR}/${SSHD_SHA256_LIST}" || test_exit ${E_FAIL} "Can't create a file in my permanent data directory."
-#	SHOWSHAMSG=0
-#	SSHD_SAVE_SHA256_CHANGES=1
+#       report 'WARNING' $ID_FIRSTRUN "This is a first run of the test. Some parts of audit are skipped."
+#       touch "${TDATA_DIR}/${SSHD_SHA256_LIST}" || test_exit ${E_FAIL} "Can't create a file in my permanent data directory."
+#       SHOWSHAMSG=0
+#       SSHD_SAVE_SHA256_CHANGES=1
 #fi
 
 LoadDefaults "SSHD" "$(rpmquery openssh-server | sed -n 's|^openssh-server-\([0-9]\+\)\.\([0-9]\+[a-z][0-9]\)-.*$|\1\2|p')"
