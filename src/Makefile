@@ -1,6 +1,6 @@
 GROUP_FILES=$(shell find . -name group.xml -printf "%h/%f ")
 
-all: all-xccdf.xml guide.html
+all: all-xccdf.xml guide.html sds-datastream.xml
 
 all-xccdf.xml: template.xml $(GROUP_FILES) ../utils/xccdf_compose.py
 	../utils/xccdf_compose.py .
@@ -20,6 +20,9 @@ results.xml: all-resolved-xccdf.xml
 
 report.html: results.xml
 	oscap xccdf generate report results.xml > report.html
+
+sds-datastream.xml: all-xccdf.xml
+	oscap ds sds-compose all-xccdf.xml sds-datastream.xml
 	
 clean:
 	rm -f "all-xccdf.xml"
@@ -27,4 +30,4 @@ clean:
 	rm -f "guide.html"
 	rm -f "results.xml"
 	rm -f "report.html"
-
+	rm -f "sds-datastream.xml"
