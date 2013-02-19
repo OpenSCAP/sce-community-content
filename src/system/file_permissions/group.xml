@@ -59,6 +59,7 @@
       <description>
         <xhtml:p>Tests ownership and access rights to sensitive files (.bashrc, ssh/id_dsa etc.) in home directories of all users</xhtml:p>
       </description>
+      <fix system="urn:xccdf:fix:commands">./system/file_permissions/02_home_files_fix.sh</fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="02_home_files.sh"/>
@@ -69,6 +70,7 @@
       <description>
         <xhtml:p>Tests important directories for presence, permissions and owner.</xhtml:p>
       </description>
+      <fix system="urn:xccdf:fix:commands">./system/file_permissions/08_permissions_fix.sh</fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="08_permissions.sh"/>
@@ -81,6 +83,9 @@
         <xhtml:p>Permissions greater than 0700 could allow unauthorized users access to the root home directory.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN000920</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        chmod g-w,o-rwx /root
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN000920.sh"/>
@@ -93,6 +98,11 @@
         <xhtml:p>Restricting permission on daemons will protect them from unauthorized modification and possible system compromise.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001180</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /etc/sysconfig/network-scripts -type f -perm /0022 -exec chmod 0755 {} \;
+        [ -d /etc/sysconfig/networking ] &amp;&amp; find /etc/sysconfig/networking -type f -perm /0022 -perm /0022 -exec chmod 0755 {} \;
+        exit 0
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN001180.sh"/>
@@ -105,6 +115,16 @@
         <xhtml:p>Restricting permissions will protect system command files from unauthorized modification. System command files include files present in directories used by the operating system for storing default system executables and files present in directories included in the system's default executable search paths.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001200</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /bin -type f -perm /0022 -exec chmod go-w {} \;
+        find /sbin -type f -perm /0022 -exec chmod go-w {} \;
+        find /usr/bin -type f -perm /0022 -exec chmod go-w {} \;
+        find /usr/sbin -type f -perm /0022 -exec chmod go-w {} \;
+        find /usr/local/bin -type f -perm /0022 -exec chmod go-w {} \;
+        find /usr/local/sbin -type f -perm /0022 -exec chmod go-w {} \;
+        find /usr/lib64/qt-3.3/bin -type f -perm /0022 -exec chmod go-w {} \;
+        find /usr/java/j2re1.4.2_06/bin -type f -perm /0022 -exec chmod go-w {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN001200.sh"/>
@@ -117,6 +137,16 @@
         <xhtml:p>Restricting permissions will protect the files from unauthorized modification.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001220</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /bin -type d \( ! -user root \) -exec chown root {} \;
+        find /sbin -type d \( ! -user root \) -exec chown root {} \;
+        find /usr/bin -type d \( ! -user root \) -exec chown root {} \;
+        find /usr/sbin -type d \( ! -user root \) -exec chown root {} \;
+        find /usr/local/bin -type d \( ! -user root \) -exec chown root {} \;
+        find /usr/local/sbin -type d \( ! -user root \) -exec chown root {} \;
+        find /usr/lib64/qt-3.3/bin -type d \( ! -user root \) -exec chown root {} \;
+        find /usr/java/j2re1.4.2_06/bin -type d \( ! -user root \) -exec chown root {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN001220.sh"/>
@@ -129,6 +159,16 @@
         <xhtml:p>Restricting permissions will protect the files from unauthorized modification.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001240</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /bin -type d \( ! -group root \) -exec chgrp root {} \;
+        find /sbin -type d \( ! -group root \) -exec chgrp root {} \;
+        find /usr/bin -type d \( ! -group root \) -exec chgrp root {} \;
+        find /usr/sbin -type d \( ! -group root \) -exec chgrp root {} \;
+        find /usr/local/bin -type d \( ! -group root \) -exec chgrp root {} \;
+        find /usr/local/sbin -type d \( ! -group root \) -exec chgrp root {} \;
+        find /usr/lib64/qt-3.3/bin -type d \( ! -group root \) -exec chgrp root {} \;
+        find /usr/java/j2re1.4.2_06/bin -type d \( ! -group root \) -exec chgrp root {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN001240.sh"/>
@@ -142,6 +182,19 @@
         <xhtml:p>You can optionally allow world readable log files using a variable. The desired mode would be 644 in that case.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001260</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        PERM_MASK=137
+        CHMOD_MODE=u-x,g-wx,o-rwx
+        # allowing world readable logs isn't part of the STIG recommendation!
+        # nonetheless, it is common on desktops so we optionally allow this here
+        if [ "$XCCDF_VALUE_ALLOW_WORLD_READABLE" == "1" ]; then
+            PERM_MASK=133
+            CHMOD_MODE=u-x,g-wx,o-wx
+        fi
+
+        find /var/log -type f -perm /0${PERM_MASK} \( ! -name 'wtmp' -a ! -name 'lastlog' \) \
+          -exec chmod ${CHMOD_MODE} {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-export value-id="xccdf_org.open-scap.sce-community-content_value_system_file_permissions-system_logs_permissions-allow_world_readable" export-name="ALLOW_WORLD_READABLE"/>
@@ -155,6 +208,9 @@
         <xhtml:p>If manual pages are compromised, misleading information could be inserted, causing actions that may compromise the system.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001280</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /usr/share/man -type f -perm /0133 -exec chmod u-x,g-wx,o-wx {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN001280.sh"/>
@@ -167,6 +223,14 @@
         <xhtml:p>Unauthorized access could destroy the integrity of the library files.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001300</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /lib -type f -perm /0022 -exec chmod go-w {} \;
+        find /lib64 -type f -perm /0022 -exec chmod go-w {} \;
+        find /usr/lib -type f -perm /0022 -exec chmod go-w {} \;
+        find /usr/lib64 -type f -perm /0022 -exec chmod go-w {} \;
+        find /usr/local/lib -type f -perm /0022 -exec chmod go-w {} \;
+        find /usr/local/lib64 -type f -perm /0022 -exec chmod go-w {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN001300.sh"/>
@@ -179,6 +243,9 @@
         <xhtml:p>If the passwd file is writable by a group-owner or the world, the risk of passwd file compromise is increased. The passwd file contains the list of accounts on the system and associated information.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001380</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        chmod u-x,go-wx /etc/passwd
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN001380.sh"/>
@@ -191,6 +258,9 @@
         <xhtml:p>The /etc/shadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. Failure to give ownership of sensitive files or utilities to root or bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001400</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        chown root /etc/shadow
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN001400.sh"/>
@@ -203,6 +273,9 @@
         <xhtml:p>The /etc/shadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. The file also contains password hashes which must not be accessible to users other than root.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001420</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        chmod u-wx,go-rwx /etc/shadow
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN001420.sh"/>
@@ -215,6 +288,9 @@
         <xhtml:p>Excessive permissions on home directories allow unauthorized access to user files.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001480</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /home -mindepth 1 -maxdepth 1 -type d -perm /0027 -exec chmod g-w,o-rwx {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN001480.sh"/>
@@ -227,6 +303,9 @@
         <xhtml:p>Excessive permissions allow unauthorized access to user files.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001560</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /home -mindepth 2 \( -type d -o -type f \) -perm /0022 -exec chmod g-w,o-rwx {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN001560.sh"/>
@@ -239,6 +318,17 @@
         <xhtml:p>If the startup files are writable by other users, they could modify the startup files to insert malicious commands into the startup files.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001580</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /etc/rc* -type f -perm /0022 -exec chmod go-w {} \;
+        find /etc/init.d -type f -perm /0022 -exec chmod go-w {} \;
+
+        # Add checks for upstart and systemd respectively
+        if [ -d /etc/init ] ; then
+          find /etc/init -type f -perm /0022 -exec chmod go-w {} \;
+        elif [ -d /etc/systemd ] ; then
+          find /etc/systemd -type f -perm /0022 -exec chmod go-w {} \;
+        fi
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN001580.sh"/>
@@ -251,6 +341,9 @@
         <xhtml:p>If the system log files are not protected, unauthorized users could change the logged data, eliminating its forensic value.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001800</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /etc/skel -type f -perm /0133 -exec chmod u-x,og-wx {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN001800.sh"/>
@@ -263,6 +356,11 @@
         <xhtml:p>Local initialization files are used to configure the user's shell environment upon login. Malicious modification of these files could compromise accounts upon logon.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001860</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /etc -maxdepth 1 -type f \( ! -user root \) -name bashrc -exec chown root {} \;
+        find /etc -maxdepth 1 -type f \( ! -user root \) -name profile -exec chown root {} \;
+        find /etc/profile.d/ -type f \( ! -user root \) -exec chown root {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN001860.sh"/>
@@ -275,6 +373,11 @@
         <xhtml:p>Local initialization files are used to configure the user's shell environment upon login. Malicious modification of these files could compromise accounts upon logon.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001880</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /etc -maxdepth 1 -type f -perm /0022 -name bashrc -exec chmod go-w {} \;
+        find /etc -maxdepth 1 -type f -perm /0022 -name profile -exec chmod go-w {} \;
+        find /etc/profile.d/ -type f -perm /0022 -exec chmod go-w {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN001880.sh"/>
@@ -287,6 +390,9 @@
         <xhtml:p>Failing to set the sticky bit on the public directories allows unauthorized users to delete files in the directory structure. The only authorized public directories are those temporary directories supplied with the system or those designed to be temporary file repositories. The setting is normally reserved for directories used by the system and by users for temporary file storage (e.g., /tmp) and for directories that require global read/write access.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002500</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find / -path /proc -prune -o -type d \( -perm -0002 -a ! -perm -1000 \) -exec chmod +t {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN002500.sh"/>
@@ -299,6 +405,10 @@
         <xhtml:p>If a public directory has the sticky bit set and is not owned by a privileged UID, unauthorized users may be able to modify files created by others. The only authorized public directories are those temporary directories supplied with the system or those designed to be temporary file repositories. The setting is normally reserved for directories used by the system and by users for temporary file storage (e.g., /tmp) and for directories that require global read/write access.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002520</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find / -path /proc -prune -o -type d \( -perm -0002 -a ! \( -user root -o -user gdm \) \) \
+          -exec chown root {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN002520.sh"/>
@@ -311,6 +421,9 @@
         <xhtml:p>Failure to give ownership of system audit log files to root provides the designated owner and unauthorized users with the potential to access sensitive information.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002680</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /var/log/audit -type f \( ! -user root \) -exec chown root {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN002680.sh"/>
@@ -323,6 +436,9 @@
         <xhtml:p>If a user can write to the audit logs, audit trails can be modified or destroyed and system intrusion may not be detected. System audit logs are those files generated from the audit system and do not include activity, error, or other log files created by application software.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002700</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /var/log/audit -type f -perm /0137 -exec chmod u-x,g-wx,o-rwx {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN002700.sh"/>
@@ -335,6 +451,9 @@
         <xhtml:p>A cron.allow file that is readable and/or writable by other than root could allow potential intruders and malicious users to use the file contents to help discern information, such as who is allowed to execute cron programs, which could be harmful to overall system and network security.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002980</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        chmod u-x,go-rwx /etc/cron.allow
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN002980.sh"/>
@@ -347,6 +466,14 @@
         <xhtml:p>To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003080</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        chmod u-x,go-rwx /etc/crontab
+        find /etc/cron.d -type f -perm /0077 -exec chmod go-rwx {} \;
+        find /etc/cron.daily -type f -perm /0077 -exec chmod go-rwx {} \;
+        find /etc/cron.hourly -type f -perm /0077 -exec chmod go-rwx {} \;
+        find /etc/cron.weekly -type f -perm /0077 -exec chmod go-rwx {} \;
+        find /var/spool/cron/ -type f -perm /0077 -exec chmod go-rwx {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN003080.sh"/>
@@ -359,6 +486,13 @@
         <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003100</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /etc/cron.d -type d -perm /0022 -exec chmod go-w {} \;
+        find /etc/cron.daily -type d -perm /0022 -exec chmod go-w {} \;
+        find /etc/cron.hourly -type d -perm /0022 -exec chmod go-w {} \;
+        find /etc/cron.weekly -type d -perm /0022 -exec chmod go-w {} \;
+        find /var/spool/cron -type d -perm /0022 -exec chmod go-w {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN003100.sh"/>
@@ -371,6 +505,13 @@
         <xhtml:p>Incorrect ownership of the cron or crontab directories could permit unauthorized users the ability to alter cron jobs and run automated jobs as privileged users. Failure to give ownership of cron or crontab directories to root or to bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003120</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /etc/cron.d -type d \( ! -user root \) -exec chown root {} \;
+        find /etc/cron.daily -type d \( ! -user root \) -exec chown root {} \;
+        find /etc/cron.hourly -type d \( ! -user root \) -exec chown root {} \;
+        find /etc/cron.weekly -type d \( ! -user root \) -exec chown root {} \;
+        find /var/spool/cron -type d \( ! -user root \) -exec chown root {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN003120.sh"/>
@@ -383,6 +524,13 @@
         <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious modification to these jobs, crontab files must be secured. Failure to give group-ownership of cron or crontab directories to a system group provides the designated group and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003140</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /etc/cron.d -type d \( ! -user root \) -exec chgrp root {} \;
+        find /etc/cron.daily -type d \( ! -user root \) -exec chgrp root {} \;
+        find /etc/cron.hourly -type d \( ! -user root \) -exec chgrp root {} \;
+        find /etc/cron.weekly -type d \( ! -user root \) -exec chgrp root {} \;
+        find /var/spool/cron -type d \( ! -user root \) -exec chgrp root {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN003140.sh"/>
@@ -395,6 +543,10 @@
         <xhtml:p>Failure to give ownership of sensitive files or utilities to root provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003720</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        chown root /etc/xinetd.conf
+        find /etc/xinetd.d/ -type f \( ! -user root \) -exec chown root {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN003720.sh"/>
@@ -407,6 +559,10 @@
         <xhtml:p>The Internet service daemon configuration files must be protected as malicious modification could cause denial of service or increase the attack surface of the system.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003740</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        chmod u-x,g-wx,o-rwx /etc/xinetd.conf
+        find /etc/xinetd.d/ -type f -perm /0137 -exec chmod u-x,g-wx,o-rwx {} \;
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN003740.sh"/>
@@ -419,6 +575,9 @@
         <xhtml:p>Failure to give ownership of sensitive files or utilities to root or bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003760</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        chown root /etc/services
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN003760.sh"/>
@@ -431,6 +590,9 @@
         <xhtml:p>The services file is critical to the proper operation of network services and must be protected from unauthorized modification. Unauthorized modification could result in the failure of network services.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003780</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        chmod u-x,go-wx /etc/services
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN003780.sh"/>
@@ -443,6 +605,9 @@
         <xhtml:p>If the alias file is not owned by root, an unauthorized user may modify the file to add aliases to run malicious code or redirect e-mail.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN004360</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        chown root /etc/alias
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN004360.sh"/>
@@ -455,6 +620,9 @@
         <xhtml:p>Excessive permissions on the aliases file may permit unauthorized modification. If the alias file is modified by an unauthorized user, they may modify the file to run malicious code or redirect e-mail.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN004380</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        chmod u-x,go-wx /etc/alias
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN004380.sh"/>
@@ -467,6 +635,9 @@
         <xhtml:p>If the smb.conf file has excessive permissions, the file may be maliciously modified and the Samba configuration could be compromised.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN006140</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        chmod u-x,go-wx /etc/samba/smb.conf
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN006140.sh"/>
