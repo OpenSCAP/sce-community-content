@@ -13,6 +13,12 @@
         <xhtml:p>File permissions greater than 0600 on boot loader configuration files could allow an unauthorized user to view or modify sensitive information pertaining to system boot instructions.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN008720</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
+        [ -d /boot/grub ] && chmod 0600 /boot/grub/grub.conf
+        [ -d /boot/grub2 ] && chmod 0600 /boot/grub2/grub.cfg
+      ]]>
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN008720.sh"/>
