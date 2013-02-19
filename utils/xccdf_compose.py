@@ -11,6 +11,9 @@ def collect_group_xmls(source_dir):
     ret = {}
 
     for dirname in os.listdir(source_dir):
+        if dirname and dirname[0] == '.':
+            continue
+
         if not os.path.isdir(os.path.join(source_dir, dirname)):
             continue
 
