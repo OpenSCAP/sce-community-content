@@ -1,15 +1,43 @@
 <xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_logging" selected="true">
     <title>Logging</title>
-    
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_logging-log_files" selected="true">
-      <title>log files</title>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_logging-existence" selected="true">
+      <title>Check existence of the log files.</title>
       <description>
-        <xhtml:p>Tests logfiles presence, owner, group and permissions of logfiles.</xhtml:p>
+        <xhtml:p>Log files should exist on all GNU/Linux systems.</xhtml:p>
+        <xhtml:p>Missing log files may be proof that the system has been compromised.</xhtml:p>
       </description>
+      <fix system="urn:xccdf:fix:commands">./services/logging/FIX00_exists.sh</fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
-        <check-content-ref href="07_log_files.sh"/>
+        <check-content-ref href="CHK00_exists.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_logging-owner" selected="true">
+      <title>Check owner of the log files.</title>
+      <description>
+        <xhtml:p>Log files should be owned by root.</xhtml:p>
+        <xhtml:p>Improper file permissions could compromise the integrity of the log files, defeating their purpose.</xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:commands">./services/logging/FIX01_owner.sh</fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="CHK01_owner.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_logging-group" selected="true">
+      <title>Check group of the log files.</title>
+      <description>
+        <xhtml:p>Log files should be owned by root.</xhtml:p>
+        <xhtml:p>Improper file permissions could compromise the integrity of the log files, defeating their purpose.</xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:commands">./services/logging/FIX02_group.sh</fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="CHK01_group.sh"/>
       </check>
     </Rule>
   </Group>
