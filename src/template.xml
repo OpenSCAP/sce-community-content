@@ -74,7 +74,4 @@
 
     <xf:meta-select idref=".+" selected="false"/>
   </Profile>
-
-    <xf:meta-select idref=".+" selected="false"/>
-  </Profile>
 </Benchmark>
