@@ -24,7 +24,10 @@ report.html: results.xml
 
 sds-datastream.xml: all-xccdf.xml
 	$(OSCAP) ds sds-compose sds-datastream.xml sds-datastream.xml
-	
+
+install: all-resolved-xccdf.xml
+	./install.sh $(DESTDIR)
+
 clean:
 	rm -f "all-xccdf.xml"
 	rm -f "all-resolved-xccdf.xml"
