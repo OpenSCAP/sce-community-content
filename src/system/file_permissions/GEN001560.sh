@@ -25,7 +25,7 @@ PATH=/bin:/usr/bin
 
 # start a subshell
 output=$(
-find /home  -mindepth 2 \( -type d -o -type f \) -perm /0022 -printf "GEN001560: %p is %m should be 0750 or less\n" 2>/dev/null
+find /home  -mindepth 2 \( -type d -o -type f \) -perm /0027 -printf "GEN001560: %p is %m should be 0750 or less\n" 2>/dev/null
 )
 
 # we captured output of the subshell, let's interpret it
