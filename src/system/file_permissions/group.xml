@@ -479,6 +479,44 @@
         <check-content-ref href="GEN003080.sh"/>
       </check>
     </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-crontab_files_owners" selected="true">
+      <title>crontab files owners</title>
+      <description>
+        <xhtml:p>crontab files and scripts must be owned by root</xhtml:p>
+        <xhtml:p>To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">
+        chown root /etc/crontab
+        find /etc/cron.d -type f ! -user root -exec chown root {} \;
+        find /etc/cron.daily -type f ! -user root -exec chown root {} \;
+        find /etc/cron.hourly -type f ! -user root -exec chown root {} \;
+        find /etc/cron.weekly -type f ! -user root -exec chown root {} \;
+        find /var/spool/cron/ -type f ! -user root -exec chown root {} \;
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="09_crontab_owners.sh"/>
+      </check>
+    </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-crontab_files_groups" selected="true">
+      <title>crontab files owners</title>
+      <description>
+        <xhtml:p>crontab files and scripts must be group-owned by root</xhtml:p>
+        <xhtml:p>To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">
+        chgrp root /etc/crontab
+        find /etc/cron.d -type f ! -group root -exec chgrp root {} \;
+        find /etc/cron.daily -type f ! -group root -exec chgrp root {} \;
+        find /etc/cron.hourly -type f ! -group root -exec chgrp root {} \;
+        find /etc/cron.weekly -type f ! -group root -exec chgrp root {} \;
+        find /var/spool/cron/ -type f ! -group root -exec chgrp root {} \;
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="10_crontab_groups.sh"/>
+      </check>
+    </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-cron_dirs_permissions" selected="true">
       <title>cron dirs permissions</title>
       <description>
