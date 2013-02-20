@@ -27,7 +27,7 @@
     </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_records" selected="true">
-      <title>Check crontab records have proper.</title>
+      <title>Check crontab record commands have proper owners.</title>
       <description>
         <xhtml:p>All executables should be owned by root:root</xhtml:p>
         <xhtml:p>If the owner is not root:root for crontab commands it might indicate a compromised system.</xhtml:p>
