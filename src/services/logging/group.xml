@@ -37,7 +37,7 @@
       <fix system="urn:xccdf:fix:commands">./services/logging/FIX02_group.sh</fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
-        <check-content-ref href="CHK01_group.sh"/>
+        <check-content-ref href="CHK02_group.sh"/>
       </check>
     </Rule>
   </Group>
