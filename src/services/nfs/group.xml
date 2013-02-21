@@ -1,12 +1,14 @@
 <xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_nfs" selected="true">
-    <title>NFS</title>
-    
+    <title>NFS service security controls</title>
+
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_nfs-nfs" selected="true">
-      <title>nfs</title>
+      <title>Check if NFS exports are set properly</title>
       <description>
-        <xhtml:p>Audit of nfs server. Finds RW exports</xhtml:p>
+        <xhtml:p>The machine must not be write-accessable through NFS.</xhtml:p>
+        <xhtml:p>Enabling write access through NFS may compromise the integrity of the system.</xhtml:p>
       </description>
+      <fix system="urn:xccdf:fix:commands">./services/nfs/14_nfs_fix.sh</fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="14_nfs.sh"/>
@@ -14,4 +16,3 @@
     </Rule> 
   </Group>
 </xf:xccdf-fragment>
-
