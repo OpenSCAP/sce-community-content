@@ -108,13 +108,14 @@
         <check-content-ref href="GEN001180.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files" selected="true">
-      <title>system command files</title>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files_permissions" selected="true">
+      <title>system command files - permissions</title>
       <description>
         <xhtml:p>System command files must be 0755 or less.</xhtml:p>
         <xhtml:p>Restricting permissions will protect system command files from unauthorized modification. System command files include files present in directories used by the operating system for storing default system executables and files present in directories included in the system's default executable search paths.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001200</ident>
+      <ident system="https://www.pcisecuritystandards.org">PCI-DSS testing procedure A.1.2.c</ident>
       <fix system="urn:xccdf:fix:script:sh">
         find /bin -type f -perm /0022 -exec chmod go-w {} \;
         find /sbin -type f -perm /0022 -exec chmod go-w {} \;
@@ -130,6 +131,28 @@
         <check-content-ref href="GEN001200.sh"/>
       </check>
     </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files_owner" selected="true">
+      <title>system command files - owners</title>
+      <description>
+        <xhtml:p>System command files must be owned by root.</xhtml:p>
+        <xhtml:p>Allowing commands to be owned by non-root users may enable users to change the meaning of system commands.</xhtml:p>
+      </description>
+      <ident system="https://www.pcisecuritystandards.org">PCI-DSS testing procedure A.1.2.c</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /bin -type f ! -user root -exec chown root {} \;
+        find /sbin -type f ! -user root -exec chown root {} \;
+        find /usr/bin -type f ! -user root -exec chown root {} \;
+        find /usr/sbin -type f ! -user root -exec chown root {} \;
+        find /usr/local/bin -type f ! -user root -exec chown root {} \;
+        find /usr/local/sbin -type f ! -user root -exec chown root {} \;
+        find /usr/lib64/qt-3.3/bin -type f ! -user root -exec chown root {} \;
+        find /usr/java/j2re1.4.2_06/bin -type f ! -user root -exec chown root {} \;
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="PCIDSS_A_1_2_c_00.sh"/>
+      </check>
+    </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_dirs_owner" selected="true">
       <title>system command dirs owner</title>
       <description>
@@ -137,6 +160,7 @@
         <xhtml:p>Restricting permissions will protect the files from unauthorized modification.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001220</ident>
+      <ident system="https://www.pcisecuritystandards.org">PCI-DSS testing procedure A.1.2.c</ident>
       <fix system="urn:xccdf:fix:script:sh">
         find /bin -type d \( ! -user root \) -exec chown root {} \;
         find /sbin -type d \( ! -user root \) -exec chown root {} \;
@@ -159,6 +183,7 @@
         <xhtml:p>Restricting permissions will protect the files from unauthorized modification.</xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001240</ident>
+      <ident system="https://www.pcisecuritystandards.org">PCI-DSS testing procedure A.1.2.c</ident>
       <fix system="urn:xccdf:fix:script:sh">
         find /bin -type d \( ! -group root \) -exec chgrp root {} \;
         find /sbin -type d \( ! -group root \) -exec chgrp root {} \;
