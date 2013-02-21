@@ -27,6 +27,7 @@
       <description>
         <xhtml:p>Might allow the attacker to gain direct access to the machine by just guessing a username.</xhtml:p>
       </description>
+      <fix system="urn:xccdf:fix:commands">./services/openssh/NISPOM-SSHD_Disable_Empty_Passwords_fix.sh</fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="NISPOM-SSHD_Disable_Empty_Passwords.sh"/>
@@ -38,6 +39,7 @@
         <xhtml:p>'root' username is a logical target for bruteforce attacks.</xhtml:p>
         <xhtml:p>Having to login as a different user and then sudo involves 2-step authorization.</xhtml:p>
       </description>
+      <fix system="urn:xccdf:fix:commands">./services/openssh/NISPOM-SSHD_Disable_Root_Login_fix.sh</fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="NISPOM-SSHD_Disable_Root_Login.sh"/>
