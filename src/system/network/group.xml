@@ -1,10 +1,11 @@
 <xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_network" selected="true">
-    <title>Network</title>
+    <title>Networking</title>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_network-firewall" selected="true">
-      <title>firewall</title>
+      <title>Check firewall rules.</title>
       <description>
-        <xhtml:p>Simple analysis of firewall policy rules.</xhtml:p>
+        <xhtml:p>Check if firewall is set up safely.</xhtml:p>
+        <xhtml:p>Improper firewall settings can open up ports that may be used to attack the system.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -12,9 +13,10 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_network-netserv" selected="true">
-      <title>netserv</title>
+      <title>Check network services</title>
       <description>
-        <xhtml:p>Audit of currently running network services.</xhtml:p>
+        <xhtml:p>Check currently running network services and determine if they are running correctly.</xhtml:p>
+        <xhtml:p>Incorrectly configured network services (i.e. unconfined and/or non-updated services) pose a security threat to the system.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -22,9 +24,10 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_network-xinetd" selected="true">
-      <title>xinetd</title>
+      <title>Check xinetd services</title>
       <description>
-        <xhtml:p>xinetd configuration audit.</xhtml:p>
+        <xhtml:p>Check the xinetd service configurations.</xhtml:p>
+        <xhtml:p>Incorrectly configured xinetd services pose a security threat to the system.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -32,9 +35,10 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_network-tcp_wrappers" selected="true">
-      <title>tcp wrappers</title>
+      <title>Check applications using tcp_wrappers</title>
       <description>
-        <xhtml:p>Checks whether all running applications, which are using libwrap, have some restrictions in /etc/hosts.deny and /etc.hosts allow</xhtml:p>
+        <xhtml:p>Checks whether all running applications, which are using libwrap have some restrictions in /etc/hosts.deny and /etc.hosts</xhtml:p>
+        <xhtml:p>Every application using tcp_wrappers should have an explicit configuration item.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
