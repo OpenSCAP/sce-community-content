@@ -13,7 +13,7 @@
     <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rexec" selected="true"/>
     <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rlogin" selected="true"/>
     <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rsh" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_network-disable_telnetd" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_telnetd" selected="true"/>
   </Profile>
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_obsolete" selected="true">
