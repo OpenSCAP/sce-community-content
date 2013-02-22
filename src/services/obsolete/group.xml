@@ -59,6 +59,18 @@
         <check-content-ref href="NISPOM-Disable_Remote_Shell-rsh.sh"/>
       </check>
     </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_telnetd" selected="true">
+      <title>Disable Telnet service</title>
+      <description>
+        <xhtml:p>Check if telnet service is disabled.</xhtml:p>
+        <xhtml:p>Allowing telnet on a system is insecure as telnet does not use encryption for sending user credentials.</xhtml:p>
+      </description>
+      <ident system="https://www.pcisecuritystandards.org">PCI-DSS testing procedure 2.2.2.b</ident>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="16_telnet.sh"/>
+      </check>
+    </Rule>
   </Group>
 </xf:xccdf-fragment>
 

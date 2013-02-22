@@ -41,19 +41,6 @@
         <check-content-ref href="15_tcp_wrappers.sh"/>
       </check>
     </Rule>
-
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_network-disable_telnetd" selected="true">
-      <title>Telnet service.</title>
-      <description>
-        <xhtml:p>The telnet service should be disabled.</xhtml:p>
-        <xhtml:p>Allowing telnet on a system is insecure as telnet does not use encryption.</xhtml:p>
-      </description>
-      <ident system="https://www.pcisecuritystandards.org">PCI-DSS testing procedure 2.2.2.b</ident>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="16_telnet.sh"/>
-      </check>
-    </Rule>
   </Group>
 </xf:xccdf-fragment>
 
