@@ -1,8 +1,8 @@
 <xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <Group id="xccdf_org.open-scap.sce-community-content_group_system_permissions" selected="true">
+  <Group id="xccdf_org.open-scap.sce-community-content_group_system_authcontent" selected="true">
     <title>Authentication settings</title>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_permissions-group" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authcontent-group" selected="true">
       <title>Check /etc/group file contents</title>
       <description>
         <xhtml:p>The /etc/group file should have a valid format.</xhtml:p>
@@ -13,7 +13,7 @@
         <check-content-ref href="01_group.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_permissions-passwd" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authcontent-passwd" selected="true">
       <title>Check /etc/passwd file contents</title>
       <description>
         <xhtml:p>The /etc/passwd file should have a valid format.</xhtml:p>
@@ -24,7 +24,7 @@
         <check-content-ref href="01_passwd.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_permissions-shadow" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authcontent-shadow" selected="true">
       <title>Check /etc/shadow file contents</title>
       <description>
         <xhtml:p>The /etc/shadow file should have a valid format.</xhtml:p>
@@ -35,7 +35,7 @@
         <check-content-ref href="01_shadow.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_permissions-pam" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authcontent-pam" selected="true">
       <title>Check PAM configuration</title>
       <description>
         <xhtml:p>PAM configuration should be set up to check password qualities and deny repetitive login attempts.</xhtml:p>
