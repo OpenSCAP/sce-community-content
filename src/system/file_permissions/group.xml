@@ -39,6 +39,15 @@
     <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-smb_conf_permissions" selected="true"/>
   </Profile>
 
+  <Profile id="xccdf_org.open-scap.sce-community-content_profile_pci-dss">
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files_owner" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_dirs_owner" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_dirs_group" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files_permissions" selected="true"/>
+  </Profile>
+
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_file_permissions" selected="true">
     <title>File permissions</title>
 

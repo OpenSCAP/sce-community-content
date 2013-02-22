@@ -74,4 +74,19 @@
 
     <xf:meta-select idref=".+" selected="false"/>
   </Profile>
+
+  <Profile id="xccdf_org.open-scap.sce-community-content_profile_pci-dss">
+    <title>Payment Card Industry Data Security Standard</title>
+
+    <description>
+      <html:p>
+        This profile is designed to check some of the security controls
+        required by the PCI DSS standard.
+      </html:p>
+      <html:p>
+        This profile is not an official PCI DSS checklist implementation. The profile is not
+        complete and may contain inaccuracies. Use at own discretion.
+      </html:p>
+    </description>
+  </Profile>
 </Benchmark>
