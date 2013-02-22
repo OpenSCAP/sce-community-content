@@ -9,50 +9,51 @@
   </Profile>
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_obsolete" selected="true">
-    <title>Obsolete</title>
+    <title>Obsolete services</title>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_finger" selected="true">
-      <title>disable finger</title>
+      <title>Disable finger</title>
       <description>
+        <xhtml:p>Check if 'finger' service is disabled</xhtml:p>
         <xhtml:p>Disabling 'finger' prevents other (possibly remote) users from querying who is logged onto this machine.</xhtml:p>
       </description>
+      <ident system="https://www.pcisecuritystandards.org">PCI-DSS testing procedure 2.2.2.b</ident>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="NISPOM-Disable_Finger.sh"/>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rexec" selected="true">
-      <title>disable remote exec (rexec)</title>
+      <title>Disable remote exec (rexec)</title>
       <description>
+        <xhtml:p>Check if remote exec service is disabled.</xhtml:p>
         <xhtml:p>Password authentication to rexec is transmitted in plain-text which is unacceptable.</xhtml:p>
       </description>
+      <ident system="https://www.pcisecuritystandards.org">PCI-DSS testing procedure 2.2.2.b</ident>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="NISPOM-Disable_Remote_Exec-rexec.sh"/>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rlogin" selected="true">
-      <title>disable remote login (rlogin)</title>
+      <title>Disable remote login (rlogin)</title>
       <description>
-        <xhtml:p>rlogin has unacceptable security flaws and should be replaced with SSH if possible.</xhtml:p>
-        <xhtml:p>security problems:
-          <xhtml:ul>
-            <xhtml:li>passwords are transmitted unencrypted</xhtml:li>
-            <xhtml:li>the .rlogin (or .rhosts) file is easy to abuse</xhtml:li>
-            <xhtml:li>reliance on client's honesty, forged data can be used to exploit</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
+        <xhtml:p>Check if remote login service is disabled.</xhtml:p>
+        <xhtml:p>Remote login has several security flaws unacceptable in secure systems. SSH is a better alternative.</xhtml:p>
       </description>
+      <ident system="https://www.pcisecuritystandards.org">PCI-DSS testing procedure 2.2.2.b</ident>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="NISPOM-Disable_Remote_Login-rlogin.sh"/>
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rsh" selected="true">
-      <title>disable remote shell (rsh)</title>
+      <title>Disable remote shell (rsh)</title>
       <description>
+        <xhtml:p>Check if rsh service is disabled.</xhtml:p>
         <xhtml:p>rsh has unacceptable security flaws including sending unencrypted password over the network.</xhtml:p>
       </description>
+      <ident system="https://www.pcisecuritystandards.org">PCI-DSS testing procedure 2.2.2.b</ident>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="NISPOM-Disable_Remote_Shell-rsh.sh"/>

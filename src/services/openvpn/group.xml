@@ -3,9 +3,10 @@
     <title>OpenVPN</title>
     
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openvpn-openvpn" selected="true">
-      <title>openvpn config file</title>
+      <title>Check OpenVPN configuration</title>
       <description>
-        <xhtml:p>OpenVPN configuration audit.</xhtml:p>
+        <xhtml:p>OpenVPN configuration must be properly set up.</xhtml:p>
+        <xhtml:p>Improper OpenVPN configuration may open up the system to unauthorized access or may be the result of a compromised system.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
