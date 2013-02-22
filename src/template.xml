@@ -88,5 +88,7 @@
         complete and may contain inaccuracies. Use at own discretion.
       </html:p>
     </description>
+
+    <xf:meta-select idref=".+" selected="false"/>
   </Profile>
 </Benchmark>
