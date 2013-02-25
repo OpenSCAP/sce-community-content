@@ -14,16 +14,6 @@
         <check-content-ref href="01_disk_usage.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-root_dirs" selected="true">
-      <title>root dirs</title>
-      <description>
-        <xhtml:p>Do not allow dot directories in "/"</xhtml:p>
-      </description>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="02_root_dirs.sh"/>
-      </check>
-    </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-path" selected="true">
       <title>path</title>
       <description>
