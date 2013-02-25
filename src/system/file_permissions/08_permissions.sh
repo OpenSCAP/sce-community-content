@@ -41,8 +41,6 @@ dirs="/ 222
 /var/spool/mail 002
 "
 
-[ $# -ge 1 -a "x$1" = "xCONSTANTS" ] && return
-
 ret=$XCCDF_RESULT_PASS
 
 while read dir perm_mask

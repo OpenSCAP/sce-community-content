@@ -88,8 +88,6 @@ else
     homedir=$defaulthomedir # not found, uses standard /home
 fi
 
-[ $# -ge 1 -a "$1" = "CONSTANTS" ] && return
-
 #### test permissions of sensitive files  ####
 i=2 # passwd line number
 
