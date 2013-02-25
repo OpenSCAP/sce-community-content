@@ -7,6 +7,15 @@
       <description>
         <xhtml:p>Log files should exist on all GNU/Linux systems.</xhtml:p>
         <xhtml:p>Missing log files may be proof that the system has been compromised.</xhtml:p>
+        <xhtml:p>The following log files will be checked:
+          <xhtml:ul>
+            <xhtml:li>/var/log/wtmp</xhtml:li>
+            <xhtml:li>/var/log/btmp</xhtml:li>
+            <xhtml:li>/var/log/lastlog</xhtml:li>
+            <xhtml:li>/var/log/utmp</xhtml:li>
+            <xhtml:li>/var/log/messages</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:commands">./services/logging/FIX00_exists.sh</fix>
       <check system="http://open-scap.org/page/SCE">
@@ -20,6 +29,15 @@
       <description>
         <xhtml:p>Log files should be owned by root.</xhtml:p>
         <xhtml:p>Improper file permissions could compromise the integrity of the log files, defeating their purpose.</xhtml:p>
+        <xhtml:p>The following log files will be checked:
+          <xhtml:ul>
+            <xhtml:li>/var/log/wtmp</xhtml:li>
+            <xhtml:li>/var/log/btmp</xhtml:li>
+            <xhtml:li>/var/log/lastlog</xhtml:li>
+            <xhtml:li>/var/log/utmp</xhtml:li>
+            <xhtml:li>/var/log/messages</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:commands">./services/logging/FIX01_owner.sh</fix>
       <check system="http://open-scap.org/page/SCE">
@@ -33,6 +51,15 @@
       <description>
         <xhtml:p>Log files should be owned by root.</xhtml:p>
         <xhtml:p>Improper file permissions could compromise the integrity of the log files, defeating their purpose.</xhtml:p>
+        <xhtml:p>The following log files will be checked:
+          <xhtml:ul>
+            <xhtml:li>/var/log/wtmp</xhtml:li>
+            <xhtml:li>/var/log/btmp</xhtml:li>
+            <xhtml:li>/var/log/lastlog</xhtml:li>
+            <xhtml:li>/var/log/utmp</xhtml:li>
+            <xhtml:li>/var/log/messages</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:commands">./services/logging/FIX02_group.sh</fix>
       <check system="http://open-scap.org/page/SCE">

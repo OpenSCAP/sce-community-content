@@ -211,7 +211,7 @@
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_logs_permissions" selected="true">
       <title>syslog logs permissions</title>
       <description>
-        <xhtml:p>syslog logs should be 0640 or less.</xhtml:p>
+        <xhtml:p>syslog logs (all files in /var/log) should be 0640 or less.</xhtml:p>
         <xhtml:p>If the system log files are not protected, unauthorized users could change the logged data, eliminating its forensic value.</xhtml:p>
         <xhtml:p>You can optionally allow world readable log files using a variable. The desired mode would be 644 in that case.</xhtml:p>
       </description>
