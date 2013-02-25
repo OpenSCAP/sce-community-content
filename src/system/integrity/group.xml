@@ -1,0 +1,42 @@
+<xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <Group id="xccdf_org.open-scap.sce-community-content_group_system_integrity" selected="true">
+    <title>Integrity checks</title>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_integrity-directories" selected="true">
+      <title>Check integrity of system directories</title>
+      <description>
+        <xhtml:p>Check if system directories are present.</xhtml:p>
+        <xhtml:p>Missing system directories may indicate the system has been compromised.</xhtml:p>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="00_dirs.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_integrity-coreutils" selected="true">
+      <title>Check integrity of coreutils package</title>
+      <description>
+        <xhtml:p>Check integrity of system binaries using rpmverify (rpm -Vf).</xhtml:p>
+        <xhtml:p>Compromised integrity of the coreutils package may indicate a system that has been compromised by an attack.</xhtml:p>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="01_coreutils.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_integrity-duplicates" selected="true">
+      <title>Check duplicate core commands</title>
+      <description>
+        <xhtml:p>Check if there are duplicate system commands.</xhtml:p>
+        <xhtml:p>Duplicate core commands may indicate a system that has been compromised by an attack.</xhtml:p>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="02_dupcommand.sh"/>
+      </check>
+    </Rule>
+  </Group>
+</xf:xccdf-fragment>
+

@@ -4,16 +4,6 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_incoming" selected="true">
     <title>Incoming (uncategorized)</title>
     
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-integrity" selected="true">
-      <title>integrity</title>
-      <description>
-        <xhtml:p>System integrity test. Checks presence and integrity of system commands and directories. For checking the integrity of binaries the command rpmverify (rpm -Vf) is used. A search for duplicates is also done for each command.</xhtml:p>
-      </description>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="00_integrity.sh"/>
-      </check>
-    </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-disk_usage" selected="true">
       <title>disk usage</title>
       <description>
