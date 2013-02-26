@@ -59,10 +59,41 @@
           <xhtml:li>group-writable or world-writable directories</xhtml:li>
           <xhtml:li>writable executables</xhtml:li>
         </xhtml:ul>
+        <xhtml:p>Changed PATH settings may be harmfull in allowing an attacker to add compromised binaries to these paths.</xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="04_path.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_integrity-removed_libs" selected="true">
+      <title>Check if libraries mapped into the memory are the same as the libraries on the disk.</title>
+      <description>
+        <xhtml:p>All libraries must be the same in both memory and on disk.</xhtml:p>
+        <xhtml:p>Changed libraries, while most often are due to system updates and as such mean that possibly some bug fixes aren't propagated.</xhtml:p>
+        <xhtml:p>Note: to get rid of this warnings simply restart these processes (their names and PIDs are in messages printed out by this test). Use the command service(8) to restart processes that belong to a running system service.</xhtml:p>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="05_removed_libs.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_integrity-aliases" selected="true">
+      <title>Check bash aliases.</title>
+      <description>
+        <xhtml:p>Checks bash aliases for:</xhtml:p>
+        <xhtml:ul>
+          <xhtml:li>existence of included file</xhtml:li>
+          <xhtml:li>existence of command</xhtml:li>
+          <xhtml:li>possibility of changing content of file implementing the command (world/other writable, owner not root)</xhtml:li>
+          <xhtml:li>possibility of changing content of included file (world/other writable, owner not root)</xhtml:li>
+        </xhtml:ul>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="06_aliases.sh"/>
       </check>
     </Rule>
   </Group>
