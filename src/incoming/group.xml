@@ -3,17 +3,6 @@
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_incoming" selected="true">
     <title>Incoming (uncategorized)</title>
-    
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-disk_usage" selected="true">
-      <title>disk usage</title>
-      <description>
-        <xhtml:p>Tells user, which of mounted volumes are going to be full. Uses df to get this info.</xhtml:p>
-      </description>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="01_disk_usage.sh"/>
-      </check>
-    </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-removed_libs" selected="true">
       <title>removed libs</title>
       <description>
