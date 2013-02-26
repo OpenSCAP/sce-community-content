@@ -49,6 +49,22 @@
         <check-content-ref href="03_dotdirs.sh"/>
       </check>
     </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_integrity-path_variable" selected="true">
+      <title>Check PATH environment variable</title>
+      <description>
+        <xhtml:p>Checks if all directories listed in environment PATH are</xhtml:p>
+        <xhtml:ul>
+          <xhtml:li>containing hazardous paths, the current directory, relative paths and '/tmp'</xhtml:li>
+          <xhtml:li>group-writable or world-writable directories</xhtml:li>
+          <xhtml:li>writable executables</xhtml:li>
+        </xhtml:ul>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="04_path.sh"/>
+      </check>
+    </Rule>
   </Group>
 </xf:xccdf-fragment>
 

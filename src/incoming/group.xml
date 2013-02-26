@@ -14,25 +14,6 @@
         <check-content-ref href="01_disk_usage.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-path" selected="true">
-      <title>path</title>
-      <description>
-        <xhtml:p>Checks</xhtml:p>
-        <xhtml:ul>
-          <xhtml:li>if all directories listed in PATH exist</xhtml:li>
-        </xhtml:ul>
-        <xhtml:p>Tests environmental variable PATH for</xhtml:p>
-        <xhtml:ul>
-          <xhtml:li>hazardous paths curent directiory, relative path, '/tmp'</xhtml:li>
-          <xhtml:li>group-writable or world-writable directories</xhtml:li>
-          <xhtml:li>writable executables</xhtml:li>
-        </xhtml:ul>
-      </description>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="03_path.sh"/>
-      </check>
-    </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_incoming-removed_libs" selected="true">
       <title>removed libs</title>
       <description>
