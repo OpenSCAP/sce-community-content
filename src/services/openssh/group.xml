@@ -27,7 +27,15 @@
       <description>
         <xhtml:p>Might allow the attacker to gain direct access to the machine by just guessing a username.</xhtml:p>
       </description>
-      <fix system="urn:xccdf:fix:commands">./services/openssh/NISPOM-SSHD_Disable_Empty_Passwords_fix.sh</fix>
+      <fix system="urn:xccdf:fix:script:sh"><![CDATA[
+        # Check if PermitEmptyPasswords is enabled (commented lines will be replaced too)
+        if grep -q PermitEmptyPasswords /etc/ssh/sshd_config
+        then
+          sed -i 's|^.*PermitEmptyPasswords.*$|PermitEmptyPasswords no|ig' /etc/ssh/sshd_config
+        else
+          echo 'PermitEmptyPasswords no' >> /etc/ssh/sshd_config
+        fi
+      ]]></fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="NISPOM-SSHD_Disable_Empty_Passwords.sh"/>
@@ -39,7 +47,13 @@
         <xhtml:p>'root' username is a logical target for bruteforce attacks.</xhtml:p>
         <xhtml:p>Having to login as a different user and then sudo involves 2-step authorization.</xhtml:p>
       </description>
-      <fix system="urn:xccdf:fix:commands">./services/openssh/NISPOM-SSHD_Disable_Root_Login_fix.sh</fix>
+      <fix system="urn:xccdf:fix:script:sh"><![CDATA[
+        # Check if PermitRootLogin is enabled (commented lines will be replaced too)
+        if grep -q PermitRootLogin /etc/ssh/sshd_config
+        then
+          sed -i 's|^.*PermitRootLogin.*$|PermitRootLogin no|ig' /etc/ssh/sshd_config
+        fi
+      ]]></fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="NISPOM-SSHD_Disable_Root_Login.sh"/>

@@ -68,7 +68,92 @@
       <description>
         <xhtml:p>Tests ownership and access rights to sensitive files (.bashrc, ssh/id_dsa etc.) in home directories of all users</xhtml:p>
       </description>
-      <fix system="urn:xccdf:fix:commands">./system/file_permissions/02_home_files_fix.sh</fix>
+      <fix system="urn:xccdf:fix:script:sh"><![CDATA[
+        # Copied from 02_home_files.sh
+        passwd=/etc/passwd
+        useradd=/etc/default/useradd
+        default_homedir=/home
+        
+        # files that should not be owned by someone other than the home directory owner, or readable
+        # even read permission can be dangerous for these files
+        NO_READ_NO_WRITE_FILES="\
+            .netrc \
+            .rhosts \
+            .shosts \
+            .Xauthority \
+            .gnupg/secring.gpg \
+            .pgp/secring.pgp \
+            .ssh/identity \
+            .ssh/id_dsa \
+            .ssh/id_rsa \
+            .ssh/random_seed \
+            .pgp/randseed.bin"
+        
+        # files that should not be owned by someone other than the home directory owner, or writeable
+        # write permission to these files is dangerous
+        NO_WRITE_FILES="\
+            .bashrc \
+            .bash_profile \
+            .bash_login \
+            .bash_logout \
+            .cshrc \
+            .emacs \
+            .exrc \
+            .forward \
+            .gdbrc \
+            .klogin \
+            .login \
+            .logout \
+            .profile \
+            .tcshrc \
+            .fvwmrc \
+            .inputrc \
+            .kshrc \
+            .nexrc \
+            .screenrc \
+            .ssh \
+            .ssh/config \
+            .ssh/authorized_keys \
+            .ssh/environment \
+            .ssh/known_hosts \
+            .ssh/rc \
+            .twmrc \
+            .vimrc \
+            .viminfo \
+            .xsession \
+            .xinitrc \
+            .Xdefaults \
+            .zshenv \
+            .zprofile \
+            .zshrc \
+            .zlogin \
+            .zlogout"
+        
+        setperms()
+        {
+          PERM=$1
+          shift
+        
+          HOMEDIR=$1
+          shift
+        
+          for i in $@;
+          do
+            FULLPATH=$HOMEDIR/$i
+            [ "$i" != "\\" -a -f $FULLPATH ] && chmod $PERM $FULLPATH
+          done
+        }
+        
+        while read line
+        do
+          HOMEDIR=$line
+        
+          setperms go-rwx $HOMEDIR $NO_READ_NO_WRITE_FILES
+          setperms go-w $HOMEDIR $NO_WRITE_FILES
+        done <<EOF
+        `grep -v /sbin/nologin /etc/passwd | cut -d: -f 6`
+        EOF
+      ]]></fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="02_home_files.sh"/>
@@ -79,7 +164,70 @@
       <description>
         <xhtml:p>Tests important directories for presence, permissions and owner.</xhtml:p>
       </description>
-      <fix system="urn:xccdf:fix:commands">./system/file_permissions/08_permissions_fix.sh</fix>
+      <fix system="urn:xccdf:fix:script:sh"><![CDATA[
+        # Copied from 08_permissions.sh
+        
+        # list of pairs - absolute path of the directory and a permission mask
+        dirs="/ 222
+        /bin 222
+        /boot 222
+        /dev 022
+        /etc 022
+        /home 022
+        /lib 222
+        /media 022
+        /mnt 022
+        /opt 022
+        /root 227
+        /sbin 222
+        /srv 022
+        /usr 022
+        /usr/bin 222
+        /usr/sbin 222
+        /usr/include 022
+        /usr/lib 222
+        /usr/share 022
+        /usr/src 022
+        /usr/local 022
+        /var 022
+        /var/lock 002
+        /var/log 022
+        /var/run 022
+        /var/spool 022
+        /var/spool/mail 002
+        "
+        
+        while read dir perm_mask
+        do
+            [ "$dir" == "" ] && continue
+        
+            if [ ! -d $dir ]
+            then
+              # If directory does not exist, create it!
+        
+              mkdir $dir
+            fi
+        
+            current_owner=$(stat -L -c '%U' $dir)
+            if [ "$current_owner" != 'root' ]
+            then
+              # Change the directory owner
+        
+              chown root $dir
+            fi
+        
+            find_result=$(find -H "$dir" -maxdepth 0 -type d -perm /$perm_mask)
+            if [ "$find_result" != "" ]
+            then
+              # Update the directory permission
+        
+              expected_permission=$(printf 0%o $[0777 & ~0$perm_mask])
+              chmod $expected_permission $dir
+            fi
+        done <<EOF
+        $dirs
+        EOF
+      ]]></fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="08_permissions.sh"/>

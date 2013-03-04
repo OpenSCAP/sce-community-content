@@ -8,7 +8,27 @@
         <xhtml:p>The machine must not be write-accessable through NFS.</xhtml:p>
         <xhtml:p>Enabling write access through NFS may compromise the integrity of the system.</xhtml:p>
       </description>
-      <fix system="urn:xccdf:fix:commands">./services/nfs/14_nfs_fix.sh</fix>
+      <fix system="urn:xccdf:fix:script:sh"><![CDATA[
+        EXPORTS="/etc/exports"
+        
+        if [ ! -e $EXPORTS ]
+        then
+          touch $EXPORTS
+          chmod 0644 $EXPORTS
+          exit 0
+        fi
+        
+        if [ ! -f $EXPORTS ]
+        then
+          echo "$EXPORTS not a file"
+          exit 1
+        fi
+        
+        TEMPFILE=$(mktemp)
+        sed -e 's|\([(,]\)rw\([),]\)|\1ro\2|g' < $EXPORTS > $TEMPFILE
+        mv $TEMPFILE $EXPORTS
+        chmod 0644 $EXPORTS
+      ]]></fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="14_nfs.sh"/>
