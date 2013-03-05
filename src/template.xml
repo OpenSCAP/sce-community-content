@@ -12,7 +12,9 @@
     </html:p>
   </front-matter>
 
-  <reference href="http://iase.disa.mil/stigs/index.html" />
+  <reference href="http://iase.disa.mil/stigs/index.html">Defense Information Systems Agency - Security Technical Implementation Guides (DISA STIG)</reference>
+  <reference href="https://www.pcisecuritystandards.org">Payment Card Industry - Data Security Standard (PCI DSS)</reference>
+
   <platform idref="cpe:/o:fedoraproject:fedora:17" />
   <platform idref="cpe:/o:fedoraproject:fedora:18" />
   <version>1.0</version>
