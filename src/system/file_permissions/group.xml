@@ -69,90 +69,57 @@
         <xhtml:p>Tests ownership and access rights to sensitive files (.bashrc, ssh/id_dsa etc.) in home directories of all users</xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh"><![CDATA[
-        # Copied from 02_home_files.sh
-        passwd=/etc/passwd
-        useradd=/etc/default/useradd
-        default_homedir=/home
-        
-        # files that should not be owned by someone other than the home directory owner, or readable
-        # even read permission can be dangerous for these files
-        NO_READ_NO_WRITE_FILES="\
-            .netrc \
-            .rhosts \
-            .shosts \
-            .Xauthority \
-            .gnupg/secring.gpg \
-            .pgp/secring.pgp \
-            .ssh/identity \
-            .ssh/id_dsa \
-            .ssh/id_rsa \
-            .ssh/random_seed \
-            .pgp/randseed.bin"
-        
-        # files that should not be owned by someone other than the home directory owner, or writeable
-        # write permission to these files is dangerous
-        NO_WRITE_FILES="\
-            .bashrc \
-            .bash_profile \
-            .bash_login \
-            .bash_logout \
-            .cshrc \
-            .emacs \
-            .exrc \
-            .forward \
-            .gdbrc \
-            .klogin \
-            .login \
-            .logout \
-            .profile \
-            .tcshrc \
-            .fvwmrc \
-            .inputrc \
-            .kshrc \
-            .nexrc \
-            .screenrc \
-            .ssh \
-            .ssh/config \
-            .ssh/authorized_keys \
-            .ssh/environment \
-            .ssh/known_hosts \
-            .ssh/rc \
-            .twmrc \
-            .vimrc \
-            .viminfo \
-            .xsession \
-            .xinitrc \
-            .Xdefaults \
-            .zshenv \
-            .zprofile \
-            .zshrc \
-            .zlogin \
-            .zlogout"
-        
-        setperms()
-        {
-          PERM=$1
-          shift
-        
-          HOMEDIR=$1
-          shift
-        
-          for i in $@;
-          do
-            FULLPATH=$HOMEDIR/$i
-            [ "$i" != "\\" -a -f $FULLPATH ] && chmod $PERM $FULLPATH
-          done
-        }
-        
-        while read line
+        for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
         do
-          HOMEDIR=$line
-        
-          setperms go-rwx $HOMEDIR $NO_READ_NO_WRITE_FILES
-          setperms go-w $HOMEDIR $NO_WRITE_FILES
-        done <<EOF
-        `grep -v /sbin/nologin /etc/passwd | cut -d: -f 6`
-        EOF
+          chmod go-rwx $user/.netrc 2>/dev/null
+          chmod go-rwx $user/.rhosts 2>/dev/null
+          chmod go-rwx $user/.shosts 2>/dev/null
+          chmod go-rwx $user/.Xauthority 2>/dev/null
+          chmod go-rwx $user/.gnupg/secring.gpg 2>/dev/null
+          chmod go-rwx $user/.pgp/secring.pgp 2>/dev/null
+          chmod go-rwx $user/.ssh/identity 2>/dev/null
+          chmod go-rwx $user/.ssh/id_dsa 2>/dev/null
+          chmod go-rwx $user/.ssh/id_rsa 2>/dev/null
+          chmod go-rwx $user/.ssh/random_seed 2>/dev/null
+          chmod go-rwx $user/.pgp/randseed.bin 2>/dev/null
+
+          chmod go-w $user/.bashrc 2>/dev/null
+          chmod go-w $user/.bash_profile 2>/dev/null
+          chmod go-w $user/.bash_login 2>/dev/null
+          chmod go-w $user/.bash_logout 2>/dev/null
+          chmod go-w $user/.cshrc 2>/dev/null
+          chmod go-w $user/.emacs 2>/dev/null
+          chmod go-w $user/.exrc 2>/dev/null
+          chmod go-w $user/.forward 2>/dev/null
+          chmod go-w $user/.gdbrc 2>/dev/null
+          chmod go-w $user/.klogin 2>/dev/null
+          chmod go-w $user/.login 2>/dev/null
+          chmod go-w $user/.logout 2>/dev/null
+          chmod go-w $user/.profile 2>/dev/null
+          chmod go-w $user/.tcshrc 2>/dev/null
+          chmod go-w $user/.fvwmrc 2>/dev/null
+          chmod go-w $user/.inputrc 2>/dev/null
+          chmod go-w $user/.kshrc 2>/dev/null
+          chmod go-w $user/.nexrc 2>/dev/null
+          chmod go-w $user/.screenrc 2>/dev/null
+          chmod go-w $user/.ssh 2>/dev/null
+          chmod go-w $user/.ssh/config 2>/dev/null
+          chmod go-w $user/.ssh/authorized_keys 2>/dev/null
+          chmod go-w $user/.ssh/environment 2>/dev/null
+          chmod go-w $user/.ssh/known_hosts 2>/dev/null
+          chmod go-w $user/.ssh/rc 2>/dev/null
+          chmod go-w $user/.twmrc 2>/dev/null
+          chmod go-w $user/.vimrc 2>/dev/null
+          chmod go-w $user/.viminfo 2>/dev/null
+          chmod go-w $user/.xsession 2>/dev/null
+          chmod go-w $user/.xinitrc 2>/dev/null
+          chmod go-w $user/.Xdefaults 2>/dev/null
+          chmod go-w $user/.zshenv 2>/dev/null
+          chmod go-w $user/.zprofile 2>/dev/null
+          chmod go-w $user/.zshrc 2>/dev/null
+          chmod go-w $user/.zlogin 2>/dev/null
+          chmod go-w $user/.zlogout 2>/dev/null
+        done
       ]]></fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -165,68 +132,42 @@
         <xhtml:p>Tests important directories for presence, permissions and owner.</xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh"><![CDATA[
-        # Copied from 08_permissions.sh
+        function fix
+        {
+          [ ! -d $1 ] && mkdir -p $1
+          chown root $1
+          expected_permission=$(printf 0%o $[0777 & ~0$perm_mask])
+          chmod $expected_permission $dir
+        }
         
         # list of pairs - absolute path of the directory and a permission mask
-        dirs="/ 222
-        /bin 222
-        /boot 222
-        /dev 022
-        /etc 022
-        /home 022
-        /lib 222
-        /media 022
-        /mnt 022
-        /opt 022
-        /root 227
-        /sbin 222
-        /srv 022
-        /usr 022
-        /usr/bin 222
-        /usr/sbin 222
-        /usr/include 022
-        /usr/lib 222
-        /usr/share 022
-        /usr/src 022
-        /usr/local 022
-        /var 022
-        /var/lock 002
-        /var/log 022
-        /var/run 022
-        /var/spool 022
-        /var/spool/mail 002
-        "
-        
-        while read dir perm_mask
-        do
-            [ "$dir" == "" ] && continue
-        
-            if [ ! -d $dir ]
-            then
-              # If directory does not exist, create it!
-        
-              mkdir $dir
-            fi
-        
-            current_owner=$(stat -L -c '%U' $dir)
-            if [ "$current_owner" != 'root' ]
-            then
-              # Change the directory owner
-        
-              chown root $dir
-            fi
-        
-            find_result=$(find -H "$dir" -maxdepth 0 -type d -perm /$perm_mask)
-            if [ "$find_result" != "" ]
-            then
-              # Update the directory permission
-        
-              expected_permission=$(printf 0%o $[0777 & ~0$perm_mask])
-              chmod $expected_permission $dir
-            fi
-        done <<EOF
-        $dirs
-        EOF
+        fix / 222
+        fix /bin 222
+        fix /boot 222
+        fix /dev 022
+        fix /etc 022
+        fix /home 022
+        fix /lib 222
+        fix /media 022
+        fix /mnt 022
+        fix /opt 022
+        fix /root 227
+        fix /sbin 222
+        fix /srv 022
+        fix /usr 022
+        fix /usr/bin 222
+        fix /usr/sbin 222
+        fix /usr/include 022
+        fix /usr/lib 222
+        fix /usr/share 022
+        fix /usr/src 022
+        fix /usr/local 022
+        fix /var 022
+        fix /var/lock 002
+        fix /var/log 022
+        fix /var/run 022
+        fix /var/spool 022
+        fix /var/spool/mail 002
       ]]></fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>

@@ -18,14 +18,13 @@
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh"><![CDATA[
-        LOGFILES="/var/log/wtmp root utmp 664
-        	  /var/log/btmp root utmp 600
-        	  /var/log/lastlog root root 644
-        	  /var/run/utmp root utmp 664
-        	  /var/log/messages root root 600"
-        
-        while name owner group perm
-        do
+        function fix
+        {
+          name=$1
+          owner=$2
+          group=$3
+          perm=$4
+
           if [ ! -e $name -o ! -f $name ]
           then
             rm -rf $name
@@ -35,7 +34,13 @@
             chgrp $group $name
             chmod $perm $name
           fi
-        done
+        }
+
+        fix /var/log/wtmp root utmp 664
+        fix /var/log/btmp root utmp 600
+        fix /var/log/lastlog root root 644
+        fix /var/run/utmp root utmp 664
+        fix /var/log/messages root root 600
       ]]></fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -59,18 +64,11 @@
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh"><![CDATA[
-        LOGFILES="/var/log/wtmp root utmp 664
-            /var/log/btmp root utmp 600
-            /var/log/lastlog root root 644
-            /var/run/utmp root utmp 664
-            /var/log/messages root root 600"
-        
-        RET=$XCCDF_RESULT_PASS
-        
-        while name owner group perm
-        do
-          chown $owner $name
-        done
+        chown root /var/log/wtmp
+        chown root /var/log/btmp
+        chown root /var/log/lastlog
+        chown root /var/run/utmp
+        chown root /var/log/messages
       ]]></fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -94,18 +92,11 @@
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh"><![CDATA[
-        LOGFILES="/var/log/wtmp root utmp 664
-        	  /var/log/btmp root utmp 600
-        	  /var/log/lastlog root root 644
-        	  /var/run/utmp root utmp 664
-        	  /var/log/messages root root 600"
-        
-        RET=$XCCDF_RESULT_PASS
-        
-        while name owner group perm
-        do
-          chgrp $group $name
-        done
+        chgrp utmp /var/log/wtmp
+        chgrp utmp /var/log/btmp
+        chgrp root /var/log/lastlog
+        chgrp utmp /var/run/utmp
+        chgrp root /var/log/messages
       ]]></fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
