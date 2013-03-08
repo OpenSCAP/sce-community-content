@@ -36,7 +36,7 @@ def perform_autoqa(path_prefix, group_tree):
 
         group_xml_path = os.path.join(path_prefix, f, "group.xml")
 
-        groups = tree.findall("{http://checklists.nist.gov/xccdf/1.1}Group")
+        groups = tree.findall("{http://checklists.nist.gov/xccdf/1.2}Group")
         if len(groups) != 1:
             print("'%s' doesn't have exactly one Group element. Each group.xml file is allowed to have just one group in it, if you want to split a group into two, move the other half to a different folder!" % (group_xml_path))
             continue
@@ -50,11 +50,11 @@ def perform_autoqa(path_prefix, group_tree):
         if group.get("id") != expected_id:
             print("Group from '%s' has id '%s', however id '%s' was expected" % (group_xml_path, group.get("id", ""), expected_id))
 
-        for element in tree.findall(".//{http://checklists.nist.gov/xccdf/1.1}Rule"):
+        for element in tree.findall(".//{http://checklists.nist.gov/xccdf/1.2}Rule"):
             if not element.get("id", "").startswith(expected_rule_id_prefix):
                 print("Rule from '%s' has unexpected id '%s', id prefixed with '%s' was expected!" % (group_xml_path, element.get("id", ""), expected_rule_id_prefix))
 
-            checks = element.findall("{http://checklists.nist.gov/xccdf/1.1}check")
+            checks = element.findall("{http://checklists.nist.gov/xccdf/1.2}check")
             if len(checks) != 1:
                 print("Rule of id '%s' from '%s' doesn't have exactly one check element!" % (element.get("id", ""), group_xml_path))
                 continue
@@ -64,7 +64,7 @@ def perform_autoqa(path_prefix, group_tree):
             if check.get("system") != "http://open-scap.org/page/SCE":
                 print("Rule of id '%s' from '%s' has system name different from the SCE system name ('http://open-scap.org/page/SCE')!" % (element.get("id", ""), group_xml_path))
 
-            crefs = check.findall("{http://checklists.nist.gov/xccdf/1.1}check-content-ref")
+            crefs = check.findall("{http://checklists.nist.gov/xccdf/1.2}check-content-ref")
             if len(crefs) != 1:
                 print("Rule of id '%s' from '%s' doesn't have exactly one check-content-ref inside its check element!" % (element.get("id", ""), group_xml_path))
                 continue
@@ -83,7 +83,7 @@ def repath_group_xml_tree(source_dir, new_base_dir, group_tree):
         old_base_dir = os.path.join(source_dir, f)
         
         path_prefix = os.path.relpath(old_base_dir, new_base_dir)
-        for element in tree.findall(".//{http://checklists.nist.gov/xccdf/1.1}check-content-ref"):
+        for element in tree.findall(".//{http://checklists.nist.gov/xccdf/1.2}check-content-ref"):
             old_href = element.get("href")
             assert(old_href is not None)
             element.set("href", os.path.join(path_prefix, old_href))
@@ -105,19 +105,19 @@ def merge_trees(target_tree, target_element, group_tree):
         t = group_tree[f]
         tree, subgroups = t
 
-        groups = tree.findall("{http://checklists.nist.gov/xccdf/1.1}Group")
+        groups = tree.findall("{http://checklists.nist.gov/xccdf/1.2}Group")
         if len(groups) != 1:
             print("There are %i groups in '%s/group.xml' file. Exactly 1 group is expected! Skipping..." % (len(groups), f))
             continue
 
         target_element.append(groups[0])
 
-        for child in tree.findall("{http://checklists.nist.gov/xccdf/1.1}Profile"):
+        for child in tree.findall("{http://checklists.nist.gov/xccdf/1.2}Profile"):
             assert(child.get("id") is not None)
             merged = False
 
             # look through profiles in the template XCCDF
-            for profile in target_tree.findall("{http://checklists.nist.gov/xccdf/1.1}Profile"):
+            for profile in target_tree.findall("{http://checklists.nist.gov/xccdf/1.2}Profile"):
                 if profile.get("id") == child.get("id"):
                     for profile_child in child.findall("*"):
                         profile.append(profile_child)
@@ -134,18 +134,18 @@ def resolve_selects(target_tree):
     default_selected_rules = set([])
     all_rules = set([])
 
-    for rule in target_tree.findall(".//{http://checklists.nist.gov/xccdf/1.1}Rule"):
+    for rule in target_tree.findall(".//{http://checklists.nist.gov/xccdf/1.2}Rule"):
         if rule.get("selected", False):
             default_selected_rules.add(rule.get("id", ""))
 
         all_rules.add(rule.get("id", ""))
 
-    for profile in target_tree.findall("{http://checklists.nist.gov/xccdf/1.1}Profile"):
+    for profile in target_tree.findall("{http://checklists.nist.gov/xccdf/1.2}Profile"):
         selected_rules = set(default_selected_rules)
 
         to_remove = [] # to avoid invalidating iterators
         for select in profile.findall("*"):
-            if select.tag == "{http://checklists.nist.gov/xccdf/1.1}select":
+            if select.tag == "{http://checklists.nist.gov/xccdf/1.2}select":
                 if select.get("selected", "false") == "true":
                     selected_rules.add(select.get("idref", ""))
                 else:
@@ -169,20 +169,20 @@ def resolve_selects(target_tree):
 
         for rule in selected_rules:
             if rule not in default_selected_rules: # if it's selected by default, we don't care
-                elem = ElementTree.Element("{http://checklists.nist.gov/xccdf/1.1}select")
+                elem = ElementTree.Element("{http://checklists.nist.gov/xccdf/1.2}select")
                 elem.set("idref", rule)
                 elem.set("selected", "true")
                 profile.append(elem)
 
         for rule in default_selected_rules:
             if rule not in selected_rules:
-                elem = ElementTree.Element("{http://checklists.nist.gov/xccdf/1.1}select")
+                elem = ElementTree.Element("{http://checklists.nist.gov/xccdf/1.2}select")
                 elem.set("idref", rule)
                 elem.set("selected", "false")
                 profile.append(elem)
 
 def refresh_status(target_tree):
-    for status in target_tree.findall("{http://checklists.nist.gov/xccdf/1.1}status"):
+    for status in target_tree.findall("{http://checklists.nist.gov/xccdf/1.2}status"):
         if status.get("date", "") == "${CURRENT_DATE}":
             status.set("date", datetime.date.today().strftime("%Y-%m-%d"))
 

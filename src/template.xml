@@ -1,4 +1,4 @@
-<Benchmark xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.1" id="xccdf_org.open-scap.sce-community-content_benchmark_all" xml:lang="en">
+<Benchmark xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.2" id="xccdf_org.open-scap.sce-community-content_benchmark_all" xml:lang="en">
   <status date="${CURRENT_DATE}">draft</status>
   <title>Community security controls for Fedora</title>
   <description>This checklist contains all security controls of all XCCDFs available as part of the community security controls for Fedora.</description>
