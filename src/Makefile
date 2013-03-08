@@ -23,7 +23,9 @@ report.html: results.xml
 	$(OSCAP) xccdf generate report results.xml > report.html
 
 sds-datastream.xml: all-resolved-xccdf.xml
-	$(OSCAP) ds sds-compose all-resolved-xccdf.xml sds-datastream.xml
+	$(OSCAP) ds sds-compose all-resolved-xccdf.xml sds-datastream-unformated.xml
+	xmllint --format sds-datastream-unformated.xml > sds-datastream.xml
+	rm sds-datastream-unformated.xml
 
 install: all-resolved-xccdf.xml guide.html
 	./install.sh $(DESTDIR)
