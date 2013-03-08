@@ -22,7 +22,7 @@ results.xml: all-resolved-xccdf.xml
 report.html: results.xml
 	$(OSCAP) xccdf generate report results.xml > report.html
 
-sds-datastream.xml: all-xccdf.xml
+sds-datastream.xml: all-resolved-xccdf.xml
 	$(OSCAP) ds sds-compose all-resolved-xccdf.xml sds-datastream.xml
 
 install: all-resolved-xccdf.xml guide.html
