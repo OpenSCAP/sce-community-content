@@ -23,9 +23,11 @@ report.html: results.xml
 	$(OSCAP) xccdf generate report results.xml > report.html
 
 sds-datastream.xml: all-resolved-xccdf.xml
-	$(OSCAP) ds sds-compose all-resolved-xccdf.xml sds-datastream-unformated.xml
+	../utils/xml_append.py all-resolved-xccdf.xml dummy-oval-rule.xml > all-resolved-xccdf-dummyoval.xml
+	$(OSCAP) ds sds-compose all-resolved-xccdf-dummyoval.xml sds-datastream-unformated.xml
 	xmllint --format sds-datastream-unformated.xml > sds-datastream.xml
 	rm sds-datastream-unformated.xml
+	rm all-resolved-xccdf-dummyoval.xml
 
 install: all-resolved-xccdf.xml guide.html
 	./install.sh $(DESTDIR)
