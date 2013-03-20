@@ -14,7 +14,6 @@
     <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rlogin" selected="true"/>
     <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rsh" selected="true"/>
     <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_telnetd" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-check_running_telnetd" selected="true"/>
   </Profile>
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_obsolete" selected="true">
@@ -80,18 +79,5 @@
         <check-content-ref href="16_telnet_config.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-check_running_telnetd" selected="true">
-      <title>Check if no telnet service is running</title>
-      <description>
-        <xhtml:p>Check if no telnet service is running.</xhtml:p>
-        <xhtml:p>Allowing telnet on a system is insecure as telnet does not use encryption for sending user credentials.</xhtml:p>
-      </description>
-      <ident system="https://www.pcisecuritystandards.org">PCIDSS-2.2.2.b</ident>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="17_telnet_running.sh"/>
-      </check>
-    </Rule>
   </Group>
 </xf:xccdf-fragment>
-
