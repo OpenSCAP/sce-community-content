@@ -1,16 +1,22 @@
 <Benchmark xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.2" id="xccdf_org.open-scap.sce-community-content_benchmark_all" xml:lang="en">
   <status date="${CURRENT_DATE}">draft</status>
-  <title>Community security controls for Fedora</title>
-  <description>This checklist contains all security controls of all XCCDFs available as part of the community security controls for Fedora.</description>
+  <title>Fedora security controls</title>
+  <description>
+    <html:p>
+      This is a checklist of common secure system configuration settings (security controls) intended to be used as a reference for securing Fedora systems.
+    </html:p>
+    <html:p>
+      The checklist can be processed by varius tools which enable users to:
+      <html:ul>
+        <html:li>define profiles with customized security policies,</html:li>
+        <html:li>audit systems to determine compliance with targeted security policy and</html:li>
+        <html:li>adjust system configuration.</html:li>
+      </html:ul>
+    </html:p>
+  </description>
   <notice id="disclaimer">This XCCDF has been automatically generated, it should only serve as a baseline!</notice>
 
-  <front-matter>
-    <html:p>
-      This checklist is intended to be used to discover issues on Fedora systems. It can be used
-      with GNU/Linux systems and parts could even be used to check non-Linux systems but that is
-      not officially supported.
-    </html:p>
-  </front-matter>
+  <front-matter></front-matter>
 
   <reference href="http://iase.disa.mil/stigs/index.html">Defense Information Systems Agency - Security Technical Implementation Guides (DISA STIG)</reference>
   <reference href="https://www.pcisecuritystandards.org">Payment Card Industry - Data Security Standard (PCI DSS)</reference>
