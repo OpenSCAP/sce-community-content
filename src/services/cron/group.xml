@@ -18,7 +18,13 @@
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_vars" selected="true">
       <title>Check if variables in crontab are set correctly.</title>
       <description>
-        <xhtml:p>The SHELL and PATH variables in crontab must be set to proper values.</xhtml:p>
+        <xhtml:p>
+          The SHELL and PATH variables in the crontab configuration file must be set to proper values:
+          <xhtml:ul>
+            <xhtml:li>SHELL must be /bin/bash</xhtml:li>
+            <xhtml:li>PATH must contain only /bin, /sbin, /usr/bin and /usr/sbin</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
         <xhtml:p>Changed SHELL and PATH variables might indicate that the system has been compromised.</xhtml:p>
         <xhtml:p>
           File(s) affected:
@@ -36,7 +42,7 @@
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_records" selected="true">
       <title>Check crontab record commands have proper owners.</title>
       <description>
-        <xhtml:p>All executables should be owned by root:root</xhtml:p>
+        <xhtml:p>All executables should be owned by root:root.</xhtml:p>
         <xhtml:p>If the owner is not root:root for crontab commands it might indicate a compromised system.</xhtml:p>
         <xhtml:p>
           File(s) affected:
