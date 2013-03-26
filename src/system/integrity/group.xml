@@ -34,12 +34,6 @@
       <description>
         <xhtml:p>Check integrity of system binaries using rpmverify (rpm -Vf).</xhtml:p>
         <xhtml:p>Compromised integrity of the coreutils package may indicate a system that has been compromised by an attack.</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>None</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -89,29 +83,6 @@
       </check>
     </Rule>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_integrity-path_variable" selected="true">
-      <title>Check PATH environment variable</title>
-      <description>
-        <xhtml:p>Checks if all directories listed in environment PATH are</xhtml:p>
-        <xhtml:ul>
-          <xhtml:li>containing hazardous paths, the current directory, relative paths and '/tmp'</xhtml:li>
-          <xhtml:li>group-writable or world-writable directories</xhtml:li>
-          <xhtml:li>writable executables</xhtml:li>
-        </xhtml:ul>
-        <xhtml:p>Changed PATH settings may be harmfull in allowing an attacker to add compromised binaries to these paths.</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>None</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
-      </description>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="04_path.sh"/>
-      </check>
-    </Rule>
-
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_integrity-removed_libs" selected="true">
       <title>Check if libraries mapped into the memory are the same as the libraries on the disk.</title>
       <description>
@@ -128,29 +99,6 @@
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="05_removed_libs.sh"/>
-      </check>
-    </Rule>
-
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_integrity-aliases" selected="true">
-      <title>Check bash aliases.</title>
-      <description>
-        <xhtml:p>Checks bash aliases for:</xhtml:p>
-        <xhtml:ul>
-          <xhtml:li>existence of included file</xhtml:li>
-          <xhtml:li>existence of command</xhtml:li>
-          <xhtml:li>possibility of changing content of file implementing the command (world/other writable, owner not root)</xhtml:li>
-          <xhtml:li>possibility of changing content of included file (world/other writable, owner not root)</xhtml:li>
-        </xhtml:ul>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>None</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
-      </description>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="06_aliases.sh"/>
       </check>
     </Rule>
   </Group>
