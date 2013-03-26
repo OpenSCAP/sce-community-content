@@ -21,6 +21,7 @@
         		<xhtml:li>/proc/*</xhtml:li>
         		<xhtml:li>/var/*</xhtml:li>
           </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
