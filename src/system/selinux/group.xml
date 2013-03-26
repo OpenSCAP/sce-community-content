@@ -3,7 +3,7 @@
     <title>SELinux</title>
     
     <Value id="xccdf_org.open-scap.sce-community-content_value_system_selinux_desired_selinux_state" type="string" operator="equals">
-      <title>desired selinux state</title>
+      <title>Desired SELinux state</title>
       <description xml:lang="en"> 
 enforcing - SELinux security policy is enforced. <xhtml:br />
 permissive - SELinux prints warnings instead of enforcing.<xhtml:br />
@@ -23,9 +23,10 @@ disabled - SELinux is fully disabled.
     </Value>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_selinux-selinux" selected="true">
-      <title>selinux state</title>
+      <title>Check SELinux state.</title>
       <description>
         <xhtml:p>Checks the SELinux state, result depends on passed variable. By default checks whether SELinux is enabled and in enforcing mode.</xhtml:p>
+        <xhtml:p>Enabling SELinux heightens the systems security. If SELinux has been disabled suddently it might indicate a compromised system.</xhtml:p>
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
