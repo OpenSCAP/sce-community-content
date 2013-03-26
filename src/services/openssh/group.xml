@@ -11,25 +11,8 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_openssh" selected="true">
     <title>OpenSSH</title>
      
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openssh-openssh" selected="true">
-      <title>Check openssh configuration.</title>
-      <description>
-        <xhtml:p>openssh might not contain some settings.</xhtml:p>
-        <xhtml:p>Some openssh settings are not secure and might make the system less secure.</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>/etc/ssh/sshd_config</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
-      </description>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="05_openssh.sh"/>
-      </check>
-    </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openssh-sshd_disable_empty_pws" selected="true">
-      <title>opensshd - disable empty passwords</title>
+      <title>Check if empty passwords are disabled in opensshd</title>
       <description>
         <xhtml:p>Might allow the attacker to gain direct access to the machine by just guessing a username.</xhtml:p>
         <xhtml:p>
