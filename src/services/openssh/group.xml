@@ -10,10 +10,89 @@
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_openssh" selected="true">
     <title>OpenSSH</title>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openssh-home_ssh_sensitive" selected="true">
+      <title>Check permission and owner of sensitive SSH files</title>
+      <description>
+        <xhtml:p>SSH related files containing sensitive data in the user directories must not be readable, writable or executable by other users.</xhtml:p>
+        <xhtml:p>User-specific SSH files may contain sensitive information (i.e. private keys, passwords, etc.) that can compromise the users integrity.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/home/*/.ssh/identity</xhtml:li>
+            <xhtml:li>/home/*/.ssh/id_rsa</xhtml:li>
+            <xhtml:li>/home/*/.ssh/id_dsa</xhtml:li>
+            <xhtml:li>/home/*/.ssh/config</xhtml:li>
+            <xhtml:li>/home/*/.ssh/random_seed</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">
+        <![CDATA[
+          for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
+          do
+            chmod -R go-rwx $home/.ssh/identity
+            chown -R $user $home/.ssh/identity
+            chmod -R go-rwx $home/.ssh/id_rsa
+            chown -R $user $home/.ssh/id_rsa
+            chmod -R go-rwx $home/.ssh/id_dsa
+            chown -R $user $home/.ssh/id_dsa
+            chmod -R go-rwx $home/.ssh/config
+            chown -R $user $home/.ssh/config
+            chmod -R go-rwx $home/.ssh/random_seed
+            chown -R $user $home/.ssh/random_seed
+          done
+        ]]>
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="ssh_sensitive.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openssh-home_ssh_pubkey" selected="true">
+      <title>Check SSH public key permissions and owner</title>
+      <description>
+        <xhtml:p>SSH public keys should not be writable by other users.</xhtml:p>
+        <xhtml:p>Writable SSH public keys mean that other users may compromise the users data.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/home/*/.ssh</xhtml:li>
+            <xhtml:li>/home/*/.ssh/authorized_keys</xhtml:li>
+            <xhtml:li>/home/*/.ssh/environment</xhtml:li>
+            <xhtml:li>/home/*/.ssh/known_hosts</xhtml:li>
+            <xhtml:li>/home/*/.ssh/rc</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
+        for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
+        do
+          chmod -R go-w $home/.ssh
+          chown -R $user $home/.ssh
+          chmod -R go-w $home/.ssh/authorized_keys
+          chown -R $user $home/.ssh/authorized_keys
+          chmod -R go-w $home/.ssh/environment
+          chown -R $user $home/.ssh/environment
+          chmod -R go-w $home/.ssh/known_hosts
+          chown -R $user $home/.ssh/known_hosts
+          chmod -R go-w $home/.ssh/rc
+          chown -R $user $home/.ssh/rc
+        done
+      ]]>
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="ssh_pubkey.sh"/>
+      </check>
+    </Rule>
      
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openssh-sshd_disable_empty_pws" selected="true">
       <title>Check if empty passwords are disabled in opensshd</title>
       <description>
+        <xhtml:p>The opensshd configuration file should not allow empty passwords.</xhtml:p>
         <xhtml:p>Might allow the attacker to gain direct access to the machine by just guessing a username.</xhtml:p>
         <xhtml:p>
           File(s) affected:
@@ -22,7 +101,8 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
-      <fix system="urn:xccdf:fix:script:sh"><![CDATA[
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
         # Check if PermitEmptyPasswords is enabled (commented lines will be replaced too)
         if grep -q PermitEmptyPasswords /etc/ssh/sshd_config
         then
@@ -36,11 +116,12 @@
         <check-content-ref href="NISPOM-SSHD_Disable_Empty_Passwords.sh"/>
       </check>
     </Rule>
+
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openssh-sshd_disable_root_login" selected="true">
-      <title>opensshd - disable root login</title>
+      <title>Check if root login is disabled in opensshd</title>
       <description>
-        <xhtml:p>'root' username is a logical target for bruteforce attacks.</xhtml:p>
-        <xhtml:p>Having to login as a different user and then sudo involves 2-step authorization.</xhtml:p>
+        <xhtml:p>The opensshd configuration file should not allow root login.</xhtml:p>
+        <xhtml:p>The 'root' username is a logical target for bruteforce attacks. Having to login as a different user and then sudo involves 2-step authorization.</xhtml:p>
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
