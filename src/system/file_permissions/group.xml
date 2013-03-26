@@ -57,75 +57,246 @@
         World readable logs are never allowed in strict hardened configurations but are common on desktops.
       </description>
       <question xml:lang="en">Are world readable logs allowed?</question>
-     
+
       <value>0</value>
       <value selector="yes">1</value>
       <value selector="no">0</value>
     </Value>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_files" selected="true">
-      <title>home files</title>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_ssh_sensitive" selected="true">
+      <title>Check permission and owner of sensitive SSH files</title>
       <description>
-        <xhtml:p>Tests ownership and access rights to sensitive files (.bashrc, ssh/id_dsa etc.) in home directories of all users</xhtml:p>
+        <xhtml:p>SSH related files containing sensitive data in the user directories must not be readable, writable or executable by other users.</xhtml:p>
+        <xhtml:p>User-specific SSH files may contain sensitive information (i.e. private keys, passwords, etc.) that can compromise the users integrity</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/home/*/.ssh/identity</xhtml:li>
+            <xhtml:li>/home/*/.ssh/id_rsa</xhtml:li>
+            <xhtml:li>/home/*/.ssh/id_dsa</xhtml:li>
+            <xhtml:li>/home/*/.ssh/config</xhtml:li>
+            <xhtml:li>/home/*/.ssh/random_seed</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
-      <fix system="urn:xccdf:fix:script:sh"><![CDATA[
-        for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
-        do
-          chmod go-rwx $user/.netrc 2>/dev/null
-          chmod go-rwx $user/.rhosts 2>/dev/null
-          chmod go-rwx $user/.shosts 2>/dev/null
-          chmod go-rwx $user/.Xauthority 2>/dev/null
-          chmod go-rwx $user/.gnupg/secring.gpg 2>/dev/null
-          chmod go-rwx $user/.pgp/secring.pgp 2>/dev/null
-          chmod go-rwx $user/.ssh/identity 2>/dev/null
-          chmod go-rwx $user/.ssh/id_dsa 2>/dev/null
-          chmod go-rwx $user/.ssh/id_rsa 2>/dev/null
-          chmod go-rwx $user/.ssh/random_seed 2>/dev/null
-          chmod go-rwx $user/.pgp/randseed.bin 2>/dev/null
-
-          chmod go-w $user/.bashrc 2>/dev/null
-          chmod go-w $user/.bash_profile 2>/dev/null
-          chmod go-w $user/.bash_login 2>/dev/null
-          chmod go-w $user/.bash_logout 2>/dev/null
-          chmod go-w $user/.cshrc 2>/dev/null
-          chmod go-w $user/.emacs 2>/dev/null
-          chmod go-w $user/.exrc 2>/dev/null
-          chmod go-w $user/.forward 2>/dev/null
-          chmod go-w $user/.gdbrc 2>/dev/null
-          chmod go-w $user/.klogin 2>/dev/null
-          chmod go-w $user/.login 2>/dev/null
-          chmod go-w $user/.logout 2>/dev/null
-          chmod go-w $user/.profile 2>/dev/null
-          chmod go-w $user/.tcshrc 2>/dev/null
-          chmod go-w $user/.fvwmrc 2>/dev/null
-          chmod go-w $user/.inputrc 2>/dev/null
-          chmod go-w $user/.kshrc 2>/dev/null
-          chmod go-w $user/.nexrc 2>/dev/null
-          chmod go-w $user/.screenrc 2>/dev/null
-          chmod go-w $user/.ssh 2>/dev/null
-          chmod go-w $user/.ssh/config 2>/dev/null
-          chmod go-w $user/.ssh/authorized_keys 2>/dev/null
-          chmod go-w $user/.ssh/environment 2>/dev/null
-          chmod go-w $user/.ssh/known_hosts 2>/dev/null
-          chmod go-w $user/.ssh/rc 2>/dev/null
-          chmod go-w $user/.twmrc 2>/dev/null
-          chmod go-w $user/.vimrc 2>/dev/null
-          chmod go-w $user/.viminfo 2>/dev/null
-          chmod go-w $user/.xsession 2>/dev/null
-          chmod go-w $user/.xinitrc 2>/dev/null
-          chmod go-w $user/.Xdefaults 2>/dev/null
-          chmod go-w $user/.zshenv 2>/dev/null
-          chmod go-w $user/.zprofile 2>/dev/null
-          chmod go-w $user/.zshrc 2>/dev/null
-          chmod go-w $user/.zlogin 2>/dev/null
-          chmod go-w $user/.zlogout 2>/dev/null
-        done
-      ]]></fix>
+      <fix system="urn:xccdf:fix:script:sh">
+        <![CDATA[
+          for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
+          do
+            chmod -R go-rwx $home/.ssh/identity
+            chown -R $user $home/.ssh/identity
+            chmod -R go-rwx $home/.ssh/id_rsa
+            chown -R $user $home/.ssh/id_rsa
+            chmod -R go-rwx $home/.ssh/id_dsa
+            chown -R $user $home/.ssh/id_dsa
+            chmod -R go-rwx $home/.ssh/config
+            chown -R $user $home/.ssh/config
+            chmod -R go-rwx $home/.ssh/random_seed
+            chown -R $user $home/.ssh/random_seed
+          done
+        ]]>
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
-        <check-content-ref href="02_home_files.sh"/>
+        <check-content-ref href="ssh_sensitive.sh"/>
       </check>
     </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_pgp_sensitive" selected="true">
+      <title>Check permission and owner of sensitive user-specific PGP files</title>
+      <description>
+        <xhtml:p>Sensitive PGP files must be owned by the user and not be accessible by other users.</xhtml:p>
+        <xhtml:p>Exposing PGP random generator seeds and private keys can lead to the users data being compromised.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/home/*/.pgp/randseed.bin</xhtml:li>
+            <xhtml:li>/home/*/.pgp/secring.pgp</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
+        for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
+        do
+          chmod -R go-rwx $home/.pgp/randseed.bin
+          chown -R $user $home/.pgp/randseed.bin
+          chmod -R go-rwx $home/.pgp/secring.pgp
+          chown -R $user $home/.pgp/secring.pgp
+        done
+      ]]>
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="pgp_sensitive.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_gnupg_sensitive" selected="true">
+      <title>Check permission and owner of sensitive user-specific GnuPG files</title>
+      <description>
+        <xhtml:p>Sensitive GnuPG files must be owned by the user and not be accessible by other users.</xhtml:p>
+        <xhtml:p>Exposing GnuPG keys can lead to the users data being compromised.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/home/*/.gnupg/secring.gpg</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
+        for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
+        do
+          chmod -R go-rwx $home/.gnupg/secring.gpg
+          chown -R $user $home/.gnupg/secring.gpg
+        done
+      ]]>
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="gnupg_sensitive.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_config_sensitive" selected="true">
+      <title>Check permission and owner of sensitive configuration files</title>
+      <description>
+        <xhtml:p>Sensitive configuration files must be owned by the user and not be accessible by other users.</xhtml:p>
+        <xhtml:p>Some configuration files may contain sensitive information (e.g. passwords) that must not be readable by other users.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/home/*/.netrc</xhtml:li>
+            <xhtml:li>/home/*/.rhosts</xhtml:li>
+            <xhtml:li>/home/*/.shosts</xhtml:li>
+            <xhtml:li>/home/*/.Xauthority</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
+        for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
+        do
+          chmod -R go-rwx $home/.netrc
+          chown -R $user $home/.netrc
+          chmod -R go-rwx $home/.rhosts
+          chown -R $user $home/.rhosts
+          chmod -R go-rwx $home/.shosts
+          chown -R $user $home/.shosts
+          chmod -R go-rwx $home/.Xauthority
+          chown -R $user $home/.Xauthority
+        done
+      ]]>
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="config_sensitive.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_ssh_pubkey" selected="true">
+      <title>Check SSH public key permissions and owner</title>
+      <description>
+        <xhtml:p>SSH public keys should not be writable by other users.</xhtml:p>
+        <xhtml:p>Writable SSH public keys mean that other users may compromise the users data.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/home/*/.ssh</xhtml:li>
+            <xhtml:li>/home/*/.ssh/authorized_keys</xhtml:li>
+            <xhtml:li>/home/*/.ssh/environment</xhtml:li>
+            <xhtml:li>/home/*/.ssh/known_hosts</xhtml:li>
+            <xhtml:li>/home/*/.ssh/rc</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
+        for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
+        do
+          chmod -R go-w $home/.ssh
+          chown -R $user $home/.ssh
+          chmod -R go-w $home/.ssh/authorized_keys
+          chown -R $user $home/.ssh/authorized_keys
+          chmod -R go-w $home/.ssh/environment
+          chown -R $user $home/.ssh/environment
+          chmod -R go-w $home/.ssh/known_hosts
+          chown -R $user $home/.ssh/known_hosts
+          chmod -R go-w $home/.ssh/rc
+          chown -R $user $home/.ssh/rc
+        done
+      ]]>
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="ssh_pubkey.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_shell_config" selected="true">
+      <title>Check permissions and owner for shell configuration files</title>
+      <description>
+        <xhtml:p>Shell configuration files should be owned by the user and only allow write permissions for the owner</xhtml:p>
+        <xhtml:p>Writable shell configuration files may allow other users to compromise the user account</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/home/*/.bashrc</xhtml:li>
+            <xhtml:li>/home/*/.bash_profile</xhtml:li>
+            <xhtml:li>/home/*/.bash_login</xhtml:li>
+            <xhtml:li>/home/*/.bash_logout</xhtml:li>
+            <xhtml:li>/home/*/.klogin</xhtml:li>
+            <xhtml:li>/home/*/.login</xhtml:li>
+            <xhtml:li>/home/*/.logout</xhtml:li>
+            <xhtml:li>/home/*/.profile</xhtml:li>
+            <xhtml:li>/home/*/.tcshrc</xhtml:li>
+            <xhtml:li>/home/*/.cshrc</xhtml:li>
+            <xhtml:li>/home/*/.kshrc</xhtml:li>
+            <xhtml:li>/home/*/.zshenv</xhtml:li>
+            <xhtml:li>/home/*/.zshrc</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
+        for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
+        do
+          chmod -R go-w $home/.bashrc
+          chown -R $user $home/.bashrc
+          chmod -R go-w $home/.bash_profile
+          chown -R $user $home/.bash_profile
+          chmod -R go-w $home/.bash_login
+          chown -R $user $home/.bash_login
+          chmod -R go-w $home/.bash_logout
+          chown -R $user $home/.bash_logout
+          chmod -R go-w $home/.klogin
+          chown -R $user $home/.klogin
+          chmod -R go-w $home/.login
+          chown -R $user $home/.login
+          chmod -R go-w $home/.logout
+          chown -R $user $home/.logout
+          chmod -R go-w $home/.profile
+          chown -R $user $home/.profile
+          chmod -R go-w $home/.tcshrc
+          chown -R $user $home/.tcshrc
+          chmod -R go-w $home/.cshrc
+          chown -R $user $home/.cshrc
+          chmod -R go-w $home/.kshrc
+          chown -R $user $home/.kshrc
+          chmod -R go-w $home/.zshenv
+          chown -R $user $home/.zshenv
+          chmod -R go-w $home/.zshrc
+          chown -R $user $home/.zshrc
+        done
+      ]]>
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="shell_config.sh"/>
+      </check>
+    </Rule>
+
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-permissions" selected="true">
       <title>permissions</title>
       <description>
@@ -171,7 +342,7 @@
           expected_permission=$(printf 0%o $[0777 & ~0$perm_mask])
           chmod $expected_permission $dir
         }
-        
+
         # list of pairs - absolute path of the directory and a permission mask
         fix / 222
         fix /bin 222
