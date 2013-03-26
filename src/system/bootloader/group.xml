@@ -7,10 +7,17 @@
     <title>Bootloader</title>
     
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_bootloader-grub_conf_permissions" selected="true">
-      <title>grub.conf permissions</title>
+      <title>Check grub configuration permissions</title>
       <description>
-        <xhtml:p>grub.conf must be 0600 or less.</xhtml:p>
+        <xhtml:p>The grub configuration must be 0600 or less.</xhtml:p>
         <xhtml:p>File permissions greater than 0600 on boot loader configuration files could allow an unauthorized user to view or modify sensitive information pertaining to system boot instructions.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/boot/grub/grub.conf</xhtml:li>
+            <xhtml:li>/boot/grub2/grub.cfg</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN008720</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -25,9 +32,16 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_bootloader-bootloader_password" selected="true">
-      <title>grub.conf - password protected boot</title>
+      <title>Grub should be configured for password protected boot</title>
       <description>
-        Tests whether /etc/grub.conf is set to require password
+        <xhtml:p>Tests whether the grub configuration is set for booting to require password.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/boot/grub/grub.conf</xhtml:li>
+            <xhtml:li>/boot/grub2/grub.cfg</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>

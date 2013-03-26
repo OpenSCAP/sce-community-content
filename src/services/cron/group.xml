@@ -3,6 +3,7 @@
     <title>Cron</title>
 
     <!--
+
         note: crontab file permissions are checked by the following rules:
 
             xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-crontab_files_permissions
@@ -19,6 +20,12 @@
       <description>
         <xhtml:p>The SHELL and PATH variables in crontab must be set to proper values.</xhtml:p>
         <xhtml:p>Changed SHELL and PATH variables might indicate that the system has been compromised.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/crontab</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -31,6 +38,12 @@
       <description>
         <xhtml:p>All executables should be owned by root:root</xhtml:p>
         <xhtml:p>If the owner is not root:root for crontab commands it might indicate a compromised system.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/crontab</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>

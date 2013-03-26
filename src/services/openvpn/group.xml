@@ -7,6 +7,12 @@
       <description>
         <xhtml:p>OpenVPN configuration must be properly set up.</xhtml:p>
         <xhtml:p>Improper OpenVPN configuration may open up the system to unauthorized access or may be the result of a compromised system.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/openvpn/openvpn.conf</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>

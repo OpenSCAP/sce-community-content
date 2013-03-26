@@ -3,9 +3,16 @@
     <title>Execution restriction</title>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_execution-exec_shield" selected="true">
-      <title>exec-shield</title>
+      <title>Check execute shield</title>
       <description>
         <xhtml:p>Checks if exec-shield is enabled.</xhtml:p>
+        <xhtml:p>Enabling execute shield makes the system less easy to exploit by some security vulnerabilities.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>None</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
       <![CDATA[
@@ -24,9 +31,16 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_execution-va_randomization" selected="true">
-      <title>va-randomization</title>
+      <title>Check va randomization</title>
       <description>
-        <xhtml:p>Checks whether va-randomization is enabled.</xhtml:p>
+        <xhtml:p>Checks whether va randomization is enabled.</xhtml:p>
+        <xhtml:p>Enabling va randomization makes the system less easy to exploit by some security vulnerabilities.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>None</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
       <![CDATA[

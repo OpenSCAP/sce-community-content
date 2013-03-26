@@ -7,6 +7,20 @@
       <description>
         <xhtml:p>Check if system directories are present.</xhtml:p>
         <xhtml:p>Missing system directories may indicate the system has been compromised.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/bin/*</xhtml:li>
+        		<xhtml:li>/sbin/*</xhtml:li>
+        		<xhtml:li>/lib/*</xhtml:li>
+        		<xhtml:li>/usr/bin/*</xhtml:li>
+        		<xhtml:li>/usr/sbin/*</xhtml:li>
+        		<xhtml:li>/usr/lib/*</xhtml:li>
+        		<xhtml:li>/usr/libexec/*</xhtml:li>
+        		<xhtml:li>/tmp/*</xhtml:li>
+        		<xhtml:li>/proc/*</xhtml:li>
+        		<xhtml:li>/var/*</xhtml:li>
+          </xhtml:ul>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -19,6 +33,12 @@
       <description>
         <xhtml:p>Check integrity of system binaries using rpmverify (rpm -Vf).</xhtml:p>
         <xhtml:p>Compromised integrity of the coreutils package may indicate a system that has been compromised by an attack.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>None</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -31,6 +51,18 @@
       <description>
         <xhtml:p>Check if there are duplicate system commands.</xhtml:p>
         <xhtml:p>Duplicate core commands may indicate a system that has been compromised by an attack.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/bin/*</xhtml:li>
+            <xhtml:li>/sbin/*</xhtml:li>
+            <xhtml:li>/root/bin/*</xhtml:li>
+            <xhtml:li>/usr/bin/*</xhtml:li>
+            <xhtml:li>/usr/sbin/*</xhtml:li>
+            <xhtml:li>/usr/local/bin/*</xhtml:li>
+            <xhtml:li>/usr/local/sbin/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -43,6 +75,12 @@
       <description>
         <xhtml:p>Do not allow dot directories in "/"</xhtml:p>
         <xhtml:p>Dot directories might hide information from the system administrator.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -60,6 +98,12 @@
           <xhtml:li>writable executables</xhtml:li>
         </xhtml:ul>
         <xhtml:p>Changed PATH settings may be harmfull in allowing an attacker to add compromised binaries to these paths.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>None</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -73,6 +117,12 @@
         <xhtml:p>All libraries must be the same in both memory and on disk.</xhtml:p>
         <xhtml:p>Changed libraries, while most often are due to system updates and as such mean that possibly some bug fixes aren't propagated.</xhtml:p>
         <xhtml:p>Note: to get rid of this warnings simply restart these processes (their names and PIDs are in messages printed out by this test). Use the command service(8) to restart processes that belong to a running system service.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>None</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -90,6 +140,12 @@
           <xhtml:li>possibility of changing content of file implementing the command (world/other writable, owner not root)</xhtml:li>
           <xhtml:li>possibility of changing content of included file (world/other writable, owner not root)</xhtml:li>
         </xhtml:ul>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>None</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>

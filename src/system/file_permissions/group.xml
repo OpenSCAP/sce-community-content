@@ -130,6 +130,38 @@
       <title>permissions</title>
       <description>
         <xhtml:p>Tests important directories for presence, permissions and owner.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/</xhtml:li>
+            <xhtml:li>/bin</xhtml:li>
+            <xhtml:li>/boot</xhtml:li>
+            <xhtml:li>/dev</xhtml:li>
+            <xhtml:li>/etc</xhtml:li>
+            <xhtml:li>/home</xhtml:li>
+            <xhtml:li>/lib</xhtml:li>
+            <xhtml:li>/media</xhtml:li>
+            <xhtml:li>/mnt</xhtml:li>
+            <xhtml:li>/opt</xhtml:li>
+            <xhtml:li>/root</xhtml:li>
+            <xhtml:li>/sbin</xhtml:li>
+            <xhtml:li>/srv</xhtml:li>
+            <xhtml:li>/usr</xhtml:li>
+            <xhtml:li>/usr/bin</xhtml:li>
+            <xhtml:li>/usr/sbin</xhtml:li>
+            <xhtml:li>/usr/include</xhtml:li>
+            <xhtml:li>/usr/lib</xhtml:li>
+            <xhtml:li>/usr/share</xhtml:li>
+            <xhtml:li>/usr/src</xhtml:li>
+            <xhtml:li>/usr/local</xhtml:li>
+            <xhtml:li>/var</xhtml:li>
+            <xhtml:li>/var/lock</xhtml:li>
+            <xhtml:li>/var/log</xhtml:li>
+            <xhtml:li>/var/run</xhtml:li>
+            <xhtml:li>/var/spool</xhtml:li>
+            <xhtml:li>/var/spool/mail</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh"><![CDATA[
         function fix
@@ -179,6 +211,12 @@
       <description>
         <xhtml:p>/root should be 0750 or less.</xhtml:p>
         <xhtml:p>Permissions greater than 0700 could allow unauthorized users access to the root home directory.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/root</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN000920</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -194,6 +232,13 @@
       <description>
         <xhtml:p>Network service daemon files should be 0755 or less.</xhtml:p>
         <xhtml:p>Restricting permission on daemons will protect them from unauthorized modification and possible system compromise.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/sysconfig/network-scripts/*</xhtml:li>
+            <xhtml:li>/etc/sysconfig/networking</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001180</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -211,6 +256,19 @@
       <description>
         <xhtml:p>System command files must be 0755 or less.</xhtml:p>
         <xhtml:p>Restricting permissions will protect system command files from unauthorized modification. System command files include files present in directories used by the operating system for storing default system executables and files present in directories included in the system's default executable search paths.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/bin</xhtml:li>
+            <xhtml:li>/sbin</xhtml:li>
+            <xhtml:li>/usr/bin</xhtml:li>
+            <xhtml:li>/usr/sbin</xhtml:li>
+            <xhtml:li>/usr/local/bin</xhtml:li>
+            <xhtml:li>/usr/local/sbin</xhtml:li>
+            <xhtml:li>/usr/lib64/qt-3.3/bin</xhtml:li>
+            <xhtml:li>/usr/java/j2re1.4.2_06/bin</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001200</ident>
       <ident system="https://www.pcisecuritystandards.org">PCIDSS-A.1.2.c</ident>
@@ -234,6 +292,19 @@
       <description>
         <xhtml:p>System command files must be owned by root.</xhtml:p>
         <xhtml:p>Allowing commands to be owned by non-root users may enable users to change the meaning of system commands.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/bin</xhtml:li>
+            <xhtml:li>/sbin</xhtml:li>
+            <xhtml:li>/usr/bin</xhtml:li>
+            <xhtml:li>/usr/sbin</xhtml:li>
+            <xhtml:li>/usr/local/bin</xhtml:li>
+            <xhtml:li>/usr/local/sbin</xhtml:li>
+            <xhtml:li>/usr/lib64/qt-3.3/bin</xhtml:li>
+            <xhtml:li>/usr/java/j2re1.4.2_06/bin</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="https://www.pcisecuritystandards.org">PCIDSS-A.1.2.c</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -256,6 +327,19 @@
       <description>
         <xhtml:p>System command directories must be owned by a system account.</xhtml:p>
         <xhtml:p>Restricting permissions will protect the files from unauthorized modification.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/bin</xhtml:li>
+            <xhtml:li>/sbin</xhtml:li>
+            <xhtml:li>/usr/bin</xhtml:li>
+            <xhtml:li>/usr/sbin</xhtml:li>
+            <xhtml:li>/usr/local/bin</xhtml:li>
+            <xhtml:li>/usr/local/sbin</xhtml:li>
+            <xhtml:li>/usr/lib64/qt-3.3/bin</xhtml:li>
+            <xhtml:li>/usr/java/j2re1.4.2_06/bin</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001220</ident>
       <ident system="https://www.pcisecuritystandards.org">PCIDSS-A.1.2.c</ident>
@@ -279,6 +363,19 @@
       <description>
         <xhtml:p>System command dirs must be owned by a system group.</xhtml:p>
         <xhtml:p>Restricting permissions will protect the files from unauthorized modification.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/bin</xhtml:li>
+            <xhtml:li>/sbin</xhtml:li>
+            <xhtml:li>/usr/bin</xhtml:li>
+            <xhtml:li>/usr/sbin</xhtml:li>
+            <xhtml:li>/usr/local/bin</xhtml:li>
+            <xhtml:li>/usr/local/sbin</xhtml:li>
+            <xhtml:li>/usr/lib64/qt-3.3/bin</xhtml:li>
+            <xhtml:li>/usr/java/j2re1.4.2_06/bin</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001240</ident>
       <ident system="https://www.pcisecuritystandards.org">PCIDSS-A.1.2.c</ident>
@@ -303,6 +400,12 @@
         <xhtml:p>syslog logs (all files in /var/log) should be 0640 or less.</xhtml:p>
         <xhtml:p>If the system log files are not protected, unauthorized users could change the logged data, eliminating its forensic value.</xhtml:p>
         <xhtml:p>You can optionally allow world readable log files using a variable. The desired mode would be 644 in that case.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/var/log/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001260</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -329,6 +432,12 @@
       <description>
         <xhtml:p>man pages must be 0644 or less.</xhtml:p>
         <xhtml:p>If manual pages are compromised, misleading information could be inserted, causing actions that may compromise the system.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/usr/share/man/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001280</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -344,6 +453,17 @@
       <description>
         <xhtml:p>Library files must be 0755 or less.</xhtml:p>
         <xhtml:p>Unauthorized access could destroy the integrity of the library files.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/lib</xhtml:li>
+            <xhtml:li>/lib64</xhtml:li>
+            <xhtml:li>/usr/lib</xhtml:li>
+            <xhtml:li>/usr/lib64</xhtml:li>
+            <xhtml:li>/usr/local/lib</xhtml:li>
+            <xhtml:li>/usr/local/lib64</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001300</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -360,10 +480,16 @@
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-passwd_file_permissions" selected="true">
-      <title>passwd file permissions</title>
+      <title>password file permissions</title>
       <description>
         <xhtml:p>/etc/passwd must be 0644 or less.</xhtml:p>
         <xhtml:p>If the passwd file is writable by a group-owner or the world, the risk of passwd file compromise is increased. The passwd file contains the list of accounts on the system and associated information.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/passwd</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001380</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -379,6 +505,12 @@
       <description>
         <xhtml:p>/etc/shadow must be owned by root.</xhtml:p>
         <xhtml:p>The /etc/shadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. Failure to give ownership of sensitive files or utilities to root or bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/shadow</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001400</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -394,6 +526,12 @@
       <description>
         <xhtml:p>/etc/shadow must be 0400 or less.</xhtml:p>
         <xhtml:p>The /etc/shadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. The file also contains password hashes which must not be accessible to users other than root.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/shadow</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001420</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -409,6 +547,12 @@
       <description>
         <xhtml:p>All home dirs must be 0750 or less.</xhtml:p>
         <xhtml:p>Excessive permissions on home directories allow unauthorized access to user files.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/home/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001480</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -424,6 +568,12 @@
       <description>
         <xhtml:p>All files in home dirs must be 0750 or less.</xhtml:p>
         <xhtml:p>Excessive permissions allow unauthorized access to user files.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/home/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001560</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -439,6 +589,15 @@
       <description>
         <xhtml:p>All /etc/rc files must be 0755 or less.</xhtml:p>
         <xhtml:p>If the startup files are writable by other users, they could modify the startup files to insert malicious commands into the startup files.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/rc*</xhtml:li>
+            <xhtml:li>/etc/init.d/*</xhtml:li>
+            <xhtml:li>/etc/init</xhtml:li>
+            <xhtml:li>/etc/systemd</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001580</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -462,6 +621,12 @@
       <description>
         <xhtml:p>Skeleton /etc/skel/* files must be 0644 or less.</xhtml:p>
         <xhtml:p>If the system log files are not protected, unauthorized users could change the logged data, eliminating its forensic value.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/home/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001800</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -477,6 +642,13 @@
       <description>
         <xhtml:p>All shell files in /etc must be owned by root.</xhtml:p>
         <xhtml:p>Local initialization files are used to configure the user's shell environment upon login. Malicious modification of these files could compromise accounts upon logon.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/*</xhtml:li>
+            <xhtml:li>/etc/profile.d/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001860</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -494,6 +666,13 @@
       <description>
         <xhtml:p>All shell files in /etc must be 0755 or less (???).</xhtml:p>
         <xhtml:p>Local initialization files are used to configure the user's shell environment upon login. Malicious modification of these files could compromise accounts upon logon.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/*</xhtml:li>
+            <xhtml:li>/etc/profile.d/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001880</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -511,6 +690,12 @@
       <description>
         <xhtml:p>Sticky bit must be on all world writable dirs.</xhtml:p>
         <xhtml:p>Failing to set the sticky bit on the public directories allows unauthorized users to delete files in the directory structure. The only authorized public directories are those temporary directories supplied with the system or those designed to be temporary file repositories. The setting is normally reserved for directories used by the system and by users for temporary file storage (e.g., /tmp) and for directories that require global read/write access.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/* (all directories)</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002500</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -526,6 +711,12 @@
       <description>
         <xhtml:p>All world writable dirs must be owned by system account.</xhtml:p>
         <xhtml:p>If a public directory has the sticky bit set and is not owned by a privileged UID, unauthorized users may be able to modify files created by others. The only authorized public directories are those temporary directories supplied with the system or those designed to be temporary file repositories. The setting is normally reserved for directories used by the system and by users for temporary file storage (e.g., /tmp) and for directories that require global read/write access.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/* (all directories)</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002520</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -542,6 +733,12 @@
       <description>
         <xhtml:p>All audit logs must be owned by root.</xhtml:p>
         <xhtml:p>Failure to give ownership of system audit log files to root provides the designated owner and unauthorized users with the potential to access sensitive information.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/var/log/audit/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002680</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -557,6 +754,12 @@
       <description>
         <xhtml:p>All audit logs must be 0640 or less.</xhtml:p>
         <xhtml:p>If a user can write to the audit logs, audit trails can be modified or destroyed and system intrusion may not be detected. System audit logs are those files generated from the audit system and do not include activity, error, or other log files created by application software.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/var/log/audit/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002700</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -572,6 +775,12 @@
       <description>
         <xhtml:p>cron.allow must be 0600 or less.</xhtml:p>
         <xhtml:p>A cron.allow file that is readable and/or writable by other than root could allow potential intruders and malicious users to use the file contents to help discern information, such as who is allowed to execute cron programs, which could be harmful to overall system and network security.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/cron.allow</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002980</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -587,6 +796,17 @@
       <description>
         <xhtml:p>crontab files must be 0600 or less. cron script must be 0700 or less.</xhtml:p>
         <xhtml:p>To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/crontab</xhtml:li>
+            <xhtml:li>/etc/cron.d/*</xhtml:li>
+            <xhtml:li>/etc/cron.daily/*</xhtml:li>
+            <xhtml:li>/etc/cron.hourly/*</xhtml:li>
+            <xhtml:li>/etc/cron.weekly/*</xhtml:li>
+            <xhtml:li>/var/spool/cron/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003080</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -607,6 +827,17 @@
       <description>
         <xhtml:p>crontab files and scripts must be owned by root</xhtml:p>
         <xhtml:p>To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/crontab</xhtml:li>
+            <xhtml:li>/etc/cron.d/*</xhtml:li>
+            <xhtml:li>/etc/cron.daily/*</xhtml:li>
+            <xhtml:li>/etc/cron.hourly/*</xhtml:li>
+            <xhtml:li>/etc/cron.weekly/*</xhtml:li>
+            <xhtml:li>/var/spool/cron/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
         chown root /etc/crontab
@@ -626,6 +857,17 @@
       <description>
         <xhtml:p>crontab files and scripts must be group-owned by root</xhtml:p>
         <xhtml:p>To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/crontab</xhtml:li>
+            <xhtml:li>/etc/cron.d/*</xhtml:li>
+            <xhtml:li>/etc/cron.daily/*</xhtml:li>
+            <xhtml:li>/etc/cron.hourly/*</xhtml:li>
+            <xhtml:li>/etc/cron.weekly/*</xhtml:li>
+            <xhtml:li>/var/spool/cron/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
         chgrp root /etc/crontab
@@ -645,6 +887,16 @@
       <description>
         <xhtml:p>cron directories must be 0755 or more less.</xhtml:p>
         <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/cron.d/*</xhtml:li>
+            <xhtml:li>/etc/cron.daily/*</xhtml:li>
+            <xhtml:li>/etc/cron.hourly/*</xhtml:li>
+            <xhtml:li>/etc/cron.weekly/*</xhtml:li>
+            <xhtml:li>/var/spool/cron/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003100</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -664,6 +916,16 @@
       <description>
         <xhtml:p>cron directories must be owned by root.</xhtml:p>
         <xhtml:p>Incorrect ownership of the cron or crontab directories could permit unauthorized users the ability to alter cron jobs and run automated jobs as privileged users. Failure to give ownership of cron or crontab directories to root or to bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/cron.d/*</xhtml:li>
+            <xhtml:li>/etc/cron.daily/*</xhtml:li>
+            <xhtml:li>/etc/cron.hourly/*</xhtml:li>
+            <xhtml:li>/etc/cron.weekly/*</xhtml:li>
+            <xhtml:li>/var/spool/cron/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003120</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -683,6 +945,16 @@
       <description>
         <xhtml:p>cron directories must be group root.</xhtml:p>
         <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious modification to these jobs, crontab files must be secured. Failure to give group-ownership of cron or crontab directories to a system group provides the designated group and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/cron.d/*</xhtml:li>
+            <xhtml:li>/etc/cron.daily/*</xhtml:li>
+            <xhtml:li>/etc/cron.hourly/*</xhtml:li>
+            <xhtml:li>/etc/cron.weekly/*</xhtml:li>
+            <xhtml:li>/var/spool/cron/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003140</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -702,6 +974,13 @@
       <description>
         <xhtml:p>All xinetd directories must be owned by root.</xhtml:p>
         <xhtml:p>Failure to give ownership of sensitive files or utilities to root provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/xinetd.conf</xhtml:li>
+            <xhtml:li>/etc/xinetd.d/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003720</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -718,6 +997,13 @@
       <description>
         <xhtml:p>All xinetd files must be 0640 or less.</xhtml:p>
         <xhtml:p>The Internet service daemon configuration files must be protected as malicious modification could cause denial of service or increase the attack surface of the system.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/xinetd.conf</xhtml:li>
+            <xhtml:li>/etc/xinetd.d/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003740</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -734,6 +1020,12 @@
       <description>
         <xhtml:p>Services file must be owned by root.</xhtml:p>
         <xhtml:p>Failure to give ownership of sensitive files or utilities to root or bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/services</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003760</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -749,6 +1041,12 @@
       <description>
         <xhtml:p>Services file must be 0644 or less.</xhtml:p>
         <xhtml:p>The services file is critical to the proper operation of network services and must be protected from unauthorized modification. Unauthorized modification could result in the failure of network services.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/services</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003780</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -764,6 +1062,12 @@
       <description>
         <xhtml:p>The alias file must be owned by root.</xhtml:p>
         <xhtml:p>If the alias file is not owned by root, an unauthorized user may modify the file to add aliases to run malicious code or redirect e-mail.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/alias</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN004360</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -779,6 +1083,12 @@
       <description>
         <xhtml:p>The alias file must be 644 or less.</xhtml:p>
         <xhtml:p>Excessive permissions on the aliases file may permit unauthorized modification. If the alias file is modified by an unauthorized user, they may modify the file to run malicious code or redirect e-mail.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/alias</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN004380</ident>
       <fix system="urn:xccdf:fix:script:sh">
@@ -794,6 +1104,12 @@
       <description>
         <xhtml:p>smb.conf must be 0644 or less.</xhtml:p>
         <xhtml:p>If the smb.conf file has excessive permissions, the file may be maliciously modified and the Samba configuration could be compromised.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/samba/smb.conf</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN006140</ident>
       <fix system="urn:xccdf:fix:script:sh">

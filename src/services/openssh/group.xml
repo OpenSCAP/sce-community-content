@@ -16,6 +16,12 @@
       <description>
         <xhtml:p>openssh might not contain some settings.</xhtml:p>
         <xhtml:p>Some openssh settings are not secure and might make the system less secure.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/ssh/sshd_config</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -26,6 +32,12 @@
       <title>opensshd - disable empty passwords</title>
       <description>
         <xhtml:p>Might allow the attacker to gain direct access to the machine by just guessing a username.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/ssh/sshd_config</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh"><![CDATA[
         # Check if PermitEmptyPasswords is enabled (commented lines will be replaced too)
@@ -46,6 +58,12 @@
       <description>
         <xhtml:p>'root' username is a logical target for bruteforce attacks.</xhtml:p>
         <xhtml:p>Having to login as a different user and then sudo involves 2-step authorization.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/ssh/sshd_config</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh"><![CDATA[
         # Check if PermitRootLogin is enabled (commented lines will be replaced too)

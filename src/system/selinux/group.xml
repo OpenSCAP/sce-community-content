@@ -26,6 +26,12 @@ disabled - SELinux is fully disabled.
       <title>selinux state</title>
       <description>
         <xhtml:p>Checks the SELinux state, result depends on passed variable. By default checks whether SELinux is enabled and in enforcing mode.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>None</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>

@@ -24,6 +24,12 @@
       <description>
         <xhtml:p>Check if 'finger' service is disabled</xhtml:p>
         <xhtml:p>Disabling 'finger' prevents other (possibly remote) users from querying who is logged onto this machine.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/xinetd.d/finger</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="https://www.pcisecuritystandards.org">PCIDSS-2.2.2.b</ident>
       <check system="http://open-scap.org/page/SCE">
@@ -36,6 +42,12 @@
       <description>
         <xhtml:p>Check if remote exec service is disabled.</xhtml:p>
         <xhtml:p>Password authentication to rexec is transmitted in plain-text which is unacceptable.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/xinetd.d/rexec</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="https://www.pcisecuritystandards.org">PCIDSS-2.2.2.b</ident>
       <check system="http://open-scap.org/page/SCE">
@@ -48,6 +60,12 @@
       <description>
         <xhtml:p>Check if remote login service is disabled.</xhtml:p>
         <xhtml:p>Remote login has several security flaws unacceptable in secure systems. SSH is a better alternative.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/xinetd.d/rlogin</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="https://www.pcisecuritystandards.org">PCIDSS-2.2.2.b</ident>
       <check system="http://open-scap.org/page/SCE">
@@ -60,6 +78,12 @@
       <description>
         <xhtml:p>Check if rsh service is disabled.</xhtml:p>
         <xhtml:p>rsh has unacceptable security flaws including sending unencrypted password over the network.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/xinetd.d/rsh</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="https://www.pcisecuritystandards.org">PCIDSS-2.2.2.b</ident>
       <check system="http://open-scap.org/page/SCE">
@@ -72,6 +96,12 @@
       <description>
         <xhtml:p>Check if telnet service is disabled.</xhtml:p>
         <xhtml:p>Allowing telnet on a system is insecure as telnet does not use encryption for sending user credentials.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/xinetd.d/telnet</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <ident system="https://www.pcisecuritystandards.org">PCIDSS-2.2.2.b</ident>
       <check system="http://open-scap.org/page/SCE">

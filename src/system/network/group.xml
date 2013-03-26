@@ -6,6 +6,12 @@
       <description>
         <xhtml:p>Check if firewall is set up safely.</xhtml:p>
         <xhtml:p>Improper firewall settings can open up ports that may be used to attack the system.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>None</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -17,6 +23,12 @@
       <description>
         <xhtml:p>Check currently running network services and determine if they are running correctly.</xhtml:p>
         <xhtml:p>Incorrectly configured network services (i.e. unconfined and/or non-updated services) pose a security threat to the system.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>None</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -28,6 +40,13 @@
       <description>
         <xhtml:p>Check the xinetd service configurations.</xhtml:p>
         <xhtml:p>Incorrectly configured xinetd services pose a security threat to the system.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/xinetd.conf</xhtml:li>
+            <xhtml:li>/etc/xinetd.d/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -39,6 +58,15 @@
       <description>
         <xhtml:p>Checks whether all running applications, which are using libwrap have some restrictions in /etc/hosts.deny and /etc.hosts</xhtml:p>
         <xhtml:p>Every application using tcp_wrappers should have an explicit configuration item.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/usr/bin/*</xhtml:li>
+            <xhtml:li>/usr/sbin/*</xhtml:li>
+            <xhtml:li>/etc/hosts.allow</xhtml:li>
+            <xhtml:li>/etc/hosts.deny</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>

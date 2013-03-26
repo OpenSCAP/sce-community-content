@@ -7,6 +7,12 @@
       <description>
         <xhtml:p>The machine must not be write-accessable through NFS.</xhtml:p>
         <xhtml:p>Enabling write access through NFS may compromise the integrity of the system.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/exports</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh"><![CDATA[
         EXPORTS="/etc/exports"

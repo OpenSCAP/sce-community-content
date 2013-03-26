@@ -74,6 +74,23 @@ def perform_autoqa(path_prefix, group_tree):
             if not os.path.isfile(os.path.join(path_prefix, f, cref.get("href", ""))):
                 print("Rule of id '%s' from '%s' is referencing a script file that wasn't found! (href is '%s', expected location therefore is '%s')" % (element.get("id", ""), group_xml_path, cref.get("href", ""), os.path.join(path_prefix, f, cref.get("href", ""))))
 
+            # Check if the description contains a list of affected files
+            description = element.find("{http://checklists.nist.gov/xccdf/1.2}description")
+            if description is None:
+                print("Rule %r missing a description" % element.get("id", ""))
+                continue
+
+            if len(description) == 0:
+                print("Description of rule %r empty" % element.get("id", ""))
+                continue
+
+            last = description[-1]
+            if last.tag != '{http://www.w3.org/1999/xhtml}p' or \
+               last.text.strip() != 'File(s) affected:' or \
+               last[0].tag != '{http://www.w3.org/1999/xhtml}ul':
+                print("Rule %r contains no proper list of affected file(s)" % element.get("id", ""))
+                continue
+
         perform_autoqa(os.path.join(path_prefix, f), subgroups)
 
 def repath_group_xml_tree(source_dir, new_base_dir, group_tree):
