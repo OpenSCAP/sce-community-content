@@ -10,7 +10,14 @@ RET=$XCCDF_RESULT_PASS
 
 while name owner group perm
 do
-  find / \( -path $name -a ! -owner $owner \) -print "Invalid owner for %p"
-done
+  REAL_OWNER=$(stat -c '%U' $name)
+  if [ "x$REAL_OWNER" != "x$owner" ]
+  then
+    echo "File $name sahould be owned by owner $owner, not $REAL_OWNER"
+    RET=$XCCDF_RESULT_FAIL
+  fi
+done <<_EOF
+$LOGFILES
+_EOF
 
 exit $RET

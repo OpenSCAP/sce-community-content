@@ -21,6 +21,8 @@ do
     echo "File $name not a regular file"
     RET=$XCCDF_RESULT_FAIL
   fi
-done
+done <<_EOF
+$LOGFILES
+_EOF
 
 exit $RET
