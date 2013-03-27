@@ -50,7 +50,7 @@
       <fix system="urn:xccdf:fix:script:sh">yum remove -y telnet-server</fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
-        <check-content-ref href="16_telnet_config.sh"/>
+        <check-content-ref href="disabled_telnet.sh"/>
       </check>
     </Rule>
   </Group>
