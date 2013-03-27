@@ -1,19 +1,10 @@
 <xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <xf:sort-prefix>999</xf:sort-prefix>
 
-  <Profile id="xccdf_org.open-scap.sce-community-content_profile_nispom">
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_finger" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rexec" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rlogin" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rsh" selected="true"/>
-  </Profile>
-
   <Profile id="xccdf_org.open-scap.sce-community-content_profile_pci-dss">
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_finger" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rexec" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rlogin" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rsh" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_telnetd" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_finger_server" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rsh_server" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_telnet_server" selected="true"/>
   </Profile>
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_obsolete" selected="true">
@@ -49,7 +40,7 @@
       </check>
     </Rule>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_telnetd" selected="true">
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_telnet_server" selected="true">
       <title>Check if the telnet service package</title>
       <description>
         <xhtml:p>The telnet service is considered obsolete and therefore should not be installed.</xhtml:p>
