@@ -1,19 +1,198 @@
 <xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <Profile id="xccdf_org.open-scap.sce-community-content_profile_stig">
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_allow_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_files_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_owner" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_group" selected="true"/>
+  </Profile>
+
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_cron" selected="true">
     <title>Cron</title>
 
-    <!--
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_files_permissions" selected="true">
+      <title>crontab files permissions</title>
+      <description>
+        <xhtml:p>crontab files must be 0600 or less. cron script must be 0700 or less.</xhtml:p>
+        <xhtml:p>To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/crontab</xhtml:li>
+            <xhtml:li>/etc/cron.d/*</xhtml:li>
+            <xhtml:li>/etc/cron.daily/*</xhtml:li>
+            <xhtml:li>/etc/cron.hourly/*</xhtml:li>
+            <xhtml:li>/etc/cron.weekly/*</xhtml:li>
+            <xhtml:li>/var/spool/cron/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN003080</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        chmod u-x,go-rwx /etc/crontab
+        find /etc/cron.d -type f -perm /0077 -exec chmod go-rwx {} \;
+        find /etc/cron.daily -type f -perm /0077 -exec chmod go-rwx {} \;
+        find /etc/cron.hourly -type f -perm /0077 -exec chmod go-rwx {} \;
+        find /etc/cron.weekly -type f -perm /0077 -exec chmod go-rwx {} \;
+        find /var/spool/cron/ -type f -perm /0077 -exec chmod go-rwx {} \;
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="GEN003080.sh"/>
+      </check>
+    </Rule>
 
-        note: crontab file permissions are checked by the following rules:
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_files_owners" selected="true">
+      <title>crontab files owners</title>
+      <description>
+        <xhtml:p>crontab files and scripts must be owned by root</xhtml:p>
+        <xhtml:p>To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/crontab</xhtml:li>
+            <xhtml:li>/etc/cron.d/*</xhtml:li>
+            <xhtml:li>/etc/cron.daily/*</xhtml:li>
+            <xhtml:li>/etc/cron.hourly/*</xhtml:li>
+            <xhtml:li>/etc/cron.weekly/*</xhtml:li>
+            <xhtml:li>/var/spool/cron/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">
+        chown root /etc/crontab
+        find /etc/cron.d -type f ! -user root -exec chown root {} \;
+        find /etc/cron.daily -type f ! -user root -exec chown root {} \;
+        find /etc/cron.hourly -type f ! -user root -exec chown root {} \;
+        find /etc/cron.weekly -type f ! -user root -exec chown root {} \;
+        find /var/spool/cron/ -type f ! -user root -exec chown root {} \;
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="09_crontab_owners.sh"/>
+      </check>
+    </Rule>
 
-            xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-crontab_files_permissions
-            xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-crontab_files_owners
-            xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-crontab_files_groups
-            xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-cron_dirs_permissions
-            xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-cron_dirs_owner
-            xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-cron_dirs_group
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_files_groups" selected="true">
+      <title>crontab files owners</title>
+      <description>
+        <xhtml:p>crontab files and scripts must be group-owned by root</xhtml:p>
+        <xhtml:p>To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/crontab</xhtml:li>
+            <xhtml:li>/etc/cron.d/*</xhtml:li>
+            <xhtml:li>/etc/cron.daily/*</xhtml:li>
+            <xhtml:li>/etc/cron.hourly/*</xhtml:li>
+            <xhtml:li>/etc/cron.weekly/*</xhtml:li>
+            <xhtml:li>/var/spool/cron/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">
+        chgrp root /etc/crontab
+        find /etc/cron.d -type f ! -group root -exec chgrp root {} \;
+        find /etc/cron.daily -type f ! -group root -exec chgrp root {} \;
+        find /etc/cron.hourly -type f ! -group root -exec chgrp root {} \;
+        find /etc/cron.weekly -type f ! -group root -exec chgrp root {} \;
+        find /var/spool/cron/ -type f ! -group root -exec chgrp root {} \;
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="10_crontab_groups.sh"/>
+      </check>
+    </Rule>
 
-    -->
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_permissions" selected="true">
+      <title>cron dirs permissions</title>
+      <description>
+        <xhtml:p>cron directories must be 0755 or more less.</xhtml:p>
+        <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/cron.d/*</xhtml:li>
+            <xhtml:li>/etc/cron.daily/*</xhtml:li>
+            <xhtml:li>/etc/cron.hourly/*</xhtml:li>
+            <xhtml:li>/etc/cron.weekly/*</xhtml:li>
+            <xhtml:li>/var/spool/cron/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN003100</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /etc/cron.d -type d -perm /0022 -exec chmod go-w {} \;
+        find /etc/cron.daily -type d -perm /0022 -exec chmod go-w {} \;
+        find /etc/cron.hourly -type d -perm /0022 -exec chmod go-w {} \;
+        find /etc/cron.weekly -type d -perm /0022 -exec chmod go-w {} \;
+        find /var/spool/cron -type d -perm /0022 -exec chmod go-w {} \;
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="GEN003100.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_owner" selected="true">
+      <title>cron dirs owner</title>
+      <description>
+        <xhtml:p>cron directories must be owned by root.</xhtml:p>
+        <xhtml:p>Incorrect ownership of the cron or crontab directories could permit unauthorized users the ability to alter cron jobs and run automated jobs as privileged users. Failure to give ownership of cron or crontab directories to root or to bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/cron.d/*</xhtml:li>
+            <xhtml:li>/etc/cron.daily/*</xhtml:li>
+            <xhtml:li>/etc/cron.hourly/*</xhtml:li>
+            <xhtml:li>/etc/cron.weekly/*</xhtml:li>
+            <xhtml:li>/var/spool/cron/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN003120</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /etc/cron.d -type d \( ! -user root \) -exec chown root {} \;
+        find /etc/cron.daily -type d \( ! -user root \) -exec chown root {} \;
+        find /etc/cron.hourly -type d \( ! -user root \) -exec chown root {} \;
+        find /etc/cron.weekly -type d \( ! -user root \) -exec chown root {} \;
+        find /var/spool/cron -type d \( ! -user root \) -exec chown root {} \;
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="GEN003120.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_group" selected="true">
+      <title>cron dirs group</title>
+      <description>
+        <xhtml:p>cron directories must be group root.</xhtml:p>
+        <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious modification to these jobs, crontab files must be secured. Failure to give group-ownership of cron or crontab directories to a system group provides the designated group and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/cron.d/*</xhtml:li>
+            <xhtml:li>/etc/cron.daily/*</xhtml:li>
+            <xhtml:li>/etc/cron.hourly/*</xhtml:li>
+            <xhtml:li>/etc/cron.weekly/*</xhtml:li>
+            <xhtml:li>/var/spool/cron/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN003140</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+        find /etc/cron.d -type d \( ! -user root \) -exec chgrp root {} \;
+        find /etc/cron.daily -type d \( ! -user root \) -exec chgrp root {} \;
+        find /etc/cron.hourly -type d \( ! -user root \) -exec chgrp root {} \;
+        find /etc/cron.weekly -type d \( ! -user root \) -exec chgrp root {} \;
+        find /var/spool/cron -type d \( ! -user root \) -exec chgrp root {} \;
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="GEN003140.sh"/>
+      </check>
+    </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_vars" selected="true">
       <title>Check if variables in crontab are set correctly.</title>
