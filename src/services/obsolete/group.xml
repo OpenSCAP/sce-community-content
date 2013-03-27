@@ -19,91 +19,44 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_obsolete" selected="true">
     <title>Obsolete services</title>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_finger" selected="true">
-      <title>Disable finger</title>
+    <description>A list of obsolete services are checked if they are disabled. These services are considered to be insecure for various reasons (i.e. non-encrypted password transfer, etc.)</description>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_finger_server" selected="true">
+      <title>Check if the finger service package is installed.</title>
       <description>
-        <xhtml:p>Check if 'finger' service is disabled</xhtml:p>
+        <xhtml:p>The finger service is considered obsolete and should therefore not be installed.</xhtml:p>
         <xhtml:p>Disabling 'finger' prevents other (possibly remote) users from querying who is logged onto this machine.</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>/etc/xinetd.d/finger</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
       </description>
       <ident system="https://www.pcisecuritystandards.org">PCIDSS-2.2.2.b</ident>
+      <fix system="urn:xccdf:fix:script:sh">yum remove -y finger-server</fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
-        <check-content-ref href="NISPOM-Disable_Finger.sh"/>
+        <check-content-ref href="disabled_finger.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rexec" selected="true">
-      <title>Disable remote exec (rexec)</title>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rsh_server" selected="true">
+      <title>Check if the remote shell server package is installed.</title>
       <description>
-        <xhtml:p>Check if remote exec service is disabled.</xhtml:p>
-        <xhtml:p>Password authentication to rexec is transmitted in plain-text which is unacceptable.</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>/etc/xinetd.d/rexec</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
+        <xhtml:p>The services provided by the remote shell server package are considered obsolete and therefore should not be installed.</xhtml:p>
+        <xhtml:p>The services provided do not implement encrypted authentication methods, passwords are transmitted in plain-text which is unacceptable.</xhtml:p>
       </description>
       <ident system="https://www.pcisecuritystandards.org">PCIDSS-2.2.2.b</ident>
+      <fix system="urn:xccdf:fix:script:sh">yum remove -y rsh-server</fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
-        <check-content-ref href="NISPOM-Disable_Remote_Exec-rexec.sh"/>
+        <check-content-ref href="disabled_rsh.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rlogin" selected="true">
-      <title>Disable remote login (rlogin)</title>
-      <description>
-        <xhtml:p>Check if remote login service is disabled.</xhtml:p>
-        <xhtml:p>Remote login has several security flaws unacceptable in secure systems. SSH is a better alternative.</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>/etc/xinetd.d/rlogin</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
-      </description>
-      <ident system="https://www.pcisecuritystandards.org">PCIDSS-2.2.2.b</ident>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="NISPOM-Disable_Remote_Login-rlogin.sh"/>
-      </check>
-    </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rsh" selected="true">
-      <title>Disable remote shell (rsh)</title>
-      <description>
-        <xhtml:p>Check if rsh service is disabled.</xhtml:p>
-        <xhtml:p>rsh has unacceptable security flaws including sending unencrypted password over the network.</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>/etc/xinetd.d/rsh</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
-      </description>
-      <ident system="https://www.pcisecuritystandards.org">PCIDSS-2.2.2.b</ident>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="NISPOM-Disable_Remote_Shell-rsh.sh"/>
-      </check>
-    </Rule>
+
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_telnetd" selected="true">
-      <title>Disable Telnet service</title>
+      <title>Check if the telnet service package</title>
       <description>
-        <xhtml:p>Check if telnet service is disabled.</xhtml:p>
-        <xhtml:p>Allowing telnet on a system is insecure as telnet does not use encryption for sending user credentials.</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>/etc/xinetd.d/telnet</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
+        <xhtml:p>The telnet service is considered obsolete and therefore should not be installed.</xhtml:p>
+        <xhtml:p>The services provided do not implement encrypted authentication methods, passwords are transmitted in plain-text which is unacceptable.</xhtml:p>
       </description>
       <ident system="https://www.pcisecuritystandards.org">PCIDSS-2.2.2.b</ident>
+      <fix system="urn:xccdf:fix:script:sh">yum remove -y telnet-server</fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="16_telnet_config.sh"/>
