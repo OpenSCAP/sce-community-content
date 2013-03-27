@@ -29,12 +29,14 @@
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003080</ident>
       <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
         chmod u-x,go-rwx /etc/crontab
         find /etc/cron.d -type f -perm /0077 -exec chmod go-rwx {} \;
         find /etc/cron.daily -type f -perm /0077 -exec chmod go-rwx {} \;
         find /etc/cron.hourly -type f -perm /0077 -exec chmod go-rwx {} \;
         find /etc/cron.weekly -type f -perm /0077 -exec chmod go-rwx {} \;
         find /var/spool/cron/ -type f -perm /0077 -exec chmod go-rwx {} \;
+      ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -60,12 +62,14 @@
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
         chown root /etc/crontab
         find /etc/cron.d -type f ! -user root -exec chown root {} \;
         find /etc/cron.daily -type f ! -user root -exec chown root {} \;
         find /etc/cron.hourly -type f ! -user root -exec chown root {} \;
         find /etc/cron.weekly -type f ! -user root -exec chown root {} \;
         find /var/spool/cron/ -type f ! -user root -exec chown root {} \;
+      ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -91,12 +95,14 @@
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
         chgrp root /etc/crontab
         find /etc/cron.d -type f ! -group root -exec chgrp root {} \;
         find /etc/cron.daily -type f ! -group root -exec chgrp root {} \;
         find /etc/cron.hourly -type f ! -group root -exec chgrp root {} \;
         find /etc/cron.weekly -type f ! -group root -exec chgrp root {} \;
         find /var/spool/cron/ -type f ! -group root -exec chgrp root {} \;
+      ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -122,11 +128,13 @@
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003100</ident>
       <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
         find /etc/cron.d -type d -perm /0022 -exec chmod go-w {} \;
         find /etc/cron.daily -type d -perm /0022 -exec chmod go-w {} \;
         find /etc/cron.hourly -type d -perm /0022 -exec chmod go-w {} \;
         find /etc/cron.weekly -type d -perm /0022 -exec chmod go-w {} \;
         find /var/spool/cron -type d -perm /0022 -exec chmod go-w {} \;
+      ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -152,11 +160,13 @@
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003120</ident>
       <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
         find /etc/cron.d -type d \( ! -user root \) -exec chown root {} \;
         find /etc/cron.daily -type d \( ! -user root \) -exec chown root {} \;
         find /etc/cron.hourly -type d \( ! -user root \) -exec chown root {} \;
         find /etc/cron.weekly -type d \( ! -user root \) -exec chown root {} \;
         find /var/spool/cron -type d \( ! -user root \) -exec chown root {} \;
+      ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -182,11 +192,13 @@
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003140</ident>
       <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
         find /etc/cron.d -type d \( ! -user root \) -exec chgrp root {} \;
         find /etc/cron.daily -type d \( ! -user root \) -exec chgrp root {} \;
         find /etc/cron.hourly -type d \( ! -user root \) -exec chgrp root {} \;
         find /etc/cron.weekly -type d \( ! -user root \) -exec chgrp root {} \;
         find /var/spool/cron -type d \( ! -user root \) -exec chgrp root {} \;
+      ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -206,6 +218,11 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
+        sed -i 's,^\s*SHELL=.*$,SHELL=/bin/bash,g' /etc/crontab
+      ]]>
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="CHK00_vars.sh"/>
@@ -224,6 +241,11 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
+        sed -i 's,^\s*PATH=.*$,PATH=/bin:/sbin:/usr/bin:/usr/sbin,g' /etc/crontab
+      ]]>
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="CHK00_vars.sh"/>
@@ -242,6 +264,11 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
+      <fixtext>
+        <xhtml:p>Ensure that all scripts and commands referenced by the crontab configuration file are owned by the user and group root. E.g.:
+          <xhtml:pre>chown root:root /path/to/command</xhtml:pre>
+        </xhtml:p>
+      </fixtext>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="CHK01_cmd_owners.sh"/>
