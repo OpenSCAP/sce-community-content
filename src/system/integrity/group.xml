@@ -2,33 +2,6 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_integrity" selected="true">
     <title>Integrity checks</title>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_integrity-directories" selected="true">
-      <title>Check integrity of system directories</title>
-      <description>
-        <xhtml:p>Check if system directories are present.</xhtml:p>
-        <xhtml:p>Missing system directories may indicate the system has been compromised.</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>/bin/*</xhtml:li>
-        		<xhtml:li>/sbin/*</xhtml:li>
-        		<xhtml:li>/lib/*</xhtml:li>
-        		<xhtml:li>/usr/bin/*</xhtml:li>
-        		<xhtml:li>/usr/sbin/*</xhtml:li>
-        		<xhtml:li>/usr/lib/*</xhtml:li>
-        		<xhtml:li>/usr/libexec/*</xhtml:li>
-        		<xhtml:li>/tmp/*</xhtml:li>
-        		<xhtml:li>/proc/*</xhtml:li>
-        		<xhtml:li>/var/*</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
-      </description>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="00_dirs.sh"/>
-      </check>
-    </Rule>
-
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_integrity-coreutils" selected="true">
       <title>Check integrity of coreutils package</title>
       <description>
