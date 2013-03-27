@@ -6,7 +6,7 @@
       <title>Check existence of the log files.</title>
       <description>
         <xhtml:p>Log files should exist on all GNU/Linux systems.</xhtml:p>
-        <xhtml:p>Missing log files may be proof that the system has been compromised.</xhtml:p>
+        <xhtml:p>Missing log files may be proof that the system has been tampered with (e.g. evidence of intrusion removed).</xhtml:p>
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
@@ -18,31 +18,9 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
-      <fix system="urn:xccdf:fix:script:sh"><![CDATA[
-        function fix
-        {
-          name=$1
-          owner=$2
-          group=$3
-          perm=$4
-
-          if [ ! -e $name -o ! -f $name ]
-          then
-            rm -rf $name
-        
-            touch $name
-            chown $owner $name
-            chgrp $group $name
-            chmod $perm $name
-          fi
-        }
-
-        fix /var/log/wtmp root utmp 664
-        fix /var/log/btmp root utmp 600
-        fix /var/log/lastlog root root 644
-        fix /var/run/utmp root utmp 664
-        fix /var/log/messages root root 600
-      ]]></fix>
+      <fixtext>
+        Restore the missing log files from some external source. They should be the most recent backup available.
+      </fixtext>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="CHK00_exists.sh"/>
@@ -53,7 +31,7 @@
       <title>Check owner of the log files.</title>
       <description>
         <xhtml:p>Log files should be owned by root.</xhtml:p>
-        <xhtml:p>Improper file permissions could compromise the integrity of the log files, defeating their purpose.</xhtml:p>
+        <xhtml:p>Improper file permissions could allow tampering with system logs.</xhtml:p>
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
@@ -65,13 +43,15 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
-      <fix system="urn:xccdf:fix:script:sh"><![CDATA[
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
         chown root /var/log/wtmp
         chown root /var/log/btmp
         chown root /var/log/lastlog
         chown root /var/run/utmp
         chown root /var/log/messages
-      ]]></fix>
+      ]]>
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="CHK01_owner.sh"/>
@@ -81,8 +61,8 @@
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_logging-group" selected="true">
       <title>Check group of the log files.</title>
       <description>
-        <xhtml:p>Log files should be owned by root.</xhtml:p>
-        <xhtml:p>Improper file permissions could compromise the integrity of the log files, defeating their purpose.</xhtml:p>
+        <xhtml:p>Log files should be group-owned by root.</xhtml:p>
+        <xhtml:p>Improper file permissions could allow tampering with system logs.</xhtml:p>
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
@@ -94,13 +74,15 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
-      <fix system="urn:xccdf:fix:script:sh"><![CDATA[
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
         chgrp utmp /var/log/wtmp
         chgrp utmp /var/log/btmp
         chgrp root /var/log/lastlog
         chgrp utmp /var/run/utmp
         chgrp root /var/log/messages
-      ]]></fix>
+      ]]>
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="CHK02_group.sh"/>
