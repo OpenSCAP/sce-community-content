@@ -8,13 +8,13 @@
   </Profile>
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_cron" selected="true">
-    <title>Cron</title>
+    <title>Crontab</title>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_files_permissions" selected="true">
-      <title>crontab files permissions</title>
+      <title>Check permission of crontab files</title>
       <description>
-        <xhtml:p>crontab files must be 0600 or less. cron script must be 0700 or less.</xhtml:p>
-        <xhtml:p>To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
+        <xhtml:p>Crontab configuration files and scripts must be only accessable (read, write, execute) by the owner.</xhtml:p>
+        <xhtml:p>To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured. Additionally the crontab files may contain sensitive information (passwords, etc.) that need to be protected from other users.</xhtml:p>
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
@@ -43,9 +43,9 @@
     </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_files_owners" selected="true">
-      <title>crontab files owners</title>
+      <title>Check owner of crontab files</title>
       <description>
-        <xhtml:p>crontab files and scripts must be owned by root</xhtml:p>
+        <xhtml:p>Crontab files and scripts must be owned by root.</xhtml:p>
         <xhtml:p>To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
         <xhtml:p>
           File(s) affected:
@@ -74,9 +74,9 @@
     </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_files_groups" selected="true">
-      <title>crontab files owners</title>
+      <title>Check group-owner of crontab files</title>
       <description>
-        <xhtml:p>crontab files and scripts must be group-owned by root</xhtml:p>
+        <xhtml:p>Crontab files and scripts must be group-owned by root.</xhtml:p>
         <xhtml:p>To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
         <xhtml:p>
           File(s) affected:
@@ -105,10 +105,10 @@
     </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_permissions" selected="true">
-      <title>cron dirs permissions</title>
+      <title>Check permissions of crontab directories</title>
       <description>
-        <xhtml:p>cron directories must be 0755 or more less.</xhtml:p>
-        <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious modification to these jobs, crontab files must be secured.</xhtml:p>
+        <xhtml:p>Crontab directories must not be writable by users other than the owner.</xhtml:p>
+        <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious addition of jobs, crontab directories must be secured.</xhtml:p>
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
@@ -135,10 +135,10 @@
     </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_owner" selected="true">
-      <title>cron dirs owner</title>
+      <title>Check owner of crontab directories.</title>
       <description>
-        <xhtml:p>cron directories must be owned by root.</xhtml:p>
-        <xhtml:p>Incorrect ownership of the cron or crontab directories could permit unauthorized users the ability to alter cron jobs and run automated jobs as privileged users. Failure to give ownership of cron or crontab directories to root or to bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
+        <xhtml:p>Crontab directories must be owned by root.</xhtml:p>
+        <xhtml:p>Incorrect ownership of the cron or crontab directories could permit unauthorized users the ability to alter or add cron jobs and run automated jobs as privileged users. Failure to give ownership of cron or crontab directories to root or to bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
@@ -165,10 +165,10 @@
     </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_group" selected="true">
-      <title>cron dirs group</title>
+      <title>Check group-owner of crontab directories.</title>
       <description>
-        <xhtml:p>cron directories must be group root.</xhtml:p>
-        <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious modification to these jobs, crontab files must be secured. Failure to give group-ownership of cron or crontab directories to a system group provides the designated group and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
+        <xhtml:p>Crontab directories must be group root.</xhtml:p>
+        <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious modification of these jobs, crontab files must be secured. Failure to give group-ownership of cron or crontab directories to a system group provides the designated group and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
@@ -194,17 +194,29 @@
       </check>
     </Rule>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_vars" selected="true">
-      <title>Check if variables in crontab are set correctly.</title>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_vars_shell" selected="true">
+      <title>Check if the shell used to execute crontab jobs is set correctly.</title>
       <description>
+        <xhtml:p>The shell should be set to /bin/bash in the crontab configuration file.</xhtml:p>
+        <xhtml:p>Having a non-standard shell used for executing the commands in the crontab may cause unintended consequences.</xhtml:p>
         <xhtml:p>
-          The SHELL and PATH variables in the crontab configuration file must be set to proper values:
+          File(s) affected:
           <xhtml:ul>
-            <xhtml:li>SHELL must be /bin/bash</xhtml:li>
-            <xhtml:li>PATH must contain only /bin, /sbin, /usr/bin and /usr/sbin</xhtml:li>
+            <xhtml:li>/etc/crontab</xhtml:li>
           </xhtml:ul>
         </xhtml:p>
-        <xhtml:p>Changed SHELL and PATH variables might indicate that the system has been compromised.</xhtml:p>
+      </description>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="CHK00_vars.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_vars_path" selected="true">
+      <title>Check if the PATH variable in crontab is set correctly.</title>
+      <description>
+        <xhtml:p>The PATH variable in the crontab configuration file must contain only /bin, /sbin, /usr/bin and /usr/sbin.</xhtml:p>
+        <xhtml:p>Additional paths in the PATH value may allow other users to influence the execution of a scheduled job through replacing the used shell.</xhtml:p>
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
@@ -219,10 +231,10 @@
     </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_records" selected="true">
-      <title>Check crontab record commands have proper owners.</title>
+      <title>Check if crontab record commands have proper owners.</title>
       <description>
-        <xhtml:p>All executables should be owned by root:root.</xhtml:p>
-        <xhtml:p>If the owner is not root:root for crontab commands it might indicate a compromised system.</xhtml:p>
+        <xhtml:p>All executables referenced in the crontab configuration file should be owned by root:root.</xhtml:p>
+        <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious modification of these jobs, crontab scripts must not be modifiable by anyone other than root. Failure to give proper ownership of crontab files to a system group provides the designated group and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
