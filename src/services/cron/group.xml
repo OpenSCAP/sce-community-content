@@ -252,29 +252,6 @@
       </check>
     </Rule>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_records" selected="true">
-      <title>Check if crontab record commands have proper owners.</title>
-      <description>
-        <xhtml:p>All executables referenced in the crontab configuration file should be owned by root:root.</xhtml:p>
-        <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious modification of these jobs, crontab scripts must not be modifiable by anyone other than root. Failure to give proper ownership of crontab files to a system group provides the designated group and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>/etc/crontab</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
-      </description>
-      <fixtext>
-        <xhtml:p>Ensure that all scripts and commands referenced by the crontab configuration file are owned by the user and group root. E.g.:
-          <xhtml:pre>chown root:root /path/to/command</xhtml:pre>
-        </xhtml:p>
-      </fixtext>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="CHK01_cmd_owners.sh"/>
-      </check>
-    </Rule>
-
   </Group>
 </xf:xccdf-fragment>
 

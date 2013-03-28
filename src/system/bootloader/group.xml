@@ -1,8 +1,4 @@
 <xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <Profile id="xccdf_org.open-scap.sce-community-content_profile_fedora-default">
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_bootloader-bootloader_password" selected="false"/>
-  </Profile>
-
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_bootloader" selected="true">
     <title>Bootloader</title>
     
@@ -29,26 +25,6 @@
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="GEN008720.sh"/>
-      </check>
-    </Rule>
-
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_bootloader-bootloader_password" selected="true">
-      <title>Check if grub is configured with password protected boot.</title>
-      <description>
-        <xhtml:p>Check if the grub configuration is set up with password protected boot option enabled.</xhtml:p>
-        <xhtml:p>To prevent unauthorized access, booting the system should only be allowed to authorized users with access to a password.</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>/boot/grub/grub.conf</xhtml:li>
-            <xhtml:li>/boot/grub2/grub.cfg</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
-      </description>
-      <fixtext>Add a <xhtml:em>password</xhtml:em> field to /boot/grub/grub.conf and/or /boot/grub2/grub.cfg.</fixtext>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="01_bootloader_password.sh"/>
       </check>
     </Rule>
   </Group>

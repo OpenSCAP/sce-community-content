@@ -2,31 +2,6 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_logging" selected="true">
     <title>Logging</title>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_logging-existence" selected="true">
-      <title>Check existence of the log files.</title>
-      <description>
-        <xhtml:p>Log files should exist on all GNU/Linux systems.</xhtml:p>
-        <xhtml:p>Missing log files may be proof that the system has been tampered with (e.g. evidence of intrusion removed).</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>/var/log/wtmp</xhtml:li>
-            <xhtml:li>/var/log/btmp</xhtml:li>
-            <xhtml:li>/var/log/lastlog</xhtml:li>
-            <xhtml:li>/var/log/utmp</xhtml:li>
-            <xhtml:li>/var/log/messages</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
-      </description>
-      <fixtext>
-        Restore the missing log files from some external source. They should be the most recent backup available.
-      </fixtext>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="CHK00_exists.sh"/>
-      </check>
-    </Rule>
-
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_logging-owner" selected="true">
       <title>Check owner of the log files.</title>
       <description>
