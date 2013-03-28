@@ -28,21 +28,21 @@
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
-        <![CDATA[
-          for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
-          do
-            chmod -R go-rwx $home/.ssh/identity
-            chown -R $user $home/.ssh/identity
-            chmod -R go-rwx $home/.ssh/id_rsa
-            chown -R $user $home/.ssh/id_rsa
-            chmod -R go-rwx $home/.ssh/id_dsa
-            chown -R $user $home/.ssh/id_dsa
-            chmod -R go-rwx $home/.ssh/config
-            chown -R $user $home/.ssh/config
-            chmod -R go-rwx $home/.ssh/random_seed
-            chown -R $user $home/.ssh/random_seed
-          done
-        ]]>
+      <![CDATA[
+        for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
+        do
+          chmod -R go-rwx $home/.ssh/identity
+          chown -R $user $home/.ssh/identity
+          chmod -R go-rwx $home/.ssh/id_rsa
+          chown -R $user $home/.ssh/id_rsa
+          chmod -R go-rwx $home/.ssh/id_dsa
+          chown -R $user $home/.ssh/id_dsa
+          chmod -R go-rwx $home/.ssh/config
+          chown -R $user $home/.ssh/config
+          chmod -R go-rwx $home/.ssh/random_seed
+          chown -R $user $home/.ssh/random_seed
+        done
+      ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -110,6 +110,8 @@
         else
           echo 'PermitEmptyPasswords no' >> /etc/ssh/sshd_config
         fi
+
+        service sshd try-restart
       ]]></fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
@@ -129,13 +131,17 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
-      <fix system="urn:xccdf:fix:script:sh"><![CDATA[
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
         # Check if PermitRootLogin is enabled (commented lines will be replaced too)
         if grep -q PermitRootLogin /etc/ssh/sshd_config
         then
           sed -i 's|^.*PermitRootLogin.*$|PermitRootLogin no|ig' /etc/ssh/sshd_config
         fi
-      ]]></fix>
+
+        service sshd try-restart
+      ]]>
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="NISPOM-SSHD_Disable_Root_Login.sh"/>
