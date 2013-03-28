@@ -567,69 +567,6 @@
         <check-content-ref href="GEN001300.sh"/>
       </check>
     </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-passwd_file_permissions" selected="true">
-      <title>password file permissions</title>
-      <description>
-        <xhtml:p>/etc/passwd must be 0644 or less.</xhtml:p>
-        <xhtml:p>If the passwd file is writable by a group-owner or the world, the risk of passwd file compromise is increased. The passwd file contains the list of accounts on the system and associated information.</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>/etc/passwd</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
-      </description>
-      <ident system="http://iase.disa.mil/stigs">GEN001380</ident>
-      <fix system="urn:xccdf:fix:script:sh">
-        chmod u-x,go-wx /etc/passwd
-      </fix>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN001380.sh"/>
-      </check>
-    </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-shadow_file_owner" selected="true">
-      <title>shadow file owner</title>
-      <description>
-        <xhtml:p>/etc/shadow must be owned by root.</xhtml:p>
-        <xhtml:p>The /etc/shadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. Failure to give ownership of sensitive files or utilities to root or bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>/etc/shadow</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
-      </description>
-      <ident system="http://iase.disa.mil/stigs">GEN001400</ident>
-      <fix system="urn:xccdf:fix:script:sh">
-        chown root /etc/shadow
-      </fix>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN001400.sh"/>
-      </check>
-    </Rule>
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-shadow_file_permissions" selected="true">
-      <title>shadow file permissions</title>
-      <description>
-        <xhtml:p>/etc/shadow must be 0400 or less.</xhtml:p>
-        <xhtml:p>The /etc/shadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. The file also contains password hashes which must not be accessible to users other than root.</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>/etc/shadow</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
-      </description>
-      <ident system="http://iase.disa.mil/stigs">GEN001420</ident>
-      <fix system="urn:xccdf:fix:script:sh">
-        chmod u-wx,go-rwx /etc/shadow
-      </fix>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN001420.sh"/>
-      </check>
-    </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_dirs_permissions" selected="true">
       <title>home dirs permissisions</title>
       <description>

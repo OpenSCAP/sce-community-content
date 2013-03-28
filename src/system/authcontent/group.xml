@@ -2,11 +2,83 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_authcontent" selected="true">
     <title>Authentication settings</title>
 
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authcontent-passwd_file_permissions" selected="true">
+      <title>Check password file permissions.</title>
+      <description>
+        <xhtml:p>/etc/passwd must be writable only by its owner.</xhtml:p>
+        <xhtml:p>If the passwd file is writable by a group-owner or the world, the risk of passwd file compromise is increased. The passwd file contains the list of accounts on the system and associated information.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/passwd</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN001380</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
+        chmod u-x,go-wx /etc/passwd
+      ]]>
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="GEN001380.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authcontent-shadow_file_owner" selected="true">
+      <title>Check the owner of the shadow file.</title>
+      <description>
+        <xhtml:p>/etc/shadow must be owned by root.</xhtml:p>
+        <xhtml:p>The /etc/shadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. Failure to give ownership of sensitive files or utilities to root or bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/shadow</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN001400</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
+        chown root /etc/shadow
+      ]]>
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="GEN001400.sh"/>
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authcontent-shadow_file_permissions" selected="true">
+      <title>Check the permissions of the shadow file.</title>
+      <description>
+        <xhtml:p>/etc/shadow must only be accessible by its owner.</xhtml:p>
+        <xhtml:p>The /etc/shadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. The file also contains password hashes which must not be accessible to users other than root.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/shadow</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN001420</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
+        chmod u-wx,go-rwx /etc/shadow
+      ]]>
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-content-ref href="GEN001420.sh"/>
+      </check>
+    </Rule>
+
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authcontent-group" selected="true">
       <title>Check group file contents</title>
       <description>
-        <xhtml:p>The group file should have a valid format.</xhtml:p>
-        <xhtml:p>A group file with invalid content might indicate a compromised system.</xhtml:p>
+        <xhtml:p>The group file should have a valid format (see group(5) for further details).</xhtml:p>
+        <xhtml:p>An invalid group file might indicate a compromised system.</xhtml:p>
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
@@ -14,15 +86,17 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
+      <fixtext>Check the entries in /etc/group for invalid items, and remove or fix them.</fixtext>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="01_group.sh"/>
       </check>
     </Rule>
+
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authcontent-passwd" selected="true">
       <title>Check password file contents</title>
       <description>
-        <xhtml:p>The password file should have a valid format.</xhtml:p>
+        <xhtml:p>The password file should have a valid format (see passwd(5) for further details).</xhtml:p>
         <xhtml:p>An invalid password file might indicate a compromised system.</xhtml:p>
         <xhtml:p>
           File(s) affected:
@@ -31,15 +105,17 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
+      <fixtext>Check the entries in /etc/passwd for invalid items, and remove or fix them.</fixtext>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="01_passwd.sh"/>
       </check>
     </Rule>
+
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authcontent-shadow" selected="true">
       <title>Check shadow file contents</title>
       <description>
-        <xhtml:p>The shadow file should have a valid format.</xhtml:p>
+        <xhtml:p>The shadow file should have a valid format (see shadow(5) for further details).</xhtml:p>
         <xhtml:p>An invalid shadow file might indicate a compromised system.</xhtml:p>
         <xhtml:p>
           File(s) affected:
@@ -48,11 +124,13 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
+      <fixtext>Check the entries in /etc/shadow for invalid items, and remove or fix them. It is also advisable to change passwords if there was a leak of them.</fixtext>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="01_shadow.sh"/>
       </check>
     </Rule>
+
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authcontent-pam" selected="true">
       <title>Check PAM configuration</title>
       <description>
@@ -65,6 +143,10 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
+      <fixtext>Enable password strength check and repetitve login restrictions in /etc/pam.d/system-auth:
+        <xhtml:pre>password pam_cracklib.so # or pam_pwquality.so
+auth pam_tally.so</xhtml:pre>
+      </fixtext>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
         <check-content-ref href="08_pam.sh"/>
