@@ -2,14 +2,24 @@
 
 VA_RANDOMIZATION=1
 
-if [ -a /proc/sys/kernel/randomize_va_space ] &&
-   [ $VA_RANDOMIZATION -gt `cat /proc/sys/kernel/randomize_va_space` ]
+if [ ! -a /proc/sys/kernel/randomize_va_space ]
 then
-    echo "Virtual addresses randomization is disabled."
-    echo "You can use \"sysctl\" command to turn it on."
-
-    exit $XCCDF_RESULT_FAIL
+  echo 'WARNING: va randomization not found'
+  exit $XCCDF_RESULT_NOT_APPLICABLE
 fi
 
-exit $XCCDF_RESULT_PASS
+RET=$XCCDF_RESULT_PASS
 
+# Check sysctl configuration file(s)
+for config in /etc/sysctl.conf /etc/sysctl.d/*
+do
+  SETTING=$(cat $config | grep kernel.randomize_va_space | sed -e 's,[^#= ]\+\s*=\s*\([^#]\+\),\1,g')
+
+  if [ $SETTING -ne $EXEC_SHIELD ]
+  then
+    echo "va randomization is disabled in $config"
+    RET=$XCCDF_RESULT_FAIL
+  fi
+done
+
+exit $RET
