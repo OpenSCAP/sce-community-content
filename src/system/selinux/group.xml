@@ -1,0 +1,50 @@
+<xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <Group id="xccdf_org.open-scap.sce-community-content_group_system_selinux" selected="true">
+    <title>SELinux</title>
+    
+    <Value id="xccdf_org.open-scap.sce-community-content_value_system_selinux_desired_selinux_state" type="string" operator="equals">
+      <title>Desired SELinux state</title>
+      <description xml:lang="en"> 
+enforcing - SELinux security policy is enforced. <xhtml:br />
+permissive - SELinux prints warnings instead of enforcing.<xhtml:br />
+disabled - SELinux is fully disabled.
+      </description>
+      <question xml:lang="en">Set the SELinux state</question>
+      <value>enforcing</value>
+      <value selector="enforcing">enforcing</value>
+      <value selector="permissive">permissive</value>
+      <value selector="disabled">disabled</value>
+      <match>enforcing|permissive|disabled</match>
+      <choices mustMatch="1">
+        <choice>enforcing</choice>
+        <choice>permissive</choice>
+        <choice>disabled</choice>
+      </choices>
+    </Value>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_selinux-selinux" selected="true">
+      <title>Check SELinux state.</title>
+      <description>
+        <xhtml:p>SELinux should be configured to enforcing or permissive, depending on a passed variable. By default, the value should be enforcing.</xhtml:p>
+        <xhtml:p>Enabling SELinux heightens the systems security. If SELinux has been disabled suddently it might indicate a compromised system.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/selinux/config</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh" reboot="1">
+        EXPECTED_STATE="<sub idref="xccdf_org.open-scap.sce-community-content_value_system_selinux_desired_selinux_state" />"
+      <![CDATA[
+        sed -i "s,^[^#]*SELINUX=.*$,SELINUX=$EXPECTED_STATE,g" /etc/selinux/config
+      ]]>
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout"/>
+        <check-export value-id="xccdf_org.open-scap.sce-community-content_value_system_selinux_desired_selinux_state" export-name="EXPECTED_STATE"/>
+        <check-content-ref href="09_selinux.sh"/>
+      </check>
+    </Rule>
+  </Group>
+</xf:xccdf-fragment>
