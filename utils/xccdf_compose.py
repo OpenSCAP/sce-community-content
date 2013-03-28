@@ -91,6 +91,10 @@ def perform_autoqa(path_prefix, group_tree):
                 print("Rule %r contains no proper list of affected file(s)" % element.get("id", ""))
                 continue
 
+            # Check if the rule contains a remediation script
+            if element.find("{http://checklists.nist.gov/xccdf/1.2}fix") is None:
+                print("Rule %r does not have a remediation script" % element.get("id", ""))
+
         perform_autoqa(os.path.join(path_prefix, f), subgroups)
 
 def repath_group_xml_tree(source_dir, new_base_dir, group_tree):
