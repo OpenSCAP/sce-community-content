@@ -11,8 +11,10 @@ fi
 RET=$XCCDF_RESULT_PASS
 
 # Check sysctl configuration file(s)
-for config in /etc/sysctl.conf /etc/sysctl.d/*
+for config in $(ls -1 /etc/sysctl.conf /etc/sysctl.d/* 2>/dev/null)
 do
+  grep -q kernel.randomize_va_space $config || continue
+
   SETTING=$(cat $config | grep kernel.randomize_va_space | sed -e 's,[^#= ]\+\s*=\s*\([^#]\+\),\1,g')
 
   if [ $SETTING -ne $EXEC_SHIELD ]

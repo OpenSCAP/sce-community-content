@@ -11,8 +11,10 @@ fi
 RET=$XCCDF_RESULT_PASS
 
 # Check sysctl configuration file(s)
-for config in /etc/sysctl.conf /etc/sysctl.d/*
+for config in $(ls -1 /etc/sysctl.conf /etc/sysctl.d/* 2>/dev/null)
 do
+  grep -q kernel.exec-shield $config || continue
+
   SETTING=$(cat $config | grep kernel.exec-shield | sed -e 's,[^#= ]\+\s*=\s*\([^#]\+\),\1,g')
 
   if [ $SETTING -ne $EXEC_SHIELD ]
