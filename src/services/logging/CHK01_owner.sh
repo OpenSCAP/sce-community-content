@@ -8,7 +8,7 @@ LOGFILES="/var/log/wtmp root utmp 664
 
 RET=$XCCDF_RESULT_PASS
 
-while name owner group perm
+while read name owner group perm
 do
   REAL_OWNER=$(stat -c '%U' $name)
   if [ "x$REAL_OWNER" != "x$owner" ]
