@@ -193,11 +193,11 @@
       <ident system="http://iase.disa.mil/stigs">GEN003140</ident>
       <fix system="urn:xccdf:fix:script:sh">
       <![CDATA[
-        find /etc/cron.d -type d \( ! -user root \) -exec chgrp root {} \;
-        find /etc/cron.daily -type d \( ! -user root \) -exec chgrp root {} \;
-        find /etc/cron.hourly -type d \( ! -user root \) -exec chgrp root {} \;
-        find /etc/cron.weekly -type d \( ! -user root \) -exec chgrp root {} \;
-        find /var/spool/cron -type d \( ! -user root \) -exec chgrp root {} \;
+        find /etc/cron.d -type d \( ! -group root \) -exec chgrp root {} \;
+        find /etc/cron.daily -type d \( ! -group root \) -exec chgrp root {} \;
+        find /etc/cron.hourly -type d \( ! -group root \) -exec chgrp root {} \;
+        find /etc/cron.weekly -type d \( ! -group root \) -exec chgrp root {} \;
+        find /var/spool/cron -type d \( ! -group root \) -exec chgrp root {} \;
       ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">

@@ -19,7 +19,7 @@ while read vars; do
         PATH)
             TMP=$IFS
             IFS=$'\n'
-            EXP_DIRS=($((sort | uniq) <<< "${CRON_PATH_DIRS}"))
+            EXP_DIRS=($((sort | uniq) <<< "${CRON_PATH_DIRS[*]}"))
             CUR_DIRS=($((tr ':' '\n' | sort | uniq) <<< "${VAR_PATH}"))
             IFS=$TMP
 
