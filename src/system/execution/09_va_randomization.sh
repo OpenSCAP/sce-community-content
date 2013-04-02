@@ -2,7 +2,7 @@
 
 VA_RANDOMIZATION=1
 
-if [ ! -a /proc/sys/kernel/randomize_va_space ]
+if [ ! -f /proc/sys/kernel/randomize_va_space ]
 then
   echo 'WARNING: va randomization not found'
   exit $XCCDF_RESULT_NOT_APPLICABLE

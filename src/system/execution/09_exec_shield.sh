@@ -2,7 +2,7 @@
 
 EXEC_SHIELD=1
 
-if [ ! -a /proc/sys/kernel/exec-shield ]
+if [ ! -f /proc/sys/kernel/exec-shield ]
 then
   echo 'WARNING: exec-shield not found'
   exit $XCCDF_RESULT_NOT_APPLICABLE
