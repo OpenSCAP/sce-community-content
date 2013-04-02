@@ -50,7 +50,9 @@ cat $EXPORTS | sed 's/ \+/\t/g' |sed 's/\t\+/\t/g' |  # spaces and tabs to one t
 		done	
 #		IFS=$OLDIFS	
 	done
+	exit $ret
 }
 
+ret=$?
 exit $ret
 
