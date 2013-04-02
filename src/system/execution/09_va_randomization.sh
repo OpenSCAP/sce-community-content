@@ -17,7 +17,7 @@ do
 
   SETTING=$(cat $config | grep kernel.randomize_va_space | sed -e 's,[^#= ]\+\s*=\s*\([^#]\+\),\1,g')
 
-  if [ $SETTING -ne $EXEC_SHIELD ]
+  if [ $SETTING -ne $VA_RANDOMIZATION ]
   then
     echo "va randomization is disabled in $config"
     RET=$XCCDF_RESULT_FAIL

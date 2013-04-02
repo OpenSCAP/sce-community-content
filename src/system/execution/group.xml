@@ -22,7 +22,7 @@
         do
           SETTING=$(cat $config | grep kernel.exec-shield | sed -e 's,[^#= ]\+\s*=\s*\([^#]\+\),\1,g')
 
-          if [ $SETTING -ne $EXEC_SHIELD ]
+          if [ $SETTING -ne 0 ]
           then
             FOUND=1
             sed -i 's,^.*kernel.exec-shield.*$,kernel.exec-shield = 1,' $config
@@ -61,7 +61,7 @@
         do
           SETTING=$(cat $config | grep kernel.randomize_va_space | sed -e 's,[^#= ]\+\s*=\s*\([^#]\+\),\1,g')
 
-          if [ $SETTING -ne $EXEC_SHIELD ]
+          if [ $SETTING -ne 0 ]
           then
             FOUND=1
             sed -i 's,^.*kernel.randomize_va_space.*$,kernel.randomize_va_space = 1,' $config
