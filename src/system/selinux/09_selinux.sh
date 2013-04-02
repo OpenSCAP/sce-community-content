@@ -15,7 +15,7 @@ then
     exit $XCCDF_RESULT_NOT_APPLICABLE
 fi
 
-SELINUX_STATE=$(cat $SELINUX_CONFIG | sed -n 's,^[^#]*SELINUX=\([a-zA-Z0-9]*\)$,p')
+SELINUX_STATE=$(cat $SELINUX_CONFIG | sed -n 's,^[^#]*SELINUX=\([a-zA-Z0-9]*\)$,\1,p')
 
 if [ $SELINUX_STATE != $XCCDF_VALUE_EXPECTED_STATE ]
 then
