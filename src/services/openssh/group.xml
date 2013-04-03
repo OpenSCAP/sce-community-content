@@ -29,7 +29,7 @@
       </description>
       <fix system="urn:xccdf:fix:script:sh">
       <![CDATA[
-        for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
+        while read user home
         do
           chmod -R go-rwx $home/.ssh/identity
           chown -R $user $home/.ssh/identity
@@ -41,7 +41,10 @@
           chown -R $user $home/.ssh/config
           chmod -R go-rwx $home/.ssh/random_seed
           chown -R $user $home/.ssh/random_seed
-        done
+        done <<_EOF
+        $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 1,6 | tr ':' ' ')
+_EOF
+        exit 0
       ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">
@@ -68,7 +71,7 @@
       </description>
       <fix system="urn:xccdf:fix:script:sh">
       <![CDATA[
-        for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
+        while read user home
         do
           chmod -R go-w $home/.ssh
           chown -R $user $home/.ssh
@@ -80,7 +83,10 @@
           chown -R $user $home/.ssh/known_hosts
           chmod -R go-w $home/.ssh/rc
           chown -R $user $home/.ssh/rc
-        done
+        done <<_EOF
+        $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 1,6 | tr ':' ' ')
+_EOF
+        exit 0
       ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">

@@ -67,7 +67,7 @@ do
     fi
 
 done <<EOF
-$(cat /etc/passwd | cut -d ':' -f 1,6,7)
+$(cat /etc/passwd | cut -d ':' -f 1,6,7 | tr ':' ' ')
 EOF
 
 exit $RET
