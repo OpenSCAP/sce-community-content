@@ -31,20 +31,34 @@
       <![CDATA[
         while read user home
         do
-          chmod -R go-rwx $home/.ssh/identity
-          chown -R $user $home/.ssh/identity
-          chmod -R go-rwx $home/.ssh/id_rsa
-          chown -R $user $home/.ssh/id_rsa
-          chmod -R go-rwx $home/.ssh/id_dsa
-          chown -R $user $home/.ssh/id_dsa
-          chmod -R go-rwx $home/.ssh/config
-          chown -R $user $home/.ssh/config
-          chmod -R go-rwx $home/.ssh/random_seed
-          chown -R $user $home/.ssh/random_seed
+          if [ -e $home/.ssh/identity ]
+          then
+              chmod -R go-rwx $home/.ssh/identity
+              chown -R $user $home/.ssh/identity
+          fi
+          if [ -e $home/.ssh/id_rsa ]
+          then
+              chmod -R go-rwx $home/.ssh/id_rsa
+              chown -R $user $home/.ssh/id_rsa
+          fi
+          if [ -e $home/.ssh/id_dsa ]
+          then
+              chmod -R go-rwx $home/.ssh/id_dsa
+              chown -R $user $home/.ssh/id_dsa
+          fi
+          if [ -e $home/.ssh/config ]
+          then
+              chmod -R go-rwx $home/.ssh/config
+              chown -R $user $home/.ssh/config
+          fi
+          if [ -e $home/.ssh/random_seed ]
+          then
+              chmod -R go-rwx $home/.ssh/random_seed
+              chown -R $user $home/.ssh/random_seed
+          fi
         done <<_EOF
         $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 1,6 | tr ':' ' ')
 _EOF
-        exit 0
       ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">
@@ -73,20 +87,34 @@ _EOF
       <![CDATA[
         while read user home
         do
-          chmod -R go-w $home/.ssh
-          chown -R $user $home/.ssh
-          chmod -R go-w $home/.ssh/authorized_keys
-          chown -R $user $home/.ssh/authorized_keys
-          chmod -R go-w $home/.ssh/environment
-          chown -R $user $home/.ssh/environment
-          chmod -R go-w $home/.ssh/known_hosts
-          chown -R $user $home/.ssh/known_hosts
-          chmod -R go-w $home/.ssh/rc
-          chown -R $user $home/.ssh/rc
+          if [ -e $home/.ssh ]
+          then
+              chmod -R go-w $home/.ssh
+              chown -R $user $home/.ssh
+          fi
+          if [ -e $home/.ssh/authorized_keys ]
+          then
+              chmod -R go-w $home/.ssh/authorized_keys
+              chown -R $user $home/.ssh/authorized_keys
+          fi
+          if [ -e $home/.ssh/environment ]
+          then
+              chmod -R go-w $home/.ssh/environment
+              chown -R $user $home/.ssh/environment
+          fi
+          if [ -e $home/.ssh/known_hosts ]
+          then
+              chmod -R go-w $home/.ssh/known_hosts
+              chown -R $user $home/.ssh/known_hosts
+          fi
+          if [ -e $home/.ssh/rc ]
+          then
+              chmod -R go-w $home/.ssh/rc
+              chown -R $user $home/.ssh/rc
+          fi
         done <<_EOF
         $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 1,6 | tr ':' ' ')
 _EOF
-        exit 0
       ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">
