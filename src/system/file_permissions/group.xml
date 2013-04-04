@@ -73,13 +73,21 @@
       </description>
       <fix system="urn:xccdf:fix:script:sh">
       <![CDATA[
-        for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
+        while read user home
         do
-          chmod -R go-rwx $home/.pgp/randseed.bin
-          chown -R $user $home/.pgp/randseed.bin
-          chmod -R go-rwx $home/.pgp/secring.pgp
-          chown -R $user $home/.pgp/secring.pgp
-        done
+            if [ -e $home/.pgp/randseed.bin ]
+            then
+                chmod -R go-rwx $home/.pgp/randseed.bin
+                chown -R $user $home/.pgp/randseed.bin
+            fi
+            if [ -e $home/.pgp/secring.pgp ]
+            then
+                chmod -R go-rwx $home/.pgp/secring.pgp
+                chown -R $user $home/.pgp/secring.pgp
+            fi
+        done <<_EOF
+        $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 1,6 | tr ':' ' ')
+_EOF
       ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">
@@ -102,11 +110,16 @@
       </description>
       <fix system="urn:xccdf:fix:script:sh">
       <![CDATA[
-        for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
+        while read user home
         do
-          chmod -R go-rwx $home/.gnupg/secring.gpg
-          chown -R $user $home/.gnupg/secring.gpg
-        done
+            if [ -e $home/.gnupg/secring.gpg ]
+            then
+                chmod -R go-rwx $home/.gnupg/secring.gpg
+                chown -R $user $home/.gnupg/secring.gpg
+            fi
+        done <<_EOF
+        $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 1,6 | tr ':' ' ')
+_EOF
       ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">
@@ -132,17 +145,31 @@
       </description>
       <fix system="urn:xccdf:fix:script:sh">
       <![CDATA[
-        for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
+        while read user home
         do
-          chmod -R go-rwx $home/.netrc
-          chown -R $user $home/.netrc
-          chmod -R go-rwx $home/.rhosts
-          chown -R $user $home/.rhosts
-          chmod -R go-rwx $home/.shosts
-          chown -R $user $home/.shosts
-          chmod -R go-rwx $home/.Xauthority
-          chown -R $user $home/.Xauthority
-        done
+            if [ -e $home/.netrc ]
+            then
+                chmod -R go-rwx $home/.netrc
+                chown -R $user $home/.netrc
+            fi
+            if [ -e $home/.rhosts ]
+            then
+                chmod -R go-rwx $home/.rhosts
+                chown -R $user $home/.rhosts
+            fi
+            if [ -e $home/.shosts ]
+            then
+                chmod -R go-rwx $home/.shosts
+                chown -R $user $home/.shosts
+            fi
+            if [ -e $home/.Xauthority ]
+            then
+                chmod -R go-rwx $home/.Xauthority
+                chown -R $user $home/.Xauthority
+            fi
+        done <<_EOF
+        $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 1,6 | tr ':' ' ')
+_EOF
       ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">
@@ -177,35 +204,76 @@
       </description>
       <fix system="urn:xccdf:fix:script:sh">
       <![CDATA[
-        for user in $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 6)
+        while read user home
         do
-          chmod -R go-w $home/.bashrc
-          chown -R $user $home/.bashrc
-          chmod -R go-w $home/.bash_profile
-          chown -R $user $home/.bash_profile
-          chmod -R go-w $home/.bash_login
-          chown -R $user $home/.bash_login
-          chmod -R go-w $home/.bash_logout
-          chown -R $user $home/.bash_logout
-          chmod -R go-w $home/.klogin
-          chown -R $user $home/.klogin
-          chmod -R go-w $home/.login
-          chown -R $user $home/.login
-          chmod -R go-w $home/.logout
-          chown -R $user $home/.logout
-          chmod -R go-w $home/.profile
-          chown -R $user $home/.profile
-          chmod -R go-w $home/.tcshrc
-          chown -R $user $home/.tcshrc
-          chmod -R go-w $home/.cshrc
-          chown -R $user $home/.cshrc
-          chmod -R go-w $home/.kshrc
-          chown -R $user $home/.kshrc
-          chmod -R go-w $home/.zshenv
-          chown -R $user $home/.zshenv
-          chmod -R go-w $home/.zshrc
-          chown -R $user $home/.zshrc
-        done
+            if [ -e $home/.bashrc ]
+            then
+                chmod -R go-w $home/.bashrc
+                chown -R $user $home/.bashrc
+            fi
+            if [ -e $home/.bash_profile ]
+            then
+                chmod -R go-w $home/.bash_profile
+                chown -R $user $home/.bash_profile
+            fi
+            if [ -e $home/.bash_login ]
+            then
+                chmod -R go-w $home/.bash_login
+                chown -R $user $home/.bash_login
+            fi
+            if [ -e $home/.bash_logout ]
+            then
+                chmod -R go-w $home/.bash_logout
+                chown -R $user $home/.bash_logout
+            fi
+            if [ -e $home/.klogin ]
+            then
+                chmod -R go-w $home/.klogin
+                chown -R $user $home/.klogin
+            fi
+            if [ -e $home/.login ]
+            then
+                chmod -R go-w $home/.login
+                chown -R $user $home/.login
+            fi
+            if [ -e $home/.logout ]
+            then
+                chmod -R go-w $home/.logout
+                chown -R $user $home/.logout
+            fi
+            if [ -e $home/.profile ]
+            then
+                chmod -R go-w $home/.profile
+                chown -R $user $home/.profile
+            fi
+            if [ -e $home/.tcshrc ]
+            then
+                chmod -R go-w $home/.tcshrc
+                chown -R $user $home/.tcshrc
+            fi
+            if [ -e $home/.cshrc ]
+            then
+                chmod -R go-w $home/.cshrc
+                chown -R $user $home/.cshrc
+            fi
+            if [ -e $home/.kshrc ]
+            then
+                chmod -R go-w $home/.kshrc
+                chown -R $user $home/.kshrc
+            fi
+            if [ -e $home/.zshenv ]
+            then
+                chmod -R go-w $home/.zshenv
+                chown -R $user $home/.zshenv
+            fi
+            if [ -e $home/.zshrc ]
+            then
+                chmod -R go-w $home/.zshrc
+                chown -R $user $home/.zshrc
+            fi
+        done <<_EOF
+        $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 1,6 | tr ':' ' ')
+_EOF
       ]]>
       </fix>
       <check system="http://open-scap.org/page/SCE">
