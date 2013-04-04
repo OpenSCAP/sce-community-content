@@ -395,7 +395,7 @@ _EOF
       <ident system="http://iase.disa.mil/stigs">GEN001560</ident>
       <fix system="urn:xccdf:fix:script:sh">
       
-        find /home -mindepth 2 \( -type d -o -type f \) -perm /0022 -exec chmod g-w,o-rwx {} \;
+        find /home -mindepth 2 \( -type d -o -type f \) -perm /0027 -exec chmod g-w,o-rwx {} \;
       
       </fix>
       <check system="http://open-scap.org/page/SCE">
