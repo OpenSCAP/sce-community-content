@@ -25,7 +25,7 @@ PATH=/bin:/usr/bin
 
 # start a subshell
 output=$(
-find /etc -maxdepth 1 -type f -perm /0133 -name alias -printf "GEN004380: %p is %m should be 0644 or less\n" 2>/dev/null
+find /etc -maxdepth 1 -type f -perm /0133 -name aliases -printf "GEN004380: %p is %m should be 0644 or less\n" 2>/dev/null
 )
 
 # we captured output of the subshell, let's interpret it

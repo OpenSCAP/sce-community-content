@@ -25,7 +25,7 @@ PATH=/bin:/usr/bin
 
 # start a subshell
 output=$(
-find /etc -maxdepth 1 -type f \( ! -user root \) -name alias -printf "GEN004360: %p is user %u should be root\n" 2>/dev/null
+find /etc -maxdepth 1 -type f \( ! -user root \) -name aliases -printf "GEN004360: %p is user %u should be root\n" 2>/dev/null
 )
 
 # we captured output of the subshell, let's interpret it

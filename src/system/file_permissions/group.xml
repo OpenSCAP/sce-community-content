@@ -745,14 +745,14 @@ _EOF
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
-            <xhtml:li>/etc/alias</xhtml:li>
+            <xhtml:li>/etc/aliases</xhtml:li>
           </xhtml:ul>
         </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN004360</ident>
       <fix system="urn:xccdf:fix:script:sh">
       
-        chown root /etc/alias
+        chown root /etc/aliases
       
       </fix>
       <check system="http://open-scap.org/page/SCE">
@@ -769,14 +769,14 @@ _EOF
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
-            <xhtml:li>/etc/alias</xhtml:li>
+            <xhtml:li>/etc/aliases</xhtml:li>
           </xhtml:ul>
         </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN004380</ident>
       <fix system="urn:xccdf:fix:script:sh">
       
-        chmod u-x,go-wx /etc/alias
+        chmod u-x,go-wx /etc/aliases
       
       </fix>
       <check system="http://open-scap.org/page/SCE">
