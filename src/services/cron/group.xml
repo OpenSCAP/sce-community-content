@@ -225,7 +225,7 @@
       </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
-        <check-content-ref href="CHK00_vars.sh"/>
+        <check-content-ref href="check_shell.sh"/>
       </check>
     </Rule>
 
@@ -248,7 +248,7 @@
       </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout"/>
-        <check-content-ref href="CHK00_vars.sh"/>
+        <check-content-ref href="check_path.sh"/>
       </check>
     </Rule>
 
