@@ -1,8 +1,8 @@
-<xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<xf:xccdf-fragment xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_selinux" selected="true">
     <title>SELinux</title>
     
-    <Value id="xccdf_org.open-scap.sce-community-content_value_system_selinux_desired_selinux_state" type="string" operator="equals">
+    <Value id="xccdf_org.open-scap.sce-community-content_value_system_selinux_desired_selinux_state" operator="equals" type="string">
       <title>Desired SELinux state</title>
       <description xml:lang="en"> 
 enforcing - SELinux security policy is enforced. <xhtml:br />
@@ -34,16 +34,16 @@ disabled - SELinux is fully disabled.
           </xhtml:ul>
         </xhtml:p>
       </description>
-      <fix system="urn:xccdf:fix:script:sh" reboot="1">
+      <fix reboot="1" system="urn:xccdf:fix:script:sh">
         EXPECTED_STATE="<sub idref="xccdf_org.open-scap.sce-community-content_value_system_selinux_desired_selinux_state" />"
-      <![CDATA[
+      
         sed -i "s,^[^#]*SELINUX=.*$,SELINUX=$EXPECTED_STATE,g" /etc/selinux/config
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-export value-id="xccdf_org.open-scap.sce-community-content_value_system_selinux_desired_selinux_state" export-name="EXPECTED_STATE"/>
-        <check-content-ref href="09_selinux.sh"/>
+        <check-import import-name="stdout" />
+        <check-export export-name="EXPECTED_STATE" value-id="xccdf_org.open-scap.sce-community-content_value_system_selinux_desired_selinux_state" />
+        <check-content-ref href="selinux.sh" />
       </check>
     </Rule>
   </Group>

@@ -1,4 +1,4 @@
-<xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<xf:xccdf-fragment xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_execution" selected="true">
     <title>Execution restriction</title>
 
@@ -15,8 +15,8 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
-      <fix system="urn:xccdf:fix:script:sh" reboot="1">
-      <![CDATA[
+      <fix reboot="1" system="urn:xccdf:fix:script:sh">
+      
         FOUND=0
         for config in /etc/sysctl.conf /etc/sysctl.d/*
         do
@@ -31,13 +31,13 @@
 
         if [ $FOUND -eq 0 ]
         then
-          echo kernel.exec-shield = 1 >> /etc/sysctl.conf
+          echo kernel.exec-shield = 1 &gt;&gt; /etc/sysctl.conf
         fi
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="09_exec_shield.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="exec_shield.sh" />
       </check>
     </Rule>
 
@@ -54,8 +54,8 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
-      <fix system="urn:xccdf:fix:script:sh" reboot="1">
-      <![CDATA[
+      <fix reboot="1" system="urn:xccdf:fix:script:sh">
+      
         FOUND=0
         for config in /etc/sysctl.conf /etc/sysctl.d/*
         do
@@ -70,13 +70,13 @@
 
         if [ $FOUND -eq 0 ]
         then
-          echo kernel.randomize_va_space = 1 >> /etc/sysctl.conf
+          echo kernel.randomize_va_space = 1 &gt;&gt; /etc/sysctl.conf
         fi
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="09_va_randomization.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="va_randomization.sh" />
       </check>
     </Rule>
   </Group>

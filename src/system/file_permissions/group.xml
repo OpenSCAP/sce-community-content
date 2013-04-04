@@ -1,52 +1,52 @@
-<xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<xf:xccdf-fragment xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <Profile id="xccdf_org.open-scap.sce-community-content_profile_fedora-default">
-    <refine-value idref="xccdf_org.open-scap.sce-community-content_value_system_file_permissions-system_logs_permissions-allow_world_readable" selector="yes"/>
+    <refine-value idref="xccdf_org.open-scap.sce-community-content_value_system_file_permissions-system_logs_permissions-allow_world_readable" selector="yes" />
   </Profile>
 
   <Profile id="xccdf_org.open-scap.sce-community-content_profile_stig">
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-root_home_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-network_daemon_files" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_dirs_owner" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_dirs_group" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_logs_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-man_pages_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-library_files_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-passwd_file_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-shadow_file_owner" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-shadow_file_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_dirs_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_dirs_files_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-etc_rc_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-skeleton_files_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-etc_shell_files_owner" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-etc_shell_files_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-world_writable_dirs_sticky" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-world_writable_dirs_owner" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-audit_logs_owner" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-audit_logs_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-xinetd_dirs_owner" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-xinetd_files_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-services_file_owner" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-services_file_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-alias_file_owner" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-alias_file_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-smb_conf_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-root_home_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-network_daemon_files" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_dirs_owner" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_dirs_group" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_logs_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-man_pages_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-library_files_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-passwd_file_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-shadow_file_owner" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-shadow_file_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_dirs_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_dirs_files_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-etc_rc_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-skeleton_files_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-etc_shell_files_owner" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-etc_shell_files_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-world_writable_dirs_sticky" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-world_writable_dirs_owner" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-audit_logs_owner" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-audit_logs_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-xinetd_dirs_owner" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-xinetd_files_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-services_file_owner" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-services_file_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-alias_file_owner" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-alias_file_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-smb_conf_permissions" selected="true" />
   </Profile>
 
   <Profile id="xccdf_org.open-scap.sce-community-content_profile_pci-dss">
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files_owner" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_dirs_owner" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_dirs_group" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files_permissions" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files_owner" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_dirs_owner" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_dirs_group" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-system_command_files_permissions" selected="true" />
   </Profile>
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_file_permissions" selected="true">
     <title>File permissions</title>
 
-    <Value id="xccdf_org.open-scap.sce-community-content_value_system_file_permissions-system_logs_permissions-allow_world_readable" type="boolean" operator="equals">
+    <Value id="xccdf_org.open-scap.sce-community-content_value_system_file_permissions-system_logs_permissions-allow_world_readable" operator="equals" type="boolean">
       <title>Allow world readable logs</title>
       <description xml:lang="en">
         World readable logs are never allowed in strict hardened configurations but are common on desktops.
@@ -72,7 +72,7 @@
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         while read user home
         do
             if [ -e $home/.pgp/randseed.bin ]
@@ -85,14 +85,14 @@
                 chmod -R go-rwx $home/.pgp/secring.pgp
                 chown -R $user $home/.pgp/secring.pgp
             fi
-        done <<_EOF
+        done &lt;&lt;_EOF
         $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 1,6 | tr ':' ' ')
 _EOF
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="pgp_sensitive.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="home_pgp_sensitive.sh" />
       </check>
     </Rule>
 
@@ -109,7 +109,7 @@ _EOF
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         while read user home
         do
             if [ -e $home/.gnupg/secring.gpg ]
@@ -117,14 +117,14 @@ _EOF
                 chmod -R go-rwx $home/.gnupg/secring.gpg
                 chown -R $user $home/.gnupg/secring.gpg
             fi
-        done <<_EOF
+        done &lt;&lt;_EOF
         $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 1,6 | tr ':' ' ')
 _EOF
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="gnupg_sensitive.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="home_gnupg_sensitive.sh" />
       </check>
     </Rule>
 
@@ -144,7 +144,7 @@ _EOF
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         while read user home
         do
             if [ -e $home/.netrc ]
@@ -167,14 +167,14 @@ _EOF
                 chmod -R go-rwx $home/.Xauthority
                 chown -R $user $home/.Xauthority
             fi
-        done <<_EOF
+        done &lt;&lt;_EOF
         $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 1,6 | tr ':' ' ')
 _EOF
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="config_sensitive.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="home_config_sensitive.sh" />
       </check>
     </Rule>
 
@@ -203,7 +203,7 @@ _EOF
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         while read user home
         do
             if [ -e $home/.bashrc ]
@@ -271,14 +271,14 @@ _EOF
                 chmod -R go-w $home/.zshrc
                 chown -R $user $home/.zshrc
             fi
-        done <<_EOF
+        done &lt;&lt;_EOF
         $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 1,6 | tr ':' ' ')
 _EOF
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="shell_config.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="home_shell_config.sh" />
       </check>
     </Rule>
 
@@ -296,13 +296,13 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN000920</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         chmod g-w,o-rwx /root
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN000920.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="root_home_permissions.sh" />
       </check>
     </Rule>
 
@@ -321,14 +321,14 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001180</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         find /etc/sysconfig/network-scripts -type f -perm /0022 -exec chmod 0755 {} \;
-        [ -d /etc/sysconfig/networking ] && find /etc/sysconfig/networking -type f -perm /0022 -perm /0022 -exec chmod 0755 {} \;
-      ]]>
+        [ -d /etc/sysconfig/networking ] &amp;&amp; find /etc/sysconfig/networking -type f -perm /0022 -perm /0022 -exec chmod 0755 {} \;
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN001180.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="network_daemon_files.sh" />
       </check>
     </Rule>
 
@@ -346,13 +346,13 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001280</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         find /usr/share/man -type f -perm /0133 -exec chmod u-x,g-wx,o-wx {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN001280.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="man_pages_permissions.sh" />
       </check>
     </Rule>
 
@@ -370,13 +370,13 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001480</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         find /home -mindepth 1 -maxdepth 1 -type d -perm /0027 -exec chmod g-w,o-rwx {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN001480.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="home_dirs_permissions.sh" />
       </check>
     </Rule>
 
@@ -394,13 +394,13 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001560</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         find /home -mindepth 2 \( -type d -o -type f \) -perm /0022 -exec chmod g-w,o-rwx {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN001560.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="home_dirs_files_permissions.sh" />
       </check>
     </Rule>
 
@@ -421,7 +421,7 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001580</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         find /etc/rc* -type f -perm /0022 -exec chmod go-w {} \;
         find /etc/init.d -type f -perm /0022 -exec chmod go-w {} \;
 
@@ -431,11 +431,11 @@ _EOF
         elif [ -d /etc/systemd ] ; then
           find /etc/systemd -type f -perm /0022 -exec chmod go-w {} \;
         fi
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN001580.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="etc_rc_permissions.sh" />
       </check>
     </Rule>
 
@@ -453,13 +453,13 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001800</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         find /etc/skel -type f -perm /0133 -exec chmod u-x,og-wx {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN001800.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="skeleton_files_permissions.sh" />
       </check>
     </Rule>
 
@@ -478,15 +478,15 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001860</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         find /etc -maxdepth 1 -type f \( ! -user root \) -name bashrc -exec chown root {} \;
         find /etc -maxdepth 1 -type f \( ! -user root \) -name profile -exec chown root {} \;
         find /etc/profile.d/ -type f \( ! -user root \) -exec chown root {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN001860.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="etc_shell_files_owner.sh" />
       </check>
     </Rule>
 
@@ -505,15 +505,15 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001880</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         find /etc -maxdepth 1 -type f -perm /0022 -name bashrc -exec chmod go-w {} \;
         find /etc -maxdepth 1 -type f -perm /0022 -name profile -exec chmod go-w {} \;
         find /etc/profile.d/ -type f -perm /0022 -exec chmod go-w {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN001880.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="etc_shell_files_permissions.sh" />
       </check>
     </Rule>
 
@@ -531,13 +531,13 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002500</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         find / -path /proc -prune -o -type d \( -perm -0002 -a ! -perm -1000 \) -exec chmod +t {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN002500.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="world_writable_dirs_sticky.sh" />
       </check>
     </Rule>
 
@@ -555,14 +555,14 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002520</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         find / -path /proc -prune -o -type d \( -perm -0002 -a ! \( -user root -o -user gdm \) \) \
           -exec chown root {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN002520.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="world_writable_dirs_owner.sh" />
       </check>
     </Rule>
 
@@ -580,13 +580,13 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002680</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         find /var/log/audit -type f \( ! -user root \) -exec chown root {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN002680.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="audit_logs_owner.sh" />
       </check>
     </Rule>
 
@@ -604,13 +604,13 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002700</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         find /var/log/audit -type f -perm /0137 -exec chmod u-x,g-wx,o-rwx {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN002700.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="audit_logs_permissions.sh" />
       </check>
     </Rule>
 
@@ -628,13 +628,13 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002980</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         chmod u-x,go-rwx /etc/cron.allow
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN002980.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="cron_allow_permissions.sh" />
       </check>
     </Rule>
 
@@ -653,14 +653,14 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003720</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         chown root /etc/xinetd.conf
         find /etc/xinetd.d/ -type f \( ! -user root \) -exec chown root {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN003720.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="xinetd_dirs_owner.sh" />
       </check>
     </Rule>
 
@@ -679,14 +679,14 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003740</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         chmod u-x,g-wx,o-rwx /etc/xinetd.conf
         find /etc/xinetd.d/ -type f -perm /0137 -exec chmod u-x,g-wx,o-rwx {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN003740.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="xinetd_files_permissions.sh" />
       </check>
     </Rule>
 
@@ -704,13 +704,13 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003760</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         chown root /etc/services
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN003760.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="services_file_owner.sh" />
       </check>
     </Rule>
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-services_file_permissions" selected="true">
@@ -727,13 +727,13 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003780</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         chmod u-x,go-wx /etc/services
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN003780.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="services_file_permissions.sh" />
       </check>
     </Rule>
 
@@ -751,13 +751,13 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN004360</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         chown root /etc/alias
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN004360.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="alias_file_owner.sh" />
       </check>
     </Rule>
 
@@ -775,13 +775,13 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN004380</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         chmod u-x,go-wx /etc/alias
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN004380.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="alias_file_permissions.sh" />
       </check>
     </Rule>
 
@@ -799,13 +799,13 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN006140</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         chmod u-x,go-wx /etc/samba/smb.conf
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN006140.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="smb_conf_permissions.sh" />
       </check>
     </Rule>
   </Group>

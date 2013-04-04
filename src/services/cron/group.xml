@@ -1,10 +1,10 @@
-<xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<xf:xccdf-fragment xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <Profile id="xccdf_org.open-scap.sce-community-content_profile_stig">
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_allow_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_files_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_permissions" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_owner" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_group" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_allow_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_files_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_permissions" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_owner" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_group" selected="true" />
   </Profile>
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_cron" selected="true">
@@ -29,18 +29,18 @@
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003080</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         chmod u-x,go-rwx /etc/crontab
         find /etc/cron.d -type f -perm /0077 -exec chmod go-rwx {} \;
         find /etc/cron.daily -type f -perm /0077 -exec chmod go-rwx {} \;
         find /etc/cron.hourly -type f -perm /0077 -exec chmod go-rwx {} \;
         find /etc/cron.weekly -type f -perm /0077 -exec chmod go-rwx {} \;
         find /var/spool/cron/ -type f -perm /0077 -exec chmod go-rwx {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN003080.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="crontab_files_permissions.sh" />
       </check>
     </Rule>
 
@@ -62,18 +62,18 @@
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         chown root /etc/crontab
         find /etc/cron.d -type f ! -user root -exec chown root {} \;
         find /etc/cron.daily -type f ! -user root -exec chown root {} \;
         find /etc/cron.hourly -type f ! -user root -exec chown root {} \;
         find /etc/cron.weekly -type f ! -user root -exec chown root {} \;
         find /var/spool/cron/ -type f ! -user root -exec chown root {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="09_crontab_owners.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="crontab_files_owners.sh" />
       </check>
     </Rule>
 
@@ -95,18 +95,18 @@
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         chgrp root /etc/crontab
         find /etc/cron.d -type f ! -group root -exec chgrp root {} \;
         find /etc/cron.daily -type f ! -group root -exec chgrp root {} \;
         find /etc/cron.hourly -type f ! -group root -exec chgrp root {} \;
         find /etc/cron.weekly -type f ! -group root -exec chgrp root {} \;
         find /var/spool/cron/ -type f ! -group root -exec chgrp root {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="10_crontab_groups.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="crontab_files_groups.sh" />
       </check>
     </Rule>
 
@@ -128,17 +128,17 @@
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003100</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         find /etc/cron.d -type d -perm /0022 -exec chmod go-w {} \;
         find /etc/cron.daily -type d -perm /0022 -exec chmod go-w {} \;
         find /etc/cron.hourly -type d -perm /0022 -exec chmod go-w {} \;
         find /etc/cron.weekly -type d -perm /0022 -exec chmod go-w {} \;
         find /var/spool/cron -type d -perm /0022 -exec chmod go-w {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN003100.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="cron_dirs_permissions.sh" />
       </check>
     </Rule>
 
@@ -160,17 +160,17 @@
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003120</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         find /etc/cron.d -type d \( ! -user root \) -exec chown root {} \;
         find /etc/cron.daily -type d \( ! -user root \) -exec chown root {} \;
         find /etc/cron.hourly -type d \( ! -user root \) -exec chown root {} \;
         find /etc/cron.weekly -type d \( ! -user root \) -exec chown root {} \;
         find /var/spool/cron -type d \( ! -user root \) -exec chown root {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN003120.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="cron_dirs_owner.sh" />
       </check>
     </Rule>
 
@@ -192,17 +192,17 @@
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN003140</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         find /etc/cron.d -type d \( ! -group root \) -exec chgrp root {} \;
         find /etc/cron.daily -type d \( ! -group root \) -exec chgrp root {} \;
         find /etc/cron.hourly -type d \( ! -group root \) -exec chgrp root {} \;
         find /etc/cron.weekly -type d \( ! -group root \) -exec chgrp root {} \;
         find /var/spool/cron -type d \( ! -group root \) -exec chgrp root {} \;
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN003140.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="cron_dirs_group.sh" />
       </check>
     </Rule>
 
@@ -219,13 +219,13 @@
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         sed -i 's,^\s*SHELL=.*$,SHELL=/bin/bash,g' /etc/crontab
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="check_shell.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="crontab_vars_shell.sh" />
       </check>
     </Rule>
 
@@ -242,16 +242,15 @@
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         sed -i 's,^\s*PATH=.*$,PATH=/bin:/sbin:/usr/bin:/usr/sbin,g' /etc/crontab
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="check_path.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="crontab_vars_path.sh" />
       </check>
     </Rule>
 
   </Group>
 </xf:xccdf-fragment>
-

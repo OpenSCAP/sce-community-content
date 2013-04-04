@@ -1,10 +1,10 @@
-<xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<xf:xccdf-fragment xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <xf:sort-prefix>999</xf:sort-prefix>
 
   <Profile id="xccdf_org.open-scap.sce-community-content_profile_pci-dss">
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_finger_server" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rsh_server" selected="true"/>
-    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_telnet_server" selected="true"/>
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_finger_server" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rsh_server" selected="true" />
+    <select idref="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_telnet_server" selected="true" />
   </Profile>
 
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_obsolete" selected="true">
@@ -21,8 +21,8 @@
       <ident system="https://www.pcisecuritystandards.org">PCIDSS-2.2.2.b</ident>
       <fix system="urn:xccdf:fix:script:sh">yum remove -y finger-server</fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="disabled_finger.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="disable_finger_server.sh" />
       </check>
     </Rule>
 
@@ -35,8 +35,8 @@
       <ident system="https://www.pcisecuritystandards.org">PCIDSS-2.2.2.b</ident>
       <fix system="urn:xccdf:fix:script:sh">yum remove -y rsh-server</fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="disabled_rsh.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="disable_rsh_server.sh" />
       </check>
     </Rule>
 
@@ -49,8 +49,8 @@
       <ident system="https://www.pcisecuritystandards.org">PCIDSS-2.2.2.b</ident>
       <fix system="urn:xccdf:fix:script:sh">yum remove -y telnet-server</fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="disabled_telnet.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="disable_telnet_server.sh" />
       </check>
     </Rule>
   </Group>

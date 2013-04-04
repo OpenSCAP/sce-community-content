@@ -1,4 +1,4 @@
-<xf:xccdf-fragment xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<xf:xccdf-fragment xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <Group id="xccdf_org.open-scap.sce-community-content_group_system_authcontent" selected="true">
     <title>Authentication settings</title>
 
@@ -16,13 +16,13 @@
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001380</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         chmod u-x,go-wx /etc/passwd
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN001380.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="passwd_file_permissions.sh" />
       </check>
     </Rule>
 
@@ -40,13 +40,13 @@
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001400</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         chown root /etc/shadow
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN001400.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="shadow_file_owner.sh" />
       </check>
     </Rule>
 
@@ -64,13 +64,13 @@
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001420</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
+      
         chmod u-wx,go-rwx /etc/shadow
-      ]]>
+      
       </fix>
       <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout"/>
-        <check-content-ref href="GEN001420.sh"/>
+        <check-import import-name="stdout" />
+        <check-content-ref href="shadow_file_permissions.sh" />
       </check>
     </Rule>
   </Group>
