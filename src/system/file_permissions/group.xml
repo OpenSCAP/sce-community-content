@@ -58,6 +58,18 @@
       <value selector="no">0</value>
     </Value>
 
+    <Value id="xccdf_org.open-scap.sce-community-content_value_system_file_permissions-allow_group_readable_root" operator="equals" type="boolean">
+      <title>Allow root directory to be readable by its group</title>
+      <description xml:lang="en">
+        On hardened systems it is not advisable to have a group-readable /root directory, but it's acceptable on desktops.
+      </description>
+      <question xml:lang="en">Is group-readable /root directory enabled?</question>
+
+      <value>1</value>
+      <value selector="yes">1</value>
+      <value selector="no">0</value>
+    </Value>
+
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-home_pgp_sensitive" selected="true">
       <title>Check permission and owner of sensitive user-specific PGP files</title>
       <description>
@@ -285,7 +297,7 @@ _EOF
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-root_home_permissions" selected="true">
       <title>Check permissions of /root directory.</title>
       <description>
-        <xhtml:p>The /root should be only writable by it's owner and only readable by the it's group-owner (permission should be 0750 or less).</xhtml:p>
+        <xhtml:p>The /root directory should have its permissions set to 0750 or 0700 on hardened systems.</xhtml:p>
         <xhtml:p>Permissions greater than this could allow unauthorized users access to the root home directory.</xhtml:p>
         <xhtml:p>
           File(s) affected:
@@ -296,13 +308,38 @@ _EOF
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN000920</ident>
       <fix system="urn:xccdf:fix:script:sh">
-      
-        chmod g-w,o-rwx /root
-      
+        ENABLE_GROUP_READABLE="<sub idref="xccdf_org.open-scap.sce-community-content_value_system_file_permissions-allow_group_readable_root" />"
+        EXPECTED_PERMISSION=0700
+        if [ $ENABLE_GROUP_READABLE -eq 1 ]
+        then
+          EXPECTED_PERMISSION=0750
+        fi
+
+        chmod $EXPECTED_PERMISSION /root
       </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout" />
+        <check-export export-name="ENABLE_GROUP_READABLE" value-id="xccdf_org.open-scap.sce-community-content_value_system_file_permissions-allow_group_readable_root" />
         <check-content-ref href="root_home_permissions.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-root_home_owner" selected="true">
+      <title>Check owner of /root directory.</title>
+      <description>
+        <xhtml:p>The /root directory should be owned by the user root.</xhtml:p>
+        <xhtml:p>Permissions greater than this could allow unauthorized users access to the root home directory.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/root</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">chown root /root</fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="root_home_owner.sh" />
       </check>
     </Rule>
 
