@@ -14,7 +14,7 @@
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openssh-home_ssh_sensitive" selected="true">
       <title>Check permission and owner of sensitive SSH files</title>
       <description>
-        <xhtml:p>SSH related files containing sensitive data in the user directories must not be readable, writable or executable by other users.</xhtml:p>
+        <xhtml:p>SSH related files containing sensitive data in the user directories must have a permission of 0600 and owned by the proper user.</xhtml:p>
         <xhtml:p>User-specific SSH files may contain sensitive information (i.e. private keys, passwords, etc.) that can compromise the users integrity.</xhtml:p>
         <xhtml:p>
           File(s) affected:
@@ -33,27 +33,27 @@
         do
           if [ -e $home/.ssh/identity ]
           then
-              chmod -R go-rwx $home/.ssh/identity
+              chmod -R 0600 $home/.ssh/identity
               chown -R $user $home/.ssh/identity
           fi
           if [ -e $home/.ssh/id_rsa ]
           then
-              chmod -R go-rwx $home/.ssh/id_rsa
+              chmod -R 0600 $home/.ssh/id_rsa
               chown -R $user $home/.ssh/id_rsa
           fi
           if [ -e $home/.ssh/id_dsa ]
           then
-              chmod -R go-rwx $home/.ssh/id_dsa
+              chmod -R 0600 $home/.ssh/id_dsa
               chown -R $user $home/.ssh/id_dsa
           fi
           if [ -e $home/.ssh/config ]
           then
-              chmod -R go-rwx $home/.ssh/config
+              chmod -R 0600 $home/.ssh/config
               chown -R $user $home/.ssh/config
           fi
           if [ -e $home/.ssh/random_seed ]
           then
-              chmod -R go-rwx $home/.ssh/random_seed
+              chmod -R 0600 $home/.ssh/random_seed
               chown -R $user $home/.ssh/random_seed
           fi
         done &lt;&lt;_EOF
@@ -70,7 +70,7 @@ _EOF
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_openssh-home_ssh_pubkey" selected="true">
       <title>Check SSH public key permissions and owner</title>
       <description>
-        <xhtml:p>SSH public keys should not be writable by other users.</xhtml:p>
+        <xhtml:p>SSH public keys must have a permission of 0644 and owned by the proper user.</xhtml:p>
         <xhtml:p>Writable SSH public keys mean that other users may compromise the users data.</xhtml:p>
         <xhtml:p>
           File(s) affected:
@@ -89,27 +89,27 @@ _EOF
         do
           if [ -e $home/.ssh ]
           then
-              chmod -R go-w $home/.ssh
+              chmod -R 0644 $home/.ssh
               chown -R $user $home/.ssh
           fi
           if [ -e $home/.ssh/authorized_keys ]
           then
-              chmod -R go-w $home/.ssh/authorized_keys
+              chmod -R 0644 $home/.ssh/authorized_keys
               chown -R $user $home/.ssh/authorized_keys
           fi
           if [ -e $home/.ssh/environment ]
           then
-              chmod -R go-w $home/.ssh/environment
+              chmod -R 0644 $home/.ssh/environment
               chown -R $user $home/.ssh/environment
           fi
           if [ -e $home/.ssh/known_hosts ]
           then
-              chmod -R go-w $home/.ssh/known_hosts
+              chmod -R 0644 $home/.ssh/known_hosts
               chown -R $user $home/.ssh/known_hosts
           fi
           if [ -e $home/.ssh/rc ]
           then
-              chmod -R go-w $home/.ssh/rc
+              chmod -R 0644 $home/.ssh/rc
               chown -R $user $home/.ssh/rc
           fi
         done &lt;&lt;_EOF
