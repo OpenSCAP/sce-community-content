@@ -10,30 +10,88 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_cron" selected="true">
     <title>Crontab</title>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_allow_permissions" selected="true">
-      <title>Check permission of cron.allow file</title>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_allow_deny_permissions" selected="true">
+      <title>Check permission of cron.allow and cron.deny files</title>
       <description>
-        <xhtml:p>The cron.allow file must have its permissions set to 0600.</xhtml:p>
-        <xhtml:p>A cron.allow file that is readable and/or writable by other than root could allow potential intruders and malicious users to use the file contents to help discern information, such as who is allowed to execute cron programs, which could be harmful to overall system and network security.</xhtml:p>
+        <xhtml:p>The cron.allow and cron.deny files must have its permissions set to 0600 if they exist.</xhtml:p>
+        <xhtml:p>A cron.allow or cron.deny file that is readable and/or writable by other than root could allow potential intruders and malicious users to use the file contents to help discern information, such as who is allowed to execute cron programs, which could be harmful to overall system and network security.</xhtml:p>
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
             <xhtml:li>/etc/cron.allow</xhtml:li>
+            <xhtml:li>/etc/cron.deny</xhtml:li>
           </xhtml:ul>
         </xhtml:p>
       </description>
-      <ident system="http://iase.disa.mil/stigs">GEN002980</ident>
-      <fix system="urn:xccdf:fix:script:sh">chmod 0600 /etc/cron.allow</fix>
+      <reference href="http://csrc.nist.gov/publications/nistpubs/800-53-Rev3/sp800-53-rev3-final_updated-errata_05-01-2010.pdf">AC-6</reference>
+      <fix system="urn:xccdf:fix:script:sh">
+      
+        [ -e /etc/cron.allow ] &amp;&amp; chmod 0600 /etc/cron.allow
+        [ -e /etc/cron.deny ] &amp;&amp; chmod 0600 /etc/cron.deny
+      
+      </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout" />
-        <check-content-ref href="cron_allow_permissions.sh" />
+        <check-content-ref href="cron_allow_deny_permissions.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_allow_deny_owner" selected="true">
+      <title>Check owner of cron.allow and cron.deny files</title>
+      <description>
+        <xhtml:p>The cron.allow and cron.deny files must be owned by root.</xhtml:p>
+        <xhtml:p>A cron.allow or cron.deny file that is readable and/or writable by other than root could allow potential intruders and malicious users to use the file contents to help discern information, such as who is allowed to execute cron programs, which could be harmful to overall system and network security.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/cron.allow</xhtml:li>
+            <xhtml:li>/etc/cron.deny</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <reference href="http://csrc.nist.gov/publications/nistpubs/800-53-Rev3/sp800-53-rev3-final_updated-errata_05-01-2010.pdf">AC-6</reference>
+      <fix system="urn:xccdf:fix:script:sh">
+      
+        [ -e /etc/cron.allow ] &amp;&amp; chown root /etc/cron.allow
+        [ -e /etc/cron.deny ] &amp;&amp; chown root /etc/cron.deny
+      
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="cron_allow_deny_owner.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_allow_deny_group" selected="true">
+      <title>Check group-owner of cron.allow and cron.deny files</title>
+      <description>
+        <xhtml:p>The cron.allow and cron.deny files must be group-owned by root.</xhtml:p>
+        <xhtml:p>A cron.allow or cron.deny file that is readable and/or writable by other than root could allow potential intruders and malicious users to use the file contents to help discern information, such as who is allowed to execute cron programs, which could be harmful to overall system and network security.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/cron.allow</xhtml:li>
+            <xhtml:li>/etc/cron.deny</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <reference href="http://csrc.nist.gov/publications/nistpubs/800-53-Rev3/sp800-53-rev3-final_updated-errata_05-01-2010.pdf">AC-6</reference>
+      <fix system="urn:xccdf:fix:script:sh">
+      
+        [ -e /etc/cron.allow ] &amp;&amp; chgrp root /etc/cron.allow
+        [ -e /etc/cron.deny ] &amp;&amp; chgrp root /etc/cron.deny
+      
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="cron_allow_deny_group.sh" />
       </check>
     </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_files_permissions" selected="true">
       <title>Check permission of crontab files</title>
       <description>
-        <xhtml:p>Crontab configuration files and scripts must be only accessable (read, write, execute) by the owner.</xhtml:p>
+        <xhtml:p>Crontab configuration files and scripts must have a permission of 0700 for executables and 0600 for others.</xhtml:p>
         <xhtml:p>To protect the integrity of scheduled system jobs and prevent malicious modification to these jobs, crontab files must be secured. Additionally the crontab files may contain sensitive information (passwords, etc.) that need to be protected from other users.</xhtml:p>
         <xhtml:p>
           File(s) affected:
@@ -47,15 +105,16 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
+      <reference href="http://csrc.nist.gov/publications/nistpubs/800-53-Rev3/sp800-53-rev3-final_updated-errata_05-01-2010.pdf">AC-6</reference>
       <ident system="http://iase.disa.mil/stigs">GEN003080</ident>
       <fix system="urn:xccdf:fix:script:sh">
       
-        chmod u-x,go-rwx /etc/crontab
-        find /etc/cron.d -type f -perm /0077 -exec chmod go-rwx {} \;
-        find /etc/cron.daily -type f -perm /0077 -exec chmod go-rwx {} \;
-        find /etc/cron.hourly -type f -perm /0077 -exec chmod go-rwx {} \;
-        find /etc/cron.weekly -type f -perm /0077 -exec chmod go-rwx {} \;
-        find /var/spool/cron/ -type f -perm /0077 -exec chmod go-rwx {} \;
+        chmod 0600 /etc/crontab
+        find /etc/cron.d -type f -perm /0077 -exec chmod 0600 {} \;
+        find /etc/cron.daily -type f -perm /0077 -exec chmod 0700 {} \;
+        find /etc/cron.hourly -type f -perm /0077 -exec chmod 0700 {} \;
+        find /etc/cron.weekly -type f -perm /0077 -exec chmod 0700 {} \;
+        find /var/spool/cron/ -type f -perm /0077 -exec chmod 0700 {} \;
       
       </fix>
       <check system="http://open-scap.org/page/SCE">
@@ -81,6 +140,7 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
+      <reference href="http://csrc.nist.gov/publications/nistpubs/800-53-Rev3/sp800-53-rev3-final_updated-errata_05-01-2010.pdf">AC-6</reference>
       <fix system="urn:xccdf:fix:script:sh">
       
         chown root /etc/crontab
@@ -114,6 +174,7 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
+      <reference href="http://csrc.nist.gov/publications/nistpubs/800-53-Rev3/sp800-53-rev3-final_updated-errata_05-01-2010.pdf">AC-6</reference>
       <fix system="urn:xccdf:fix:script:sh">
       
         chgrp root /etc/crontab
@@ -133,7 +194,7 @@
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_permissions" selected="true">
       <title>Check permissions of crontab directories</title>
       <description>
-        <xhtml:p>Crontab directories must not be writable by users other than the owner.</xhtml:p>
+        <xhtml:p>Crontab directories must have a permission of 0755.</xhtml:p>
         <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious addition of jobs, crontab directories must be secured.</xhtml:p>
         <xhtml:p>
           File(s) affected:
@@ -146,14 +207,15 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
+      <reference href="http://csrc.nist.gov/publications/nistpubs/800-53-Rev3/sp800-53-rev3-final_updated-errata_05-01-2010.pdf">AC-6</reference>
       <ident system="http://iase.disa.mil/stigs">GEN003100</ident>
       <fix system="urn:xccdf:fix:script:sh">
       
-        find /etc/cron.d -type d -perm /0022 -exec chmod go-w {} \;
-        find /etc/cron.daily -type d -perm /0022 -exec chmod go-w {} \;
-        find /etc/cron.hourly -type d -perm /0022 -exec chmod go-w {} \;
-        find /etc/cron.weekly -type d -perm /0022 -exec chmod go-w {} \;
-        find /var/spool/cron -type d -perm /0022 -exec chmod go-w {} \;
+        find /etc/cron.d -type d -perm /0022 -exec chmod 0755 {} \;
+        find /etc/cron.daily -type d -perm /0022 -exec chmod 0755 {} \;
+        find /etc/cron.hourly -type d -perm /0022 -exec chmod 0755 {} \;
+        find /etc/cron.weekly -type d -perm /0022 -exec chmod 0755 {} \;
+        find /var/spool/cron -type d -perm /0022 -exec chmod 0755 {} \;
       
       </fix>
       <check system="http://open-scap.org/page/SCE">
@@ -178,6 +240,7 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
+      <reference href="http://csrc.nist.gov/publications/nistpubs/800-53-Rev3/sp800-53-rev3-final_updated-errata_05-01-2010.pdf">AC-6</reference>
       <ident system="http://iase.disa.mil/stigs">GEN003120</ident>
       <fix system="urn:xccdf:fix:script:sh">
       
@@ -210,6 +273,7 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
+      <reference href="http://csrc.nist.gov/publications/nistpubs/800-53-Rev3/sp800-53-rev3-final_updated-errata_05-01-2010.pdf">AC-6</reference>
       <ident system="http://iase.disa.mil/stigs">GEN003140</ident>
       <fix system="urn:xccdf:fix:script:sh">
       
