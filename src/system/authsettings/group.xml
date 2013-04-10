@@ -1,12 +1,12 @@
 <xf:xccdf-fragment xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:xf="http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <Group id="xccdf_org.open-scap.sce-community-content_group_system_authcontent" selected="true">
+  <Group id="xccdf_org.open-scap.sce-community-content_group_system_authsettings" selected="true">
     <title>Authentication settings</title>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authcontent-passwd_file_permissions" selected="true">
-      <title>Check password file permissions.</title>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authsettings-passwd_file_permissions" selected="true">
+      <title>Check the permissions of the password file</title>
       <description>
-        <xhtml:p>/etc/passwd must be writable only by its owner.</xhtml:p>
-        <xhtml:p>If the passwd file is writable by a group-owner or the world, the risk of passwd file compromise is increased. The passwd file contains the list of accounts on the system and associated information.</xhtml:p>
+        <xhtml:p>The permission of /etc/passwd must be set to 0644.</xhtml:p>
+        <xhtml:p>If the /etc/passwd file is writable by a group-owner or the world the risk of its compromise is increased. The file contains the list of accounts on the system and associated information, and protection of this file is critical for system security.</xhtml:p>
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
@@ -15,21 +15,75 @@
         </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001380</ident>
-      <fix system="urn:xccdf:fix:script:sh">
-      
-        chmod u-x,go-wx /etc/passwd
-      
-      </fix>
+      <fix system="urn:xccdf:fix:script:sh">chmod 0644 /etc/passwd</fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout" />
         <check-content-ref href="passwd_file_permissions.sh" />
       </check>
     </Rule>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authcontent-shadow_file_owner" selected="true">
-      <title>Check the owner of the shadow file.</title>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authsettings-passwd_file_owner" selected="true">
+      <title>Check the owner of the password file</title>
       <description>
-        <xhtml:p>/etc/shadow must be owned by root.</xhtml:p>
+        <xhtml:p>The owner of /etc/passwd must be root.</xhtml:p>
+        <xhtml:p>The /etc/passwd file contains information about the users that are configured on the system. Protection of this file is critical for system security.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/passwd</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">chown root /etc/passwd</fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="passwd_file_owner.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authsettings-passwd_file_group" selected="true">
+      <title>Check the group-owner of the password file</title>
+      <description>
+        <xhtml:p>The group-owner of /etc/passwd must be root.</xhtml:p>
+        <xhtml:p>The /etc/passwd file contains information about the users that are configured on the system. Protection of this file is critical for system security.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/passwd</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">chgrp root /etc/passwd</fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="passwd_file_group.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authsettings-shadow_file_permissions" selected="true">
+      <title>Check the permissions of the shadow file</title>
+      <description>
+        <xhtml:p>The permission of /etc/shadow must be set to 0400.</xhtml:p>
+        <xhtml:p>The /etc/shadow file contains the list of local system accounts and stores password hashes. Protection of this file is critical for system security. Failure to give ownership of this file to root provides the designated owner with access to sensitive information which could weaken the system security posture.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/shadow</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN001420</ident>
+      <fix system="urn:xccdf:fix:script:sh">chmod 0400 /etc/shadow</fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="shadow_file_permissions.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authsettings-shadow_file_owner" selected="true">
+      <title>Check the owner of the shadow file</title>
+      <description>
+        <xhtml:p>The /etc/shadow file must be owned by root.</xhtml:p>
         <xhtml:p>The /etc/shadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. Failure to give ownership of sensitive files or utilities to root or bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
         <xhtml:p>
           File(s) affected:
@@ -39,22 +93,18 @@
         </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN001400</ident>
-      <fix system="urn:xccdf:fix:script:sh">
-      
-        chown root /etc/shadow
-      
-      </fix>
+      <fix system="urn:xccdf:fix:script:sh">chown root /etc/shadow</fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout" />
         <check-content-ref href="shadow_file_owner.sh" />
       </check>
     </Rule>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authcontent-shadow_file_permissions" selected="true">
-      <title>Check the permissions of the shadow file.</title>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authsettings-shadow_file_group" selected="true">
+      <title>Check the group-owner of the shadow file</title>
       <description>
-        <xhtml:p>/etc/shadow must only be accessible by its owner.</xhtml:p>
-        <xhtml:p>The /etc/shadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. The file also contains password hashes which must not be accessible to users other than root.</xhtml:p>
+        <xhtml:p>The /etc/shadow file must be group-owned by root.</xhtml:p>
+        <xhtml:p>The /etc/shadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. Failure to give ownership of sensitive files or utilities to root or bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
         <xhtml:p>
           File(s) affected:
           <xhtml:ul>
@@ -62,15 +112,129 @@
           </xhtml:ul>
         </xhtml:p>
       </description>
-      <ident system="http://iase.disa.mil/stigs">GEN001420</ident>
-      <fix system="urn:xccdf:fix:script:sh">
-      
-        chmod u-wx,go-rwx /etc/shadow
-      
-      </fix>
+      <ident system="http://iase.disa.mil/stigs">GEN001400</ident>
+      <fix system="urn:xccdf:fix:script:sh">chgrp root /etc/shadow</fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout" />
-        <check-content-ref href="shadow_file_permissions.sh" />
+        <check-content-ref href="shadow_file_group.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authsettings-group_file_permissions" selected="true">
+      <title>Check the permissions of the group file</title>
+      <description>
+        <xhtml:p>The permission of /etc/group must be set to 0644.</xhtml:p>
+        <xhtml:p>If the /etc/group file is writable by a group-owner or the world the risk of its compromise is increased. The file contains the list of accounts on the system and associated information, and protection of this file is critical for system security.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/group</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN001380</ident>
+      <fix system="urn:xccdf:fix:script:sh">chmod 0644 /etc/group</fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="group_file_permissions.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authsettings-group_file_owner" selected="true">
+      <title>Check the owner of the group file</title>
+      <description>
+        <xhtml:p>The owner of /etc/group must be root.</xhtml:p>
+        <xhtml:p>The /etc/group file contains information about the groups that are configured on the system. Protection of this file is critical for system security.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/group</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">chown root /etc/group</fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="group_file_owner.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authsettings-group_file_group" selected="true">
+      <title>Check the group-owner of the group file</title>
+      <description>
+        <xhtml:p>The group-owner of /etc/group must be root.</xhtml:p>
+        <xhtml:p>The /etc/group file contains information about the users that are configured on the system. Protection of this file is critical for system security.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/group</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">chgrp root /etc/group</fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="group_file_group.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authsettings-gshadow_file_permissions" selected="true">
+      <title>Check the permissions of the group shadow file</title>
+      <description>
+        <xhtml:p>The permission of /etc/gshadow must be set to 0400.</xhtml:p>
+        <xhtml:p>The /etc/gshadow file contains the list of local system accounts and stores password hashes. Protection of this file is critical for system security. Failure to give ownership of this file to root provides the designated owner with access to sensitive information which could weaken the system security posture.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/gshadow</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN001420</ident>
+      <fix system="urn:xccdf:fix:script:sh">chmod 0400 /etc/gshadow</fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="gshadow_file_permissions.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authsettings-gshadow_file_owner" selected="true">
+      <title>Check the owner of the group shadow</title>
+      <description>
+        <xhtml:p>The /etc/gshadow file must be owned by root.</xhtml:p>
+        <xhtml:p>The /etc/gshadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. Failure to give ownership of sensitive files or utilities to root or bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/gshadow</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN001400</ident>
+      <fix system="urn:xccdf:fix:script:sh">chown root /etc/gshadow</fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="gshadow_file_owner.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authsettings-gshadow_file_group" selected="true">
+      <title>Check the group-owner of the gshadow file</title>
+      <description>
+        <xhtml:p>The /etc/gshadow file must be group-owned by root.</xhtml:p>
+        <xhtml:p>The /etc/gshadow file contains the list of local system accounts. It is vital to system security and must be protected from unauthorized modification. Failure to give ownership of sensitive files or utilities to root or bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/gshadow</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN001400</ident>
+      <fix system="urn:xccdf:fix:script:sh">chgrp root /etc/gshadow</fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="gshadow_file_group.sh" />
       </check>
     </Rule>
   </Group>
