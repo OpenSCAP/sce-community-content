@@ -13,7 +13,7 @@
     <description>A list of obsolete services are checked if they are disabled. These services are considered to be insecure for various reasons (i.e. non-encrypted password transfer, etc.)</description>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_finger_server" selected="true">
-      <title>Check if the finger service package is installed.</title>
+      <title>Check if the finger service package is installed</title>
       <description>
         <xhtml:p>The finger service is considered obsolete and should therefore not be installed.</xhtml:p>
         <xhtml:p>Disabling 'finger' prevents other (possibly remote) users from querying who is logged onto this machine.</xhtml:p>
@@ -27,7 +27,7 @@
     </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_rsh_server" selected="true">
-      <title>Check if the remote shell server package is installed.</title>
+      <title>Check if the remote shell server package is installed</title>
       <description>
         <xhtml:p>The services provided by the remote shell server package are considered obsolete and therefore should not be installed.</xhtml:p>
         <xhtml:p>The services provided do not implement encrypted authentication methods, passwords are transmitted in plain-text which is unacceptable.</xhtml:p>
@@ -41,7 +41,7 @@
     </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_telnet_server" selected="true">
-      <title>Check if the telnet service package</title>
+      <title>Check if the telnet service package is installed</title>
       <description>
         <xhtml:p>The telnet service is considered obsolete and therefore should not be installed.</xhtml:p>
         <xhtml:p>The services provided do not implement encrypted authentication methods, passwords are transmitted in plain-text which is unacceptable.</xhtml:p>
@@ -51,6 +51,38 @@
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout" />
         <check-content-ref href="disable_telnet_server.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_obsolete-disable_nfs_exports" selected="true">
+      <title>Check if there are no NFS exports</title>
+      <description>
+        <xhtml:p>The NFS service is considered obsolete and therefore no exports should exist.</xhtml:p>
+        <xhtml:p>The services provided do not implement encrypted authentication methods, passwords are transmitted in plain-text which is unacceptable.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/ssh/sshd_config</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="https://www.pcisecuritystandards.org">PCIDSS-2.2.2.b</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
+        while read file
+        do
+          [ "x$file" = "x" ] && continue
+
+          sed -i 's,^,#,' $file
+        done <<_EOF
+/etc/exports
+$(find /etc/exports.d -type f)
+_EOF
+      ]]>
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="disable_nfs_exports.sh" />
       </check>
     </Rule>
   </Group>
