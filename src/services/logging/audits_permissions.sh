@@ -25,7 +25,7 @@ PATH=/bin:/usr/bin
 
 # start a subshell
 output=$(
-find /var/log/audit -type f -perm /0137 -printf "GEN002700: %p is %m should be 0640 or less\n" 2>/dev/null
+find /var/log/audit -type f -perm /0177 -printf "GEN002700: %p is %m should be 0600\n" 2>/dev/null
 )
 
 # we captured output of the subshell, let's interpret it

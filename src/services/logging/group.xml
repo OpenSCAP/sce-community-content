@@ -153,7 +153,7 @@ _EOF
 
       <title>Check permissions of audit log files</title>
       <description>
-        <xhtml:p>All audit logs must be only writable by their owners and readable by the group-owner.</xhtml:p>
+        <xhtml:p>All audit logs must have a permission of 0640 (if world readable logs are enabled) or 0600 (if it's disabled).</xhtml:p>
         <xhtml:p>If a user can write to the audit logs, audit trails can be modified or destroyed and system intrusion may not be detected. System audit logs are those files generated from the audit system and do not include activity, error, or other log files created by application software.</xhtml:p>
         <xhtml:p>
           File(s) affected:
@@ -163,13 +163,10 @@ _EOF
         </xhtml:p>
       </description>
       <ident system="http://iase.disa.mil/stigs">GEN002700</ident>
-      <fix system="urn:xccdf:fix:script:sh">
-
-        find /var/log/audit -type f -perm /0137 -exec chmod u-x,g-wx,o-rwx {} \;
-
-      </fix>
+      <fix system="urn:xccdf:fix:script:sh">find /var/log/audit -type f -exec chmod 0600 {} \;</fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout" />
+        <check-export export-name="ENABLE_WORLD_READABLE" value-id="xccdf_org.open-scap.sce-community-content_value_services_logs-allow_world_readable" />
         <check-content-ref href="audits_permissions.sh" />
       </check>
     </Rule>
