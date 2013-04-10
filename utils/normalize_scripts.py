@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 
 import os.path
+import stat
 import re
 import shutil
 from xml.etree import ElementTree
@@ -31,6 +32,7 @@ def handle_group_file(path):
     with open(os.path.join(path, 'group.xml')) as xml:
         tree = ElementTree.fromstring(xml.read())
 
+    rules = set()
     for item in tree.findall('.//%s' % TAG_RULE):
         content_ref_item = item.find('.//%s' % TAG_CHECK_CONTENT_REF)
         content_ref = content_ref_item.attrib['href']
@@ -42,12 +44,31 @@ def handle_group_file(path):
 
         shutil.move(os.path.join(path, content_ref), os.path.join(path, filename))
 
+        rules.add(filename)
+
     with open(os.path.join(path, 'group.xml'), 'w') as xml:
         xml.write(ElementTree.tostring(tree))
+
+    remove = []
+    for sub in os.listdir(path):
+        if sub == 'group.xml':
+            continue
+
+        full = os.path.join(path, sub)
+        if os.path.isdir(full) or not os.access(full, os.X_OK):
+            continue
+
+        if sub not in rules:
+            remove.append(sub)
+
+    for name in remove:
+        print 'UNREFERENCED FILE %s' % name
+        os.remove(os.path.join(path, name))
 
 ElementTree.register_namespace('xf', 'http://fedorahosted.org/sce-community-content/wiki/XCCDF-fragment')
 ElementTree.register_namespace('xhtml', 'http://www.w3.org/1999/xhtml')
 ElementTree.register_namespace('', 'http://checklists.nist.gov/xccdf/1.2')
+
 for path in scan('.'):
     print '---', path
     handle_group_file(path)
