@@ -2,8 +2,69 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_logging" selected="true">
     <title>Logging</title>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_logging-owner" selected="true">
-      <title>Check owner of the log files.</title>
+    <Value id="xccdf_org.open-scap.sce-community-content_value_services_logs-allow_world_readable" operator="equals" type="boolean">
+      <title>Allow world readable logs</title>
+      <description xml:lang="en">
+        World readable logs are never allowed in strict hardened configurations but are common on desktops.
+      </description>
+      <question xml:lang="en">Are world readable logs allowed?</question>
+
+      <value>0</value>
+      <value selector="yes">1</value>
+      <value selector="no">0</value>
+    </Value>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_logging-logs_permissions" selected="true">
+      <title>Check permissions of the log files</title>
+      <description>
+        <xhtml:p>Log files must have a permission of 0644 (if world readable logs are enabled) or 0640 (if not).</xhtml:p>
+        <xhtml:p>Improper file permissions could allow tampering with system logs.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/var/log/wtmp</xhtml:li>
+            <xhtml:li>/var/log/btmp</xhtml:li>
+            <xhtml:li>/var/log/lastlog</xhtml:li>
+            <xhtml:li>/var/log/utmp</xhtml:li>
+            <xhtml:li>/var/log/messages</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
+        ENABLE_WORLD_READABLE="<sub href="xccdf_org.open-scap.sce-community-content_value_services_logs-allow_world_readable" />"
+
+        EXPECTED_PERMISSION=0640
+        if [ $ENABLE_WORLD_READABLE -eq 1 ]
+        then
+          EXPECTED_PERMISSION=0644
+        fi
+
+        LOGFILES="/var/log/wtmp 664
+                  /var/log/btmp 600
+                  /var/log/lastlog $EXPECTED_PERMISSION
+                  /var/run/utmp 664
+                  /var/log/messages $EXPECTED_PERMISSION"
+
+        while read name perm
+        do
+          [ -e $name ] || continue
+
+          chmod $perm $name
+        done <<_EOF
+$LOGFILES
+_EOF
+      ]]>
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-export export-name="ENABLE_WORLD_READABLE" value-id="xccdf_org.open-scap.sce-community-content_value_services_logs-allow_world_readable" />
+        <check-content-ref href="logs_permissions.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_logging-logs_owner" selected="true">
+      <title>Check owner of the log files</title>
       <description>
         <xhtml:p>Log files should be owned by root.</xhtml:p>
         <xhtml:p>Improper file permissions could allow tampering with system logs.</xhtml:p>
@@ -19,24 +80,24 @@
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
-      
+
         chown root /var/log/wtmp
         chown root /var/log/btmp
         chown root /var/log/lastlog
         chown root /var/run/utmp
         chown root /var/log/messages
-      
+
       </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout" />
-        <check-content-ref href="owner.sh" />
+        <check-content-ref href="logs_owner.sh" />
       </check>
     </Rule>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_logging-group" selected="true">
-      <title>Check group of the log files.</title>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_logging-logs_group" selected="true">
+      <title>Check group-owner of the log files</title>
       <description>
-        <xhtml:p>Log files should be group-owned by root.</xhtml:p>
+        <xhtml:p>Log files should be group-owned by root (for lastlog and messages) or utmp (for wtmp, btmp and utmp).</xhtml:p>
         <xhtml:p>Improper file permissions could allow tampering with system logs.</xhtml:p>
         <xhtml:p>
           File(s) affected:
@@ -50,17 +111,66 @@
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
-      
+
         chgrp utmp /var/log/wtmp
         chgrp utmp /var/log/btmp
         chgrp root /var/log/lastlog
         chgrp utmp /var/run/utmp
         chgrp root /var/log/messages
-      
+
       </fix>
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout" />
-        <check-content-ref href="group.sh" />
+        <check-content-ref href="logs_group.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_logging-audits_owner" selected="true">
+      <title>Check owner of audit log files</title>
+      <description>
+        <xhtml:p>All audit logs must be owned by root.</xhtml:p>
+        <xhtml:p>Failure to give ownership of system audit log files to root provides the designated owner and unauthorized users with the potential to access sensitive information.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/var/log/audit/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN002680</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+
+        find /var/log/audit -type f \( ! -user root \) -exec chown root {} \;
+
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="audits_owner.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_logging-audits_permissions" selected="true">
+
+      <title>Check permissions of audit log files</title>
+      <description>
+        <xhtml:p>All audit logs must be only writable by their owners and readable by the group-owner.</xhtml:p>
+        <xhtml:p>If a user can write to the audit logs, audit trails can be modified or destroyed and system intrusion may not be detected. System audit logs are those files generated from the audit system and do not include activity, error, or other log files created by application software.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/var/log/audit/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN002700</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+
+        find /var/log/audit -type f -perm /0137 -exec chmod u-x,g-wx,o-rwx {} \;
+
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="audits_permissions.sh" />
       </check>
     </Rule>
   </Group>

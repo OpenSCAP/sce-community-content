@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 
-LOGFILES="/var/log/wtmp root utmp 664
-	  /var/log/btmp root utmp 600
-	  /var/log/lastlog root root 644
-	  /var/run/utmp root utmp 664
-	  /var/log/messages root root 600"
+LOGFILES="/var/log/wtmp utmp
+	  /var/log/btmp utmp
+	  /var/log/lastlog root
+	  /var/run/utmp utmp
+	  /var/log/messages root"
 
 RET=$XCCDF_RESULT_PASS
 
-while read name owner group perm
+while read name group
 do
+  [ -e $name ] || continue
+
   REAL_GROUP=$(stat -c '%G' $name)
   if [ "x$REAL_GROUP" != "x$group" ]
   then
