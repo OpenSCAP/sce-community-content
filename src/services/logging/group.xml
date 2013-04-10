@@ -9,7 +9,7 @@
       </description>
       <question xml:lang="en">Are world readable logs allowed?</question>
 
-      <value>0</value>
+      <value>1</value>
       <value selector="yes">1</value>
       <value selector="no">0</value>
     </Value>
@@ -31,9 +31,9 @@
         </xhtml:p>
       </description>
       <fix system="urn:xccdf:fix:script:sh">
-      <![CDATA[
-        ENABLE_WORLD_READABLE="<sub href="xccdf_org.open-scap.sce-community-content_value_services_logs-allow_world_readable" />"
+        ENABLE_WORLD_READABLE="<sub idref="xccdf_org.open-scap.sce-community-content_value_services_logs-allow_world_readable" />"
 
+      <![CDATA[
         EXPECTED_PERMISSION=0640
         if [ $ENABLE_WORLD_READABLE -eq 1 ]
         then

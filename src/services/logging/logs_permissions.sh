@@ -28,7 +28,7 @@ do
 
   if [ $ACCESS -ne $perm ]
   then
-    echo "$name has invalid permissions, expected $perm, got $EXPECTED_PERMISSION"
+    echo "$name has invalid permissions, expected $perm, got $ACCESS"
     RET=$XCCDF_RESULT_FAIL
   fi
 done <<_EOF
