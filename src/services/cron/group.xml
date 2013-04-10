@@ -10,6 +10,26 @@
   <Group id="xccdf_org.open-scap.sce-community-content_group_services_cron" selected="true">
     <title>Crontab</title>
 
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_allow_permissions" selected="true">
+      <title>Check permission of cron.allow file</title>
+      <description>
+        <xhtml:p>The cron.allow file must have its permissions set to 0600.</xhtml:p>
+        <xhtml:p>A cron.allow file that is readable and/or writable by other than root could allow potential intruders and malicious users to use the file contents to help discern information, such as who is allowed to execute cron programs, which could be harmful to overall system and network security.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/cron.allow</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN002980</ident>
+      <fix system="urn:xccdf:fix:script:sh">chmod 0600 /etc/cron.allow</fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="cron_allow_permissions.sh" />
+      </check>
+    </Rule>
+
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_files_permissions" selected="true">
       <title>Check permission of crontab files</title>
       <description>
@@ -143,7 +163,7 @@
     </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_owner" selected="true">
-      <title>Check owner of crontab directories.</title>
+      <title>Check owner of crontab directories</title>
       <description>
         <xhtml:p>Crontab directories must be owned by root.</xhtml:p>
         <xhtml:p>Incorrect ownership of the cron or crontab directories could permit unauthorized users the ability to alter or add cron jobs and run automated jobs as privileged users. Failure to give ownership of cron or crontab directories to root or to bin provides the designated owner and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
@@ -175,7 +195,7 @@
     </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-cron_dirs_group" selected="true">
-      <title>Check group-owner of crontab directories.</title>
+      <title>Check group-owner of crontab directories</title>
       <description>
         <xhtml:p>Crontab directories must be group root.</xhtml:p>
         <xhtml:p>To protect the integrity of scheduled system jobs and to prevent malicious modification of these jobs, crontab files must be secured. Failure to give group-ownership of cron or crontab directories to a system group provides the designated group and unauthorized users with the potential to access sensitive information or change the system configuration which could weaken the system's security posture.</xhtml:p>
@@ -207,7 +227,7 @@
     </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_vars_shell" selected="true">
-      <title>Check if the shell used to execute crontab jobs is set correctly.</title>
+      <title>Check if the shell used to execute crontab jobs is set correctly</title>
       <description>
         <xhtml:p>The shell should be set to /bin/bash in the crontab configuration file.</xhtml:p>
         <xhtml:p>Having a non-standard shell used for executing the commands in the crontab may cause unintended consequences.</xhtml:p>
@@ -230,7 +250,7 @@
     </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_services_cron-crontab_vars_path" selected="true">
-      <title>Check if the PATH variable in crontab is set correctly.</title>
+      <title>Check if the PATH variable in crontab is set correctly</title>
       <description>
         <xhtml:p>The PATH variable in the crontab configuration file must contain only /bin, /sbin, /usr/bin and /usr/sbin.</xhtml:p>
         <xhtml:p>Additional paths in the PATH value may allow other users to influence the execution of a scheduled job through replacing the used shell.</xhtml:p>

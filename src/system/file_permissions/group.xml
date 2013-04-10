@@ -614,30 +614,6 @@ _EOF
       </check>
     </Rule>
 
-    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-cron_allow_permissions" selected="true">
-      <title>Check permission of cron.allow file</title>
-      <description>
-        <xhtml:p>The cron.allow file must only be accessible by its owner.</xhtml:p>
-        <xhtml:p>A cron.allow file that is readable and/or writable by other than root could allow potential intruders and malicious users to use the file contents to help discern information, such as who is allowed to execute cron programs, which could be harmful to overall system and network security.</xhtml:p>
-        <xhtml:p>
-          File(s) affected:
-          <xhtml:ul>
-            <xhtml:li>/etc/cron.allow</xhtml:li>
-          </xhtml:ul>
-        </xhtml:p>
-      </description>
-      <ident system="http://iase.disa.mil/stigs">GEN002980</ident>
-      <fix system="urn:xccdf:fix:script:sh">
-      
-        chmod u-x,go-rwx /etc/cron.allow
-      
-      </fix>
-      <check system="http://open-scap.org/page/SCE">
-        <check-import import-name="stdout" />
-        <check-content-ref href="cron_allow_permissions.sh" />
-      </check>
-    </Rule>
-
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-xinetd_dirs_owner" selected="true">
       <title>Check owner of xinetd directories</title>
       <description>
