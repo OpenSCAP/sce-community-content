@@ -153,5 +153,24 @@
         <check-content-ref href="world_writable_dirs_owner.sh" />
       </check>
     </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_file_permissions-world_writable_files" selected="true">
+      <title>Check owner of world writable directories</title>
+      <description>
+        <xhtml:p>There must be no world writable files present on the system.</xhtml:p>
+        <xhtml:p>Since all users with access to the system can modify these files, their content cannot be considered trustable. These files must be removed or dealt with.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/* (all files)</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">find / -path /proc -prune -o -type f -perm -0002 -exec chmod o-w {} \;</fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="world_writable_files.sh" />
+      </check>
+    </Rule>
   </Group>
 </xf:xccdf-fragment>
