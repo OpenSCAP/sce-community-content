@@ -3,7 +3,7 @@
     <title>Execution restriction</title>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_execution-exec_shield" selected="true">
-      <title>Check if execute shield is enabled.</title>
+      <title>Check if execute shield is enabled</title>
       <description>
         <xhtml:p>The execute shield kernel option should be enabled in the sysctl configuration file.</xhtml:p>
         <xhtml:p>Enabling execute shield makes the system less easy to exploit by some security vulnerabilities.</xhtml:p>
@@ -40,7 +40,7 @@
     </Rule>
 
     <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_execution-va_randomization" selected="true">
-      <title>Check if va randomization is enabled.</title>
+      <title>Check if va randomization is enabled</title>
       <description>
         <xhtml:p>The va randomization kernel option should be enabled in the sysctl configuration file.</xhtml:p>
         <xhtml:p>Enabling va randomization makes the system less easy to exploit by some security vulnerabilities.</xhtml:p>
@@ -73,6 +73,62 @@
       <check system="http://open-scap.org/page/SCE">
         <check-import import-name="stdout" />
         <check-content-ref href="va_randomization.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_execution-core_disable_limits" selected="true">
+      <title>Check if core dumps are disabled in the limits configuration</title>
+      <description>
+        <xhtml:p>Core dumps should be disabled in the main limits configuration.</xhtml:p>
+        <xhtml:p>Core dumps have generaly only a purpose for developers and may contain sensitive information.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/security/limits.conf</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix reboot="1" system="urn:xccdf:fix:script:sh">echo '* hard core 0' >> /etc/security/limits.conf</fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="core_disable.sh" />
+      </check>
+    </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_execution-core_disable_setuid" selected="true">
+      <title>Check if setuid executables are not dumpable</title>
+      <description>
+        <xhtml:p>Core dumps for setuid executables must be disabled in the sysctl configuration file.</xhtml:p>
+        <xhtml:p>Core dumps of setuid executables are more likely to contain sensitive information.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/sysctl.conf</xhtml:li>
+            <xhtml:li>/etc/sysctl.d/*</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix reboot="1" system="urn:xccdf:fix:script:sh">
+
+        FOUND=0
+        for config in $(ls -1 /etc/sysctl.conf /etc/sysctl.d/* 2&gt;/dev/null)
+        do
+          grep -q fs.suid_dumpable $config || continue
+
+          FOUND=1
+          sed -i 's,^.*fs.suid_dumpable.*$,fs.suid_dumpable = 1,' $config
+        done
+
+        if [ $FOUND -eq 0 ]
+        then
+          echo fs.suid_dumpable = 1 &gt;&gt; /etc/sysctl.conf
+        fi
+        exit 0
+
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="core_disable_setuid.sh" />
       </check>
     </Rule>
   </Group>
