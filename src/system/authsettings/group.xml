@@ -237,5 +237,46 @@
         <check-content-ref href="gshadow_file_group.sh" />
       </check>
     </Rule>
+
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authsettings-zero_uid_root" selected="true">
+      <title>Check if only the root account has a UID of 0</title>
+      <description>
+        <xhtml:p>Only the root should have a UID of 0.</xhtml:p>
+        <xhtml:p>An account has root authority if it has a UID of 0.  Multiple accounts with a UID of 0 afford more opportunity for potential  intruders to guess a password for a privileged account. Proper  configuration of sudo is recommended to afford multiple system  administrators access to root privileges in an accountable manner.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/etc/passwd</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <ident system="http://iase.disa.mil/stigs">GEN001400</ident>
+      <fix system="urn:xccdf:fix:script:sh">
+      <![CDATA[
+        TEMPFILE=$(mktemp)
+
+        cat /etc/passwd | \
+        while read line
+        do
+          echo $line | cut -d':' -f 1,3 | tr ':' ' ' | \
+          {
+            read name uid
+
+            if [ "x$name" = "xroot" -o "x$uid" != "x0" ]
+            then
+              echo $line
+            fi
+          }
+        done > $TEMPFILE
+
+        cat $TEMPFILE > /etc/passwd
+        rm $TEMPFILE
+      ]]>
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="zero_uid_root.sh" />
+      </check>
+    </Rule>
   </Group>
 </xf:xccdf-fragment>
