@@ -23,6 +23,7 @@
 
   <platform idref="cpe:/o:fedoraproject:fedora:17" />
   <platform idref="cpe:/o:fedoraproject:fedora:18" />
+  <platform idref="cpe:/o:fedoraproject:fedora:19" />
   <version>1.0</version>
   <model system="urn:xccdf:scoring:flat" />
 
