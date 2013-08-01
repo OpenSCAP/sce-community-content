@@ -8,3 +8,4 @@ src/results.xml
 src/report.html
 src/sds-datastream.xml
 src/sds-datastream-unformated.xml
+*.pyc
