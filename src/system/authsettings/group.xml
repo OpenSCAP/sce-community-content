@@ -278,5 +278,35 @@
         <check-content-ref href="zero_uid_root.sh" />
       </check>
     </Rule>
+    <Rule id="xccdf_org.open-scap.sce-community-content_rule_system_authsettings-k5login_file_permissions" selected="true">
+      <title>Check the permissions of .k5login files</title>
+      <description>
+        <xhtml:p>The permission of any user's .k5login must be set to 0644.</xhtml:p>
+        <xhtml:p>If a .k5login file is writable by a group-owner or the world the risk of its compromise is increased. The file contains the list of Kerberos accounts which can login as a given user. Various tools require read-only access to this file; write protection of this file is critical for user security.</xhtml:p>
+        <xhtml:p>
+          File(s) affected:
+          <xhtml:ul>
+            <xhtml:li>/home/*/.k5login</xhtml:li>
+          </xhtml:ul>
+        </xhtml:p>
+      </description>
+      <fix system="urn:xccdf:fix:script:sh">
+        while read user home
+        do
+        if [ -e $home/.k5login ]
+          then
+              chmod -R 0644 $home/.k5login
+              chown -R $user $home/.k5login
+          fi
+        done &lt;&lt;_EOF
+        $(grep -v /sbin/nologin /etc/passwd | cut -d: -f 1,6 | tr ':' ' ')
+_EOF
+
+      </fix>
+      <check system="http://open-scap.org/page/SCE">
+        <check-import import-name="stdout" />
+        <check-content-ref href="k5login_file_permissions.sh" />
+      </check>
+    </Rule>
   </Group>
 </xf:xccdf-fragment>
